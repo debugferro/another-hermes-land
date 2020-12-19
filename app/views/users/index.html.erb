@@ -29,16 +29,15 @@
           <div class="card-profiles">
             <div class="card-filler"></div>
 
-            <div class="card-category card-feed-position align-center outflow-avatar" style="background-color: #D63230; background-image: url(<%= cl_image_path user.photo.key if user.photo.attached? %>)">
+            <div class="card-category card-feed-position align-center outflow-avatar" style="background-color: #337357; background-image: url(<%= cl_image_path user.photo.key if user.photo.attached? %>)">
               <%= link_to "#{user.username}", user_path(user), class: "btn-profile" %>
             </div>
-              <%= image_tag "circle-greek.png",  class: "greek-circle"%>
             <div class="card-profile-content">
-              <%= user.about_me.truncate(100) %>
-              ...I'm from <%= user.country %>!
+              <p><%= user.about_me.truncate(100) %>
+              ...I'm from <%= user.country %>!</p>
               <div class="separator"><%= image_tag 'linguistics2.png', class: "profile-card-icons"%></div>
               <div class="tag-wrapper">
-                <div class="tag" style="background-color: #f39237;">
+                <div class="tag" style="background-color: #FF0035;">
                   <%= user.native_language %>
                 </div>
                   <% user.my_languages&.first(3).each do |language| %>
