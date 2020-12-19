@@ -561,9 +561,10 @@ const createAvatar = () => {
   btnSave.addEventListener("click", () => {
     let form      = document.querySelector(".sendAvatar");
     let dataURI   = resAvatar.toDataURL('image/png');
-    let assetData = new Array (imgBase.src.slice(29), imgHair.src.slice(29),
-      imgMouth.src.slice(29), imgEyes.src.slice(29), imgEyebrows.src.slice(29),
-      imgNose.src.slice(29), imgCloth.src.slice(29), imgAcessory.src.slice(29)
+    let assetData = new Array (imgBase.src.slice(imgBase.src.lastIndexOf("/") + 1), imgHair.src.slice(imgHair.src.lastIndexOf("/") + 1),
+      imgMouth.src.slice(imgMouth.src.lastIndexOf("/") + 1), imgEyes.src.slice(imgEyes.src.lastIndexOf("/") + 1),
+      imgEyebrows.src.slice(imgEyebrows.src.lastIndexOf("/") + 1), imgNose.src.slice(imgNose.src.lastIndexOf("/") + 1),
+      imgCloth.src.slice(imgCloth.src.lastIndexOf("/") + 1), imgAcessory.src.slice(imgAcessory.src.lastIndexOf("/") + 1)
       );
     document.getElementById("avatar_img").value        = dataURI;
     document.getElementById("avatar_appearance").value = assetData;
