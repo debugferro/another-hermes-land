@@ -72,6 +72,7 @@ class AvatarsController < ApplicationController
         asset_found = Asset.where(path: asset)
         @avatar.assets << asset_found
       end
+      raise
       @user.save
       @avatar.save
       redirect_to :root
