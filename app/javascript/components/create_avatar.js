@@ -564,9 +564,10 @@ const createAvatar = () => {
     let assetData = new Array (imgBase.src.slice(29), imgHair.src.slice(29),
       imgMouth.src.slice(29), imgEyes.src.slice(29), imgEyebrows.src.slice(29),
       imgNose.src.slice(29), imgCloth.src.slice(29), imgAcessory.src.slice(29)
-      )
+      );
     document.getElementById("avatar_img").value        = dataURI;
     document.getElementById("avatar_appearance").value = assetData;
+    console.log(assetData);
     form.submit();
   });
 
