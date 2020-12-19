@@ -20,6 +20,8 @@
         <li class="nav-item">
           <%= link_to "Messages", chat_rooms_path, class: "nav-link" if current_user.photo.attached? %>
         </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
           <% if current_user.photo.present? %>
             <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle background-image", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -31,7 +33,7 @@
             <%= link_to "Edit Profile", profile_path, class: "dropdown-item" %>
             <%#= link_to "Edit Interests", my_interests_path, class: "dropdown-item" %>
             <%#= link_to "Edit Languages", my_languages_path, class: "dropdown-item" %>
-            <%= link_to "Edit Info", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Edit Interests", edit_user_registration_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>

@@ -1,14 +1,14 @@
-body {
-  background-size: cover;
-  background-image: url(clouds.jpg), linear-gradient(180deg, rgb(0, 139, 193) 0%, rgba(0,119,182,1) 29%, rgba(0,180,216,1) 57%, rgba(144,224,239,1) 83%, rgba(202,240,248,1) 98%);
-  background-position: center;
-}
+// body {
+//   background-size: cover;
+//   background-image: url(clouds.jpg), linear-gradient(180deg, rgb(0, 139, 193) 0%, rgba(0,119,182,1) 29%, rgba(0,180,216,1) 57%, rgba(144,224,239,1) 83%, rgba(202,240,248,1) 98%);
+//   background-position: center;
+// }
 
 .card-signup {
   box-shadow: 2px 1px 9px 3px #00000040;
-  border: 1px solid black;
+
   margin-bottom: 29px;
-  background: whitesmoke;
+  background: $hermes-white;
   margin-top: 29px;
   padding: 30px;
   border-radius: 2.6em;

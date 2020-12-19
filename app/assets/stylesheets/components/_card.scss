@@ -6,13 +6,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: whitesmoke;
+  color: $hermes-white;
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   box-shadow: 2px 2px 13px 2px #00000082;
-  border: 15px solid $hermes-gold;
+  border: 5px solid $hermes-white;
 }
 
 .card-feed-position {
@@ -23,8 +23,8 @@
 
 .card-profiles {
   box-shadow: 2px 1px 9px 3px #00000040;
-  background: whitesmoke;
-  border: 1px solid black;
+  background: $hermes-white;
+
   padding: 1.5em;
   position: relative;
   height: 24em;
@@ -72,7 +72,7 @@
 }
 
 .profile-filler {
-    background-color: $hermes-red;
+    background-color: $hermes-filler;
     position: absolute;
     width: 99.7%;
     height: 4em;
@@ -81,8 +81,10 @@
     margin-top: -1.8em;
     border-top-right-radius: 2.49em;
     border-top-left-radius: 2.49em;
-    box-shadow: rgba(0, 0, 0, 0.89) 2px 1px 10px 1px inset;
-    border: 1px solid whitesmoke;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    box-shadow: #0000007d 2px 1px 10px 1px inset;
+    border: 1px solid $hermes-white;
 }
 
 .pos-relative{
@@ -124,7 +126,7 @@
 
 .profile-img-container{
 position: relative;
-    border: 15px solid $hermes-gold;
+    border: 5px solid $hermes-green;
     border-radius: 50%;
 }
 
@@ -138,7 +140,6 @@ position: relative;
   white-space: nowrap;
 
     padding: 0.3em 1em;
-    border: solid 1px black;
     background-color: $hermes-darkblue;
     border-radius: 0.5em;
     color: rgb(245, 245, 245);
@@ -148,6 +149,9 @@ position: relative;
     // top: 88%;
     // right: 16%;
     box-shadow: 1px 1px 1px 1px #00000082;
+    span{
+      color: $hermes-white;
+    }
 }
 
 .profile-info{
@@ -186,7 +190,7 @@ position: relative;
 }
 
 .tag-separator{
-  border-bottom: 1px solid gainsboro;
+  border-bottom: 1px solid $hermes-gainsboro;
 }
 
 .profile-languages {
@@ -196,7 +200,7 @@ position: relative;
 .tag {
   margin: 2px 4px;
   padding: 2px 3px;
-  border: solid 1px black;
+
   background-color: $hermes-darkblue;
   border-radius: 0.5em;
   color: $hermes-white;
@@ -211,7 +215,7 @@ position: relative;
 .separator::before, .separator::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid gainsboro;
+    border-bottom: 1px solid $hermes-gainsboro;
 }
 .separator::before {
     margin-right: .25em;
@@ -222,23 +226,25 @@ margin-left: .25em;
 
 
 .card-filler{
-  background-color: #D63230;
+  background-color: $hermes-filler;
   width: 21.79em;
   height: 23%;
 margin-left: -1.44em;
     margin-top: -1.4em;
   border-top-right-radius: 2.49em;
   border-top-left-radius: 2.49em;
-  box-shadow: 2px 1px 10px 1px #000000e3 inset;
+      border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+  box-shadow: 2px 1px 10px 1px #0000007d inset;
   border: solid $hermes-white 1px;
 }
 
 .btn-profile {
   white-space: nowrap;
-  background-color: $hermes-darkblue;
+  background-color: $hermes-green;
   border-radius: 1.1em;
   padding: 0.1em 1.1em;
-  border: 1px solid black;
+
   position: absolute;
   bottom: -0.8em;
   color: $hermes-white;
@@ -247,13 +253,13 @@ margin-left: -1.44em;
       z-index: 1;
 }
 .btn-profile:hover {
-  background:  #C2D8FE;
-  color: $hermes-blue;
+  background:  $hermes-lightgreen;
+  color: $hermes-white;
   transition: background 0.3s ease;
 }
 
 .btn-search {
-  background-color: $hermes-darkblue;
+  background-color: $hermes-green;
   border-radius: 1.1em;
   padding: 0.1em 1.1em;
   color: $hermes-white;
@@ -269,7 +275,7 @@ margin-left: -1.44em;
 }
 
 .btn-start-chat {
-  color: $hermes-blue;
+  color: $hermes-green;
   background-color: black;
   border-radius: 10px;
 }

@@ -1,16 +1,19 @@
-<%= content_tag :div, class: "avatar_information", data: { bases: @bases, basecolors: @base_colors, eyes: @eyes, eyecolors: @eye_colors, hairs: @hairs, haircolors: @colorized_hairs, mouths: @mouths, eyebrows: @eyebrows, eyebrowcolors: @eyebrow_colors, noses: @noses, clothes: @clothes, acessories: @acessories, acessorycolors: @acessory_colors, gender: @gender } do %>
-<% end %>
-<%= image_tag "/avatar/#{@base}", id: 'face', class: 'hidden-content' %>
-<%= image_tag "/avatar/#{@hair}", id: 'hair', class: 'hidden-content'%>
-<%= image_tag "/avatar/#{@mouth}", id: 'mouth', class: 'hidden-content'%>
-<%= image_tag "/avatar/#{@nose}", id: 'nose', class: 'hidden-content' %>
-<%= image_tag "/avatar/#{@eye}", id: 'eyes', class: 'hidden-content' %>
-<%= image_tag "/avatar/#{@eyebrow}", id: 'eyebrows', class: 'hidden-content' %>
-<%= image_tag "/avatar/#{@cloth}", id: 'cloth', class: 'hidden-content' if @cloth %>
-<%= image_tag '', id: 'cloth', class: 'hidden-content' unless @cloth %>
-<%= image_tag "/avatar/#{@acessory}", id: 'acessory', class: 'hidden-content' if @acessory %>
-<%= image_tag '', id: 'acessory', class: 'hidden-content' unless @acessory %>
 
+<div class="avatar-data">
+  <%= content_tag :div, class: "avatar_information", data: { bases: @bases, basecolors: @base_colors, eyes: @eyes, eyecolors: @eye_colors, hairs: @hairs, haircolors: @colorized_hairs, mouths: @mouths, eyebrows: @eyebrows, eyebrowcolors: @eyebrow_colors, noses: @noses, clothes: @clothes, acessories: @acessories, acessorycolors: @acessory_colors, gender: @gender } do %>
+  <% end %>
+  <%= image_tag "/avatar/#{@base}", id: 'face', class: 'hidden-content' %>
+  <%= image_tag "/avatar/#{@hair}", id: 'hair', class: 'hidden-content'%>
+  <%= image_tag "/avatar/#{@mouth}", id: 'mouth', class: 'hidden-content'%>
+  <%= image_tag "/avatar/#{@nose}", id: 'nose', class: 'hidden-content' %>
+  <%= image_tag "/avatar/#{@eye}", id: 'eyes', class: 'hidden-content' %>
+  <%= image_tag "/avatar/#{@eyebrow}", id: 'eyebrows', class: 'hidden-content' %>
+  <%= image_tag "/avatar/#{@cloth}", id: 'cloth', class: 'hidden-content' if @cloth %>
+  <%= image_tag '', id: 'cloth', class: 'hidden-content' unless @cloth %>
+  <%= image_tag "/avatar/#{@acessory}", id: 'acessory', class: 'hidden-content' if @acessory %>
+  <%= image_tag '', id: 'acessory', class: 'hidden-content' unless @acessory %>
+</div>
+<div class="general-container">
 <div class="avatar-edit-container">
   <div class="card-edit-left">
     <div class="profile-filler width-99"></div>
@@ -49,22 +52,7 @@
         </div>
       </div>
 
-      <div class="change-button">
-        <div class="color-left">
-          <div class="Btn-eyebrowcolor btn-color">
-            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %></span>
-          </div>
-        </div>
-        <div class="option">
-          <div class="Btn-eyebrowsback arrow-right-filler pointer first-card-arrow-pos-right">
-            <span class="pointer"><</span>
-          </div>
-          Eyebrows
-          <div class="Btn-eyebrows arrow-left-filler pointer first-card-arrow-pos-left">
-            <span class="pointer">></span>
-          </div>
-        </div>
-      </div>
+
 
       <div class="change-button">
         <div class="color-left">
@@ -109,10 +97,20 @@
       <span class="Btn-female absolute"><%= image_tag "fem.png" %></span> -->
       <div class="canvas-img-box">
         <canvas class="result"></canvas>
-          <%= image_tag "circle-greek.png",  class: "canvas-greek"%>
+
         <div class="profile-name topos-12">
           <span>
             <%= @user.username %>
+          </span>
+        </div>
+        <div class="Btn-female gender-female-btn pointer">
+          <span>
+            Girl
+          </span>
+        </div>
+        <div class="Btn-male gender-male-btn pointer">
+          <span>
+            Boy
           </span>
         </div>
       </div>
@@ -122,6 +120,23 @@
   <div class="card-edit-right">
     <div class="profile-filler width-99"></div>
     <div class="card-content">
+
+      <div class="change-button">
+        <div class="color-right">
+          <div class="Btn-eyebrowcolor btn-color kill-margin-left">
+            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %></span>
+          </div>
+        </div>
+        <div class="option justify-end">
+          <div class="Btn-eyebrowsback arrow-right-filler pointer second-card-arrow-post-right">
+            <span class="pointer"><</span>
+          </div>
+          Eyebrows
+          <div class="Btn-eyebrows arrow-left-filler pointer second-card-arrow-pos-left">
+            <span class="pointer">></span>
+          </div>
+        </div>
+      </div>
 
       <div class="change-button">
         <div class="color-right">
@@ -173,7 +188,7 @@
           </div> -->
         </div>
       </div>
-      <div class="gender-btn absolute">
+<!--       <div class="gender-btn absolute">
         <%= show_svg('gender.svg') %>
         <div class="Btn-female gender-txt to-right pointer">
           <span>Female</span>
@@ -181,15 +196,16 @@
         <div class="Btn-male gender-txt to-left pointer">
           <span>Male</span>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>
-            <div class="Btn-save btn-chatwith pointer floating-btn">
-            <%= link_to image_tag('newchat.png'), feed_index_path %>
-            <%= link_to "To HermesLand!!", feed_index_path %>
-          </div>
 
+    </div>
+    <div class="Btn-save btn-chatwith pointer floating-btn">
+      <%= link_to image_tag('newchat.png'), feed_index_path %>
+      <%= link_to "To HermesLand!!", feed_index_path %>
+    </div>
     </div>
   </div>
 

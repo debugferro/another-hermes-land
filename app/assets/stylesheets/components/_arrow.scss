@@ -110,10 +110,11 @@ white-space: nowrap;
     border-top-right-radius: 0.5em;
     height: 1.723em;
     transition: 0.3s ease;
-    text-shadow: 1px 1px 1px $hermes-white;
+    text-shadow: 1px 1px 1px $hermes-black;
     span{
     font-size: 1.2em;
     font-weight: bold;
+    color: $hermes-white;
     }
 }
 .first-card-arrow-pos-left {
@@ -136,22 +137,23 @@ white-space: nowrap;
      position: absolute;
     // top: -0.01em;
     // right: 2.2em;
-    background-color: #1C77C3;
+    background-color: $hermes-green;
     width: 2.2em;
     border-bottom-left-radius: 0.5em;
     border-top-left-radius: 0.5em;
     height: 1.723em;
     transition: 0.3s ease;
-    text-shadow: 1px 1px 1px whitesmoke;
+    text-shadow: 1px 1px 1px $hermes-black;
   span{
     font-size: 1.2em;
     font-weight: bold;
+    color: $hermes-white;
   }
 }
 
 .first-card-arrow-pos-right {
   top: -0.01em;
-  right: 2.2em;
+  right: 2.19em;
 }
 
 .second-card-arrow-post-right {
@@ -178,9 +180,8 @@ white-space: nowrap;
 }
 
 .floating-btn {
-  position: absolute;
-    top: 23em;
     width: 14em;
+    margin: 0 auto;
 }
 
 

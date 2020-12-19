@@ -71,14 +71,15 @@
 
 .profile-btns {
   place-self: center;
+  margin-top: 1em;
   margin-bottom: 1em;
 }
 
 .btn-chatwith{
   width: 11em;
-    background-color: #1c77c3;
+    background-color: $hermes-green;
     border-radius: 0.5em;
-    border: 1px solid black;
+
     padding: 0.3em 1.2em 0.3em 1.2em;
     box-shadow: rgba(0, 0, 0, 0.51) 1px 1px 1px 1px;
     transition: background 0.3s ease;
@@ -87,7 +88,7 @@
   }
 
   a{
-    color: white;
+    color: $hermes-white;
     font-weight: bold;
     text-decoration: none !important;
   }
@@ -95,8 +96,11 @@
 
 .btn-chatwith:hover{
   background-color: #C2D8FE;
-  color: #1460AB;
-    transition: background 0.3s ease;
+  color: $hermes-lightgreen;
+  transition: background 0.3s ease;
+  a{
+    color: white;
+  }
 
 }
 

@@ -1,4 +1,15 @@
 // Specific CSS for your home-page
+body{
+  background-image: url(clouds3.jpg), linear-gradient(180deg, rgb(0, 139, 193) 0%, rgba(0,119,182,1) 29%, rgba(0,180,216,1) 57%, rgba(144,224,239,1) 83%, rgba(202,240,248,1) 98%);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  p, h1, h2, h3, span {
+    color: $hermes-black;
+  }
+}
+
+
 .banner {
   background-repeat: no-repeat;
   background-size: cover;

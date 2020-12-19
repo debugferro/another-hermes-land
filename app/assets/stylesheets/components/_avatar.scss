@@ -1,7 +1,8 @@
 .avatar {
-  width: 40px;
+  width: 57px;
   border-radius: 50%;
-  border: white solid 1px;
+  box-shadow: 1px 1px 9px 0px #00000096;
+  border: $hermes-gold solid 1px;
 }
 .avatar-large {
   width: 56px;
