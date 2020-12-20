@@ -71,6 +71,7 @@ const createAvatar = () => {
   let filteredNoses;
   let filteredMouths;
   let filteredEyes;
+  let filteredBases;
 
   // Initializing assets index
   let baseIndex     = 0;
@@ -212,8 +213,9 @@ const createAvatar = () => {
     filteredNoses  = findColors(noses, idPattern);
     filteredMouths = findColors(mouths, idPattern);
     filteredEyes   = findColors(eyes, idPattern);
+    // filteredBases  = findColors(baseColors, idPattern)
   }
-  let currentSkinColor;;
+  let currentSkinColor;
   // INITIALIZING
   window.onload = function () {
     grabElements();
@@ -221,24 +223,28 @@ const createAvatar = () => {
     // INITIALIZING ASSETS
     let initializedValues;
     // INITIALIZING NOSE/MOUTH AND EYES FOR CURRENT SKIN COLOR
-    initializeNoseMouthForColor(imgBase.src.slice(29));
+    initializeNoseMouthForColor(imgBase.src.slice(imgBase.src.lastIndexOf("/") + 1));
+    // currentBase = imgBase.src.slice(imgBase.src.lastIndexOf("/") + 1);
+    // initializedValues   = initializeColorIndexes(currentBase, baseColors);
+    // selectedBaseColors      = initializedValues.colors
+    // selectedBaseColorsIndex = initializedValues.index
     // INITIALIZING HAIR COLORS
-    currentHair             = imgHair.src.slice(29);
+    currentHair             = imgHair.src.slice(imgHair.src.lastIndexOf("/") + 1);
     initializedValues       = initializeColorIndexes(currentHair, hairColors);
     selectedHairColors      = initializedValues.colors;
     selectedHairColorsIndex = initializedValues.index;
     // INITIALIZING EYE COLORS
-    currentEyes             = imgEyes.src.slice(29);
+    currentEyes             = imgEyes.src.slice(imgEyes.src.lastIndexOf("/") + 1);
     initializedValues       = initializeColorIndexes(currentEyes, eyeColors);
     selectedEyeColors      = initializedValues.colors;
     selectedEyeColorsIndex = initializedValues.index;
     // INITIALIZING EYEBROW COLORS
-    currentEyebrows            = imgEyebrows.src.slice(29);
+    currentEyebrows            = imgEyebrows.src.slice(imgEyebrows.src.lastIndexOf("/") + 1);
     initializedValues          = initializeColorIndexes(currentEyebrows, eyebrowColors);
     selectedEyebrowColors      = initializedValues.colors;
     selectedEyebrowColorsIndex = initializedValues.index;
     // INITIALIZING ACESSORY COLORS
-    currentAcessory             = imgAcessory.src.slice(29);
+    currentAcessory             = imgAcessory.src.slice(imgAcessory.src.lastIndexOf("/") + 1);
     initializedValues           = initializeColorIndexes(currentAcessory, acessoryColors);
     selectedAcessoryColors      = initializedValues.colors;
     selectedAcessoryColorsIndex = initializedValues.index;
@@ -249,6 +255,9 @@ const createAvatar = () => {
 
 
   const iterateBackOrForward = (array, index, direction) => {
+    if(index > array.length - 1) {
+      index = 0;
+    }
     if (direction == 1){
       if(index == array.length-1) {
         index = 0;
@@ -315,6 +324,25 @@ const createAvatar = () => {
       updateCanvas();
     });
   });
+
+  // btnSkin.addEventListener("click", () => {
+  //   // Verifying it current base was initialized
+  //   // If not, it will initialize to get current base colors to iterate over
+  //   selectedBaseColorsIndex = iterateBackOrForward(selectedBaseColors, selectedBaseColorsIndex, 1).direction;
+  //   let currentColor = selectedBaseColors[selectedBaseColorsIndex]
+  //   imgBase.src = `/avatar/${currentColor}`;
+  //   currentBase = currentColor;
+  //   initializeNoseMouthForColor(currentColor);
+  //   btnMouth.click(); // Forcind mouth, nose and eyes to change accordingly to
+  //   btnNose.click();  // the current skin color
+  //   btnEyes.click();
+  //   imgBase.addEventListener("load", function () {
+  //     grabElements();
+  //     updateCanvas();
+  //   });
+  // });
+
+
 
 
   btnHair.addEventListener("click", () => {
