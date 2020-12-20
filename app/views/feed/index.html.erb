@@ -1,24 +1,26 @@
-<div class="container">
+<div class="mcontainer">
     <div class="card-signup">
+      <div class="search-container">
       <h1 id="find-title">Find your buddy!</h1>
-      <div class="interest-form">
-        <%= simple_form_for :query, url: users_path, method: "GET", html: { class: '', id: '' } do |f| %>
-          <div class="p-1">
-            <p style="margin-bottom: 0;">Interests:</p>
-            <%= f.input :interests, as: :select, collection: Interest.all, value_method: :name, label_method: :name, input_html: { class: 'select2max form-small kill-margin-btm', multiple: true }, required: false, label: false %>
-          </div>
-          <div class="p-1">
-            <p style="margin-bottom: 0;">Countries:</p>
-            <%= f.input :countries, as: :select, collection: User::COUNTRIES, input_html: { class: 'select2max form-large kill-margin-btm', multiple: true }, required: false, label: false  %>
-          </div>
-          <div class="p-1">
-            <p style="margin-bottom: 0;">Languages:</p>
-            <%= f.input :languages, as: :select, collection: Language.all, input_html: { class: 'select2max form-large kill-margin-btm', multiple: true }, required: false, label: false  %>
-          </div>
-          <div class="p-1">
-            <%= f.submit "Search", class: "btn-chatwith white-txt highlight width-fix" %>
-          </div>
-        <% end %>
+        <div class="interest-form">
+          <%= simple_form_for :query, url: users_path, method: "GET", html: { class: '', id: '' } do |f| %>
+            <div>
+              <p style="margin-bottom: 0;">Interests:</p>
+              <%= f.input :interests, as: :select, collection: Interest.all, value_method: :name, label_method: :name, input_html: { class: 'select2max form-small kill-margin-btm', multiple: true }, required: false, label: false %>
+            </div>
+            <div>
+              <p style="margin-bottom: 0;">Countries:</p>
+              <%= f.input :countries, as: :select, collection: User::COUNTRIES, input_html: { class: 'select2max form-large kill-margin-btm', multiple: true }, required: false, label: false  %>
+            </div>
+            <div>
+              <p style="margin-bottom: 0;">Languages:</p>
+              <%= f.input :languages, as: :select, collection: Language.all, input_html: { class: 'select2max form-large kill-margin-btm', multiple: true }, required: false, label: false  %>
+            </div>
+            <div>
+              <%= f.submit "Search", class: "btn-chatwith white-txt highlight width-fix" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
 

@@ -1,5 +1,6 @@
 // Specific CSS for your home-page
 body{
+  min-width: fit-content;
   background-image: url(clouds3.jpg), linear-gradient(180deg, rgb(0, 139, 193) 0%, rgba(0,119,182,1) 29%, rgba(0,180,216,1) 57%, rgba(144,224,239,1) 83%, rgba(202,240,248,1) 98%);
   background-attachment: fixed;
   background-size: cover;
@@ -7,6 +8,13 @@ body{
   p, h1, h2, h3, span {
     color: $hermes-black;
   }
+}
+
+.mcontainer {
+  min-width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
 }
 
 
@@ -92,9 +100,43 @@ body{
 }
 
 .interest-form {
-  width: 80%;
+  // width: 100%;
+  display: contents;
   text-align: center;
   margin: 0 auto;
   position: relative;
   right: 15px;
+}
+
+@media (min-width: 300px) {
+  .interest-form{
+      width: 112% !important;
+  }
+}
+
+@media (min-width: 450px) {
+  .interest-form{
+      width: 108% !important;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .interest-form{
+      width: 100% !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .interest-form{
+      width: 100% !important;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .interest-form{
+      width: 100% !important;
+  }
 }

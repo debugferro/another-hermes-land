@@ -1,3 +1,40 @@
+
+
+@media (min-width: 576px) {
+  .interest-form{
+    .interest-form > .simple_form {
+      width: 117% !important;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .interest-form{
+    form{
+      width: 100%;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .interest-form{
+    form{
+      width: 100%;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .interest-form{
+    form{
+      width: 100%;
+    }
+  }
+}
+
 // .select2, .select2-container, .select2-container--default{
 //   width: 37em !important;
 //   max-width: 50%;
