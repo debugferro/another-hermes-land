@@ -49,7 +49,7 @@ const avatarCreator = () => {
     });
 
     btnTo.change.eyebrows.backwards.addEventListener("click", () => {
-      changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, assets.hairColors, assetColorOpt.hair)
+      changeAsset(assets.eyebrows, avDom.imgEyebrows, 0, index.eyebrows, assets.eyebrowColors, assetColorOpt.eyebrows)
     });
     btnTo.change.eyebrows.color.addEventListener("click", () => {
       changeColor(assetColorOpt.hair, avDom.imgHair)

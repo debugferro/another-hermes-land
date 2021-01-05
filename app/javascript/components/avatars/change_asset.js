@@ -19,7 +19,7 @@ const iterateBackOrForward = (array, index, direction) => {
         direction: index
       }
     } else {
-      if(index == 0) {
+      if(index == 0 || index < 0) {
         index = array.length - 1;
       } else {
         index = index - 1;
