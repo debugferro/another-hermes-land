@@ -49,14 +49,14 @@ class assetIndex {
 
 export function setIndex() {
   return {
-    base: 0,
+    base: new assetIndex(0),
     hair: new assetIndex(0),
-    eyes: 0,
-    mouth: 0,
-    eyebrows: 0,
-    nose: 0,
-    clothes: 0,
-    acessory: 0
+    eyes: new assetIndex(0),
+    mouth: new assetIndex(0),
+    eyebrows: new assetIndex(0),
+    nose: new assetIndex(0),
+    clothes: new assetIndex(0),
+    acessory: new assetIndex(0)
   }
 }
 

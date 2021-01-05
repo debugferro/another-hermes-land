@@ -1,12 +1,15 @@
 import grabElements from './initialize/grab_elements';
 import updateCanvas from './update_canvas';
 import initializeAssetsForColor from './initialize/skincolor/initialize_assets_for_color';
-import initializeColor from './initialize/color/initialize_color';
+import initializeColors from './initialize/color/initialize_color';
 
 import { getGender, getAssetsInfo, setIndex } from './initialize/get_assets_info';
 import takeBtnFromDom from './initialize/take_btn_from_dom';
 
 import { changeAsset, changeColor } from './change_asset';
+
+// LOADEDCOLOR HAS MANY CLASS OBJECTS
+// INDEXES ARE CLASS OBJECTS
 
 const avatarCreator = () => {
   window.onload = function() {
@@ -20,22 +23,27 @@ const avatarCreator = () => {
     // Getting all the current available colors for current assets
     const currentFile = avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1);
     const filteredAssets = initializeAssetsForColor(currentFile, assets);
-    const loadedColor = initializeColor(avDom, assets);
-    console.log(loadedColor);
+    const assetColorOpt = initializeColors(avDom, assets);
+    console.log(assetColorOpt);
     const btnTo = takeBtnFromDom();
 
 
-    // CHANGE ASSETS PARAMS: assets, dom, movingDirection, assetIndex, allAssetsColors = null, loadedColor = null
+    // CHANGE ASSETS PARAMS: assets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null
+    // CHANGE COLOR PARAMS: assetColorOpt, avDom
+
+
+    // HAIR --------------------------------------------------------------------
     btnTo.change.hair.forward.addEventListener("click", () => {
-      changeAsset(assets.hairs, avDom.imgHair, 1, index.hair, assets.hairColors, loadedColor.hair)
+      changeAsset(assets.hairs, avDom.imgHair, 1, index.hair, assets.hairColors, assetColorOpt.hair)
     });
 
     btnTo.change.hair.backwards.addEventListener("click", () => {
-      changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, assets.hairColors, loadedColor.hair)
+      changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, assets.hairColors, assetColorOpt.hair)
     });
     btnTo.change.hair.color.addEventListener("click", () => {
-      changeColor(loadedColor.hair, avDom.imgHair)
+      changeColor(assetColorOpt.hair, avDom.imgHair)
     });
+    // -------------------------------------------------------------------------
   }
 }
 

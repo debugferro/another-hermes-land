@@ -29,31 +29,35 @@ const iterateBackOrForward = (array, index, direction) => {
     }
   }
 
-export function changeAsset(assets, dom, movingDirection, assetIndex, allAssetsColors = null, loadedColor = null ) {
-  assetIndex.changeIndex(iterateBackOrForward(assets, assetIndex.index, movingDirection).direction);
-  let currentAsset = assets[assetIndex.index];
-  // INITIALIZING CURRENT HAIR COLOR FILES AND INDEX
-  // SETTING CURRENT HAIR COLORS AND EQUIVALENT INDEX
-  console.log(loadedColor);
+// ----------------------------------------------------------------------------
+
+export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null ) {
+  // iterating over existing assets options
+  assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
+  let currentAsset = basicAssets[assetIndex.index];
+  // loading existing colors options for the new asset
   if (allAssetsColors) {
     let initializedValues = initializeColorIndexes(currentAsset, allAssetsColors);
-    loadedColor.changeColors(initializedValues.colors)
-    loadedColor.changeIndex(initializedValues.index)
+    assetColorOpt.changeColors(initializedValues.colors)
+    assetColorOpt.changeIndex(initializedValues.index)
   }
-  // -------------------------------------------------
-  dom.src = `/avatar/${currentAsset}`
-  dom.addEventListener("load", function () {
+  // sending changes to canvas:
+  avDom.src = `/avatar/${currentAsset}`
+  avDom.addEventListener("load", function () {
     updateCanvas(grabElements());
   });
 };
 
-export function changeColor(loadedColor, dom) {
-  loadedColor.changeIndex(iterateBackOrForward(loadedColor.colors, loadedColor.index, 1).direction);
-  let currentColor = loadedColor.colors[loadedColor.index];
-  // let currentColor = selectedHairColors[selectedHairColorsIndex++%selectedHairColors.length]
+// ----------------------------------------------------------------------------
+
+export function changeColor(assetColorOpt, avDom) {
+  // iterating over existing color options
+  assetColorOpt.changeIndex(iterateBackOrForward(assetColorOpt.colors, assetColorOpt.index, 1).direction);
+  let currentColor = assetColorOpt.colors[assetColorOpt.index];
+  // sending changes to canvas:
   if (currentColor && currentColor.length > 0) {
-    dom.src = `/avatar/${currentColor}`
-    dom.addEventListener("load", function () {
+    avDom.src = `/avatar/${currentColor}`
+    avDom.addEventListener("load", function () {
       updateCanvas(grabElements());
     });
   }
