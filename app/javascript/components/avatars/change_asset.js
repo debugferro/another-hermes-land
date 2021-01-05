@@ -1,13 +1,14 @@
 import initializeColorIndexes from './initialize/color/initialize_index';
-import grabElements from './initialize/grab_elements';
+import { grabElements } from './initialize/grab_elements';
 import updateCanvas from './update_canvas';
 
 const iterateBackOrForward = (array, index, direction) => {
     if(index > array.length - 1) {
       index = 0;
     }
+
     if (direction == 1){
-      if(index == array.length-1) {
+      if(index == array.length - 1) {
         index = 0;
       }
       else
@@ -42,6 +43,7 @@ export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, all
     assetColorOpt.changeIndex(initializedValues.index)
   }
   // sending changes to canvas:
+  console.log(currentAsset)
   avDom.src = `/avatar/${currentAsset}`
   avDom.addEventListener("load", function () {
     updateCanvas(grabElements());
