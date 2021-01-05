@@ -1,5 +1,4 @@
 export default function updateCanvas(dom) {
-  console.log(dom);
   let context          = dom.resAvatar.getContext("2d");
   dom.resAvatar.width  = dom.imgBase.width;
   dom.resAvatar.height = dom.imgBase.height;

@@ -1,5 +1,21 @@
 import initializeColorIndexes from './initialize_index';
 
+class AssetColor {
+  constructor(colors, index) {
+    this.colors = colors;
+    this.index = index;
+  }
+
+  changeIndex(index) {
+    this.index = index;
+  }
+
+  changeColors(colors) {
+    this.colors = colors;
+  }
+}
+
+
 export default function initializeColor(dom, assets) {
     let currentHair     = dom.imgHair.src.slice(dom.imgHair.src.lastIndexOf("/") + 1);
     let currentEyes     = dom.imgEyes.src.slice(dom.imgEyes.src.lastIndexOf("/") + 1);
@@ -19,10 +35,7 @@ export default function initializeColor(dom, assets) {
     let selectedAcessory = initializedValues
 
     return {
-      hair: {
-        colors: selectedHair.colors,
-        index: selectedHair.index
-      },
+      hair: new AssetColor(selectedHair.colors, selectedHair.index),
       eyes: {
         colors: selectedEye.colors,
         index: selectedEye.index

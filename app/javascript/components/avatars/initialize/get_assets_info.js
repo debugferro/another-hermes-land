@@ -36,3 +36,30 @@ export function getGender() {
     info: avatarInfos.data('gender')
   }
 }
+
+class assetIndex {
+  constructor(index) {
+    this.index = index;
+  }
+
+  changeIndex(newIndex) {
+    this.index = newIndex;
+  }
+}
+
+export function setIndex() {
+  return {
+    base: 0,
+    hair: new assetIndex(0),
+    eyes: 0,
+    mouth: 0,
+    eyebrows: 0,
+    nose: 0,
+    clothes: 0,
+    acessory: 0
+  }
+}
+
+// const index = setIndex();
+
+// export { index };
