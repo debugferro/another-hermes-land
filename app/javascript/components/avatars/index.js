@@ -52,7 +52,17 @@ const avatarCreator = () => {
       changeAsset(assets.eyebrows, avDom.imgEyebrows, 0, index.eyebrows, assets.eyebrowColors, assetColorOpt.eyebrows)
     });
     btnTo.change.eyebrows.color.addEventListener("click", () => {
-      changeColor(assetColorOpt.hair, avDom.imgHair)
+      changeColor(assetColorOpt.eyebrows, avDom.imgEyebrows)
+    });
+    // EYES --------------------------------------------------------------------
+    btnTo.change.eyes.forward.addEventListener("click", () => {
+      changeAsset(assets.eyes, avDom.imgEyes, 1, index.eyes, assets.eyeColors, assetColorOpt.eyes)
+    });
+    btnTo.change.eyes.backwards.addEventListener("click", () => {
+      changeAsset(assets.eyes, avDom.imgEyes, 0, index.eyes, assets.eyeColors, assetColorOpt.eyes)
+    });
+    btnTo.change.eyes.color.addEventListener("click", () => {
+      changeColor(assetColorOpt.eyes, avDom.imgEyes)
     });
   }
 }
