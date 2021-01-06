@@ -70,16 +70,15 @@ export function changeColor(assetColorOpt, avDom) {
 export function changeSkinColor(assetColorOpt, avDom, filteredAssets, assets, btnTo) {
   assetColorOpt.changeIndex(iterateBackOrForward(assetColorOpt.colors, assetColorOpt.index, 1).direction);
   let currentColor = assetColorOpt.colors[assetColorOpt.index];
-
+  // resolving idPattern based on the current new color
   const idPattern = resolveIdPattern(currentColor);
-  console.log("before")
-  console.log(filteredAssets);
+  // redefining available assets based on the new skin color
   filteredAssets.redefineAssets(assets, idPattern);
-  console.log("after")
-  console.log(filteredAssets);
+  // TODO: change mouth, nose and eyes for its correspondent in the new skin color
   btnTo.change.mouth.forward.click();
   btnTo.change.nose.forward.click();
   btnTo.change.eyes.forward.click();
+  // sending changes to canvas:
   avDom.src = `/avatar/${currentColor}`
     avDom.addEventListener("load", function () {
     updateCanvas(grabElements());

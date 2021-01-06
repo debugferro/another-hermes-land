@@ -103,6 +103,18 @@ const avatarCreator = () => {
     btnTo.change.gender.toFemale.addEventListener("click", () => {
       changeGender("female");
     });
+    btnTo.save.addEventListener("click", () => {
+      let form      = document.querySelector(".sendAvatar");
+      let dataURI   = avDom.resAvatar.toDataURL('image/png');
+      let assetData = new Array (avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1), avDom.imgHair.src.slice(avDom.imgHair.src.lastIndexOf("/") + 1),
+        avDom.imgMouth.src.slice(avDom.imgMouth.src.lastIndexOf("/") + 1), avDom.imgEyes.src.slice(avDom.imgEyes.src.lastIndexOf("/") + 1),
+        avDom.imgEyebrows.src.slice(avDom.imgEyebrows.src.lastIndexOf("/") + 1), avDom.imgNose.src.slice(avDom.imgNose.src.lastIndexOf("/") + 1),
+        avDom.imgCloth.src.slice(avDom.imgCloth.src.lastIndexOf("/") + 1), avDom.imgAcessory.src.slice(avDom.imgAcessory.src.lastIndexOf("/") + 1)
+        );
+      document.getElementById("avatar_img").value        = dataURI;
+      document.getElementById("avatar_appearance").value = assetData;
+      form.submit();
+    });
   }
 }
 
