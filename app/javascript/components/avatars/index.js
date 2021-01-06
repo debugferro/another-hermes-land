@@ -20,10 +20,11 @@ const avatarCreator = () => {
     // Getting avatar gender and all available assets for matching gender
     const avGender = getGender();
     const assets = getAssetsInfo(avGender.allInfo, avGender.info);
-    const index = setIndex(assets, currentAssetOf);
     // Getting all the current available colors for current assets
     const currentFile = avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1);
     const filteredAssets = initializeAssetsForColor(currentFile, assets);
+    // Getting current loaded assets index
+    const index = setIndex(assets, filteredAssets, currentAssetOf);
     const assetColorOpt = initializeColors(avDom, assets);
     const btnTo = takeBtnFromDom();
 
@@ -56,13 +57,37 @@ const avatarCreator = () => {
     });
     // EYES --------------------------------------------------------------------
     btnTo.change.eyes.forward.addEventListener("click", () => {
-      changeAsset(assets.eyes, avDom.imgEyes, 1, index.eyes, assets.eyeColors, assetColorOpt.eyes)
+      changeAsset(assets.eyes, avDom.imgEyes, 1, index.eyes, assets.eyeColors, assetColorOpt.eyes);
     });
     btnTo.change.eyes.backwards.addEventListener("click", () => {
-      changeAsset(assets.eyes, avDom.imgEyes, 0, index.eyes, assets.eyeColors, assetColorOpt.eyes)
+      changeAsset(assets.eyes, avDom.imgEyes, 0, index.eyes, assets.eyeColors, assetColorOpt.eyes);
     });
     btnTo.change.eyes.color.addEventListener("click", () => {
-      changeColor(assetColorOpt.eyes, avDom.imgEyes)
+      changeColor(assetColorOpt.eyes, avDom.imgEyes);
+    });
+    // MOUTH -------------------------------------------------------------------
+    btnTo.change.mouth.forward.addEventListener("click", () => {
+      changeAsset(filteredAssets.mouths, avDom.imgMouth, 1, index.mouth);
+    });
+    btnTo.change.mouth.backwards.addEventListener("click", () => {
+      changeAsset(filteredAssets.mouths, avDom.imgMouth, 0, index.mouth);
+    });
+    // NOSE --------------------------------------------------------------------
+    btnTo.change.nose.forward.addEventListener("click", () => {
+      changeAsset(filteredAssets.noses, avDom.imgNose, 1, index.nose);
+    });
+    btnTo.change.nose.backwards.addEventListener("click", () => {
+      changeAsset(filteredAssets.noses, avDom.imgNose, 0, index.nose);
+    });
+    // ACESSORY ----------------------------------------------------------------
+    btnTo.change.acessories.forward.addEventListener("click", () => {
+      changeAsset(assets.acessories, avDom.imgAcessory, 1, index.acessory, assets.acessoryColors, assetColorOpt.acessories);
+    });
+    btnTo.change.acessories.forward.addEventListener("click", () => {
+      changeAsset(assets.acessories, avDom.imgAcessory, 0, index.acessory, assets.acessoryColors, assetColorOpt.acessories);
+    });
+    btnTo.change.acessories.color.addEventListener("click", () => {
+      changeColor(assetColorOpt.acessories, avDom.imgAcessory);
     });
   }
 }

@@ -5,8 +5,8 @@ export default function initializeAssetsForColor(currentFile, assets) {
   let endIndex   = currentFile.lastIndexOf(";");
   let idPattern  = currentFile.substring(startIndex, endIndex)
   return {
-    filteredNoses: findColors(assets.noses, idPattern),
-    filteredMouths: findColors(assets.mouths, idPattern),
-    filteredEyes: findColors(assets.eyes, idPattern)
+    noses: findColors(assets.noses, idPattern),
+    mouths: findColors(assets.mouths, idPattern),
+    eyes: findColors(assets.eyes, idPattern)
   }
 }

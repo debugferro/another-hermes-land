@@ -47,14 +47,14 @@ class assetIndex {
   }
 }
 
-export function setIndex(assets, currentAssetOf) {
+export function setIndex(assets, filteredAssets, currentAssetOf) {
   return {
     base: new assetIndex(0),
     hair: new assetIndex(assets.hairs.indexOf(currentAssetOf.hair)),
     eyes: new assetIndex(assets.eyes.indexOf(currentAssetOf.eyes)),
-    mouth: new assetIndex(assets.mouths.indexOf(currentAssetOf.mouth)),
+    mouth: new assetIndex(filteredAssets.mouths.indexOf(currentAssetOf.mouth)),
     eyebrows: new assetIndex(assets.eyebrows.indexOf(currentAssetOf.eyebrows)),
-    nose: new assetIndex(assets.noses.indexOf(currentAssetOf.nose)),
+    nose: new assetIndex(filteredAssets.noses.indexOf(currentAssetOf.nose)),
     clothes: new assetIndex(assets.clothes.indexOf(currentAssetOf.clothes)),
     acessory: new assetIndex(assets.acessories.indexOf(currentAssetOf.acessory))
   }
