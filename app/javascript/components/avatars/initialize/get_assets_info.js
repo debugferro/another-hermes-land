@@ -39,7 +39,11 @@ export function getGender() {
 
 class assetIndex {
   constructor(index) {
-    this.index = index;
+    if (index >= 0) {
+      this.index = index;
+    } else {
+      this.index = 0;
+    }
   }
 
   changeIndex(newIndex) {

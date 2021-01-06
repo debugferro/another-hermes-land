@@ -27,6 +27,10 @@ const avatarCreator = () => {
     const index = setIndex(assets, filteredAssets, currentAssetOf);
     const assetColorOpt = initializeColors(avDom, assets);
     const btnTo = takeBtnFromDom();
+    console.log(assets.acessories);
+    console.log(index.acessory);
+    console.log(avDom.imgAcessory);
+    console.log(assets.acessoryColors);
 
 
     // CHANGE ASSETS PARAMS: assets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null
@@ -57,10 +61,10 @@ const avatarCreator = () => {
     });
     // EYES --------------------------------------------------------------------
     btnTo.change.eyes.forward.addEventListener("click", () => {
-      changeAsset(assets.eyes, avDom.imgEyes, 1, index.eyes, assets.eyeColors, assetColorOpt.eyes);
+      changeAsset(filteredAssets.eyes, avDom.imgEyes, 1, index.eyes, assets.eyeColors, assetColorOpt.eyes);
     });
     btnTo.change.eyes.backwards.addEventListener("click", () => {
-      changeAsset(assets.eyes, avDom.imgEyes, 0, index.eyes, assets.eyeColors, assetColorOpt.eyes);
+      changeAsset(filteredAssets.eyes, avDom.imgEyes, 0, index.eyes, assets.eyeColors, assetColorOpt.eyes);
     });
     btnTo.change.eyes.color.addEventListener("click", () => {
       changeColor(assetColorOpt.eyes, avDom.imgEyes);
@@ -83,11 +87,15 @@ const avatarCreator = () => {
     btnTo.change.acessories.forward.addEventListener("click", () => {
       changeAsset(assets.acessories, avDom.imgAcessory, 1, index.acessory, assets.acessoryColors, assetColorOpt.acessories);
     });
-    btnTo.change.acessories.forward.addEventListener("click", () => {
+    btnTo.change.acessories.backwards.addEventListener("click", () => {
       changeAsset(assets.acessories, avDom.imgAcessory, 0, index.acessory, assets.acessoryColors, assetColorOpt.acessories);
     });
     btnTo.change.acessories.color.addEventListener("click", () => {
       changeColor(assetColorOpt.acessories, avDom.imgAcessory);
+    });
+    // CLOTHES -----------------------------------------------------------------
+    btnTo.change.clothes.forward.addEventListener("click", () => {
+      changeAsset(assets.clothes, avDom.imgCloth, 1, index.clothes);
     });
   }
 }
