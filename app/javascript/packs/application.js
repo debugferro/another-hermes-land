@@ -35,7 +35,8 @@ import { initChatRoomCable } from '../channels/chat_room_channel';
 import { sendMessage } from '../components/send_message';
 import { loadScroll } from '../components/load_scroll';
 // import { setAvatar } from '../components/set_avatar';
-import { createAvatar } from '../components/create_avatar';
+// import { createAvatar } from '../components/create_avatar';
+import avatarCreator from '../components/avatars/index';
 // import { filterDropdown } from '../components/filter_dropdown'
 
 
@@ -52,7 +53,7 @@ document.addEventListener("turbolinks:load", function() {
   loadScroll();
   // setAvatar();
   if (document.querySelector(".avatar_information")) {
-    createAvatar();
+    avatarCreator();
   }
   if (document.querySelector(".data-bubble")) {
     $(function () {

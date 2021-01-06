@@ -361,6 +361,7 @@ const createAvatar = () => {
     });
   });
 
+// dom, btnDirection, asset, assetcolors
 
   btnHairBack.addEventListener("click", () => {
     hairIndex = iterateBackOrForward(hairs, hairIndex, 0).direction;
@@ -378,6 +379,7 @@ const createAvatar = () => {
     });
   });
 
+ // assetColorIndex, assetColors,
   btnHairColor.addEventListener("click", () => {
     selectedHairColorsIndex = iterateBackOrForward(selectedHairColors, selectedHairColorsIndex, 1);
     selectedHairColorsIndex = selectedHairColorsIndex.direction
