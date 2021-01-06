@@ -1,6 +1,8 @@
+import { resolveIdPattern } from './initialize/skincolor/initialize_assets_for_color';
 import initializeColorIndexes from './initialize/color/initialize_index';
 import { grabElements } from './initialize/grab_elements';
 import updateCanvas from './update_canvas';
+// import takeBtnFromDom from './initialize/take_btn_from_dom';
 
 const iterateBackOrForward = (array, index, direction) => {
     if(index > array.length - 1) {
@@ -63,4 +65,23 @@ export function changeColor(assetColorOpt, avDom) {
       updateCanvas(grabElements());
     });
   }
+}
+
+export function changeSkinColor(assetColorOpt, avDom, filteredAssets, assets, btnTo) {
+  assetColorOpt.changeIndex(iterateBackOrForward(assetColorOpt.colors, assetColorOpt.index, 1).direction);
+  let currentColor = assetColorOpt.colors[assetColorOpt.index];
+
+  const idPattern = resolveIdPattern(currentColor);
+  console.log("before")
+  console.log(filteredAssets);
+  filteredAssets.redefineAssets(assets, idPattern);
+  console.log("after")
+  console.log(filteredAssets);
+  btnTo.change.mouth.forward.click();
+  btnTo.change.nose.forward.click();
+  btnTo.change.eyes.forward.click();
+  avDom.src = `/avatar/${currentColor}`
+    avDom.addEventListener("load", function () {
+    updateCanvas(grabElements());
+  });
 }

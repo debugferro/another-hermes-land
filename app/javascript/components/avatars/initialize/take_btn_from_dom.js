@@ -30,7 +30,7 @@ export default function takeBtnFromDom() {
   let btnFemale = document.querySelector(".Btn-female");
   return {
     change: {
-      base: {
+      face: {
         forward: btnBase,
         color: btnSkin
       },

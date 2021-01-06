@@ -21,6 +21,7 @@ export default function initializeColors(dom, assets) {
     let currentEyes     = dom.imgEyes.src.slice(dom.imgEyes.src.lastIndexOf("/") + 1);
     let currentEyebrows = dom.imgEyebrows.src.slice(dom.imgEyebrows.src.lastIndexOf("/") + 1);
     let currentAcessory = dom.imgAcessory.src.slice(dom.imgAcessory.src.lastIndexOf("/") + 1);
+    let currentBase     = dom.imgBase.src.slice(dom.imgBase.src.lastIndexOf("/") + 1);
 
     let initializedValues = initializeColorIndexes(currentHair, assets.hairColors);
     let selectedHair      = initializedValues
@@ -34,7 +35,11 @@ export default function initializeColors(dom, assets) {
     initializedValues    = initializeColorIndexes(currentAcessory, assets.acessoryColors);
     let selectedAcessory = initializedValues
 
+    initializedValues = initializeColorIndexes(currentBase, assets.baseColors);
+    let selectedBase  = initializedValues
+
     return {
+      base: new AssetColor(selectedBase.colors, selectedBase.index),
       hair: new AssetColor(selectedHair.colors, selectedHair.index),
       eyes: new AssetColor(selectedEye.colors, selectedEye.index),
       eyebrows: new AssetColor(selectedEyebrow.colors, selectedEyebrow.index),

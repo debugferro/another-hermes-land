@@ -1,12 +1,13 @@
 import { grabElements, setCurrentAssets } from './initialize/grab_elements';
 import updateCanvas from './update_canvas';
-import initializeAssetsForColor from './initialize/skincolor/initialize_assets_for_color';
+import { initializeAssetsForColor } from './initialize/skincolor/initialize_assets_for_color';
 import initializeColors from './initialize/color/initialize_color';
 
+import changeGender from './change_gender';
 import { getGender, getAssetsInfo, setIndex } from './initialize/get_assets_info';
 import takeBtnFromDom from './initialize/take_btn_from_dom';
 
-import { changeAsset, changeColor } from './change_asset';
+import { changeAsset, changeColor, changeSkinColor } from './change_asset';
 
 // LOADEDCOLOR HAS MANY CLASS OBJECTS
 // INDEXES ARE CLASS OBJECTS
@@ -27,21 +28,19 @@ const avatarCreator = () => {
     const index = setIndex(assets, filteredAssets, currentAssetOf);
     const assetColorOpt = initializeColors(avDom, assets);
     const btnTo = takeBtnFromDom();
-    console.log(assets.acessories);
-    console.log(index.acessory);
-    console.log(avDom.imgAcessory);
-    console.log(assets.acessoryColors);
+    console.log(filteredAssets.eyes);
 
 
     // CHANGE ASSETS PARAMS: assets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null
     // CHANGE COLOR PARAMS: assetColorOpt, avDom
 
-
+    btnTo.change.face.color.addEventListener("click", () => {
+      changeSkinColor(assetColorOpt.base, avDom.imgBase, filteredAssets, assets, btnTo)
+    });
     // HAIR --------------------------------------------------------------------
     btnTo.change.hair.forward.addEventListener("click", () => {
       changeAsset(assets.hairs, avDom.imgHair, 1, index.hair, assets.hairColors, assetColorOpt.hair)
     });
-
     btnTo.change.hair.backwards.addEventListener("click", () => {
       changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, assets.hairColors, assetColorOpt.hair)
     });
@@ -96,6 +95,13 @@ const avatarCreator = () => {
     // CLOTHES -----------------------------------------------------------------
     btnTo.change.clothes.forward.addEventListener("click", () => {
       changeAsset(assets.clothes, avDom.imgCloth, 1, index.clothes);
+    });
+    // GENDER ------------------------------------------------------------------
+    btnTo.change.gender.toMale.addEventListener("click", () => {
+      changeGender("male");
+    });
+    btnTo.change.gender.toFemale.addEventListener("click", () => {
+      changeGender("female");
     });
   }
 }
