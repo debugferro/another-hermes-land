@@ -1,32 +1,59 @@
 class Layer {
   constructor(info, ChosenAssets) {
-    this.info = info;
-    this.assets = ChosenAssets;
+    this._info = info;
+    this._assets = ChosenAssets;
   }
 
-  modify(info, ChosenAssets) {
-    this.info = info;
-    this.assets = ChosenAssets;
+  set assets(ChosenAssets) {
+    this._assets = ChosenAssets;
   }
 
   draw() {
-    this.assets.forEach((asset) => {
-      this.info.ctx.drawImage(asset, 0, 0);
+    this._assets.forEach((asset) => {
+      this._info.ctx.drawImage(asset, 0, 0);
     })
   }
 }
 
-class MainLayer {
-  constructor(ctx, composition) {
-    this.ctx = ctx;
-    this.components = composition;
+class SkinLayer {
+  constructor(info, face, nose, mouth) {
+    this.info = info;
+    this.face = face;
+    this.nose = nose;
+    this.mouth = mouth;
+    this.components = [face, nose, mouth];
   }
 
-  drawAll(){
+  draw(){
     this.components.forEach((component) => {
       component.draw();
     })
   }
+
+  updateLayers() {
+    this.components.forEach((component) => {
+      this.info.ctx.drawImage(component.info.layer, 0, 0);
+    })
+  }
+
+  modifyComponent(component, newAssets) {
+    switch (component) {
+      case 'face':
+        this.face.modify(newAssets);
+        this.face.draw();
+        break;
+      case 'nose':
+        this.nose.modify(newAssets);
+        this.nose.draw();
+        break;
+      case 'mouth':
+        this.mouth.modify(newAssets);
+        this.mouth.draw();
+      default:
+        console.log('Error: component not existant')
+    }
+  }
+
 }
 
 
@@ -48,7 +75,7 @@ function createLayer(image, mainCtx, targetLayer = null) {
 
 export function initializeLayers(dom, mainCtx) {
   const skinGroup = document.createElement('canvas');
-  const skinGroupCtx = layer.getContext("2d");
+  const skinGroupCtx = skinGroup.getContext("2d");
 
   const faceCtx = createLayer(dom.imgBase, mainCtx, skinGroupCtx);
   const face = new Layer(faceCtx, [dom.imgBase]);
@@ -66,7 +93,7 @@ export function initializeLayers(dom, mainCtx) {
   const clothesCtx = createLayer(dom.imgCloth, mainCtx);
 
   return {
-    base: new Layer(skinGroupCtx, [face, nose]),
+    base: new SkinLayer({layer: skinGroup, ctx: skinGroupCtx}, face, nose, mouth),
     face: face,
     nose: nose,
     mouth: mouth,

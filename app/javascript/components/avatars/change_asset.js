@@ -34,23 +34,37 @@ const iterateBackOrForward = (array, index, direction) => {
 
 // ----------------------------------------------------------------------------
 
-export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null ) {
-  // iterating over existing assets options
+// export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null ) {
+//   // iterating over existing assets options
+//   assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
+//   let currentAsset = basicAssets[assetIndex.index];
+//   // loading existing colors options for the new asset
+//   if (allAssetsColors) {
+//     let initializedValues = initializeColorIndexes(currentAsset, allAssetsColors);
+//     assetColorOpt.changeColors(initializedValues.colors)
+//     assetColorOpt.changeIndex(initializedValues.index)
+//   }
+//   // sending changes to canvas:
+//   console.log(currentAsset)
+//   avDom.src = `/avatar/${currentAsset}`
+//   avDom.addEventListener("load", function () {
+//     updateCanvas(grabElements());
+//   });
+// };
+
+export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, layer, layers) {
+  console.log(`asset index was ${assetIndex.index}`)
+  console.log(`current asset was ${basicAssets[assetIndex.index]}`)
   assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
+  console.log(`asset index is now ${assetIndex.index}`)
   let currentAsset = basicAssets[assetIndex.index];
-  // loading existing colors options for the new asset
-  if (allAssetsColors) {
-    let initializedValues = initializeColorIndexes(currentAsset, allAssetsColors);
-    assetColorOpt.changeColors(initializedValues.colors)
-    assetColorOpt.changeIndex(initializedValues.index)
-  }
-  // sending changes to canvas:
-  console.log(currentAsset)
+  console.log(`current asset is now ${currentAsset}`)
   avDom.src = `/avatar/${currentAsset}`
   avDom.addEventListener("load", function () {
-    updateCanvas(grabElements());
+    console.log(`layer was: ${layer._assets[0].src}`)
+    layer.assets = [avDom];
   });
-};
+}
 
 // ----------------------------------------------------------------------------
 
