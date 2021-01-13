@@ -1,7 +1,7 @@
 export default function updateCanvas(dom) {
-  let context          = dom.resAvatar.getContext("2d");
-  dom.resAvatar.width  = dom.imgBase.width;
-  dom.resAvatar.height = dom.imgBase.height;
+  let context          = dom.masterLayer.getContext("2d");
+  dom.masterLayer.width  = dom.imgBase.width;
+  dom.masterLayer.height = dom.imgBase.height;
   context.drawImage(dom.imgBase, 0, 0);
   context.drawImage(dom.imgHair, 0, 0);
   context.drawImage(dom.imgMouth, 0, 0);

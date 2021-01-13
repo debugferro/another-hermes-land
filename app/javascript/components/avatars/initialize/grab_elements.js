@@ -9,7 +9,7 @@ export function grabElements() {
       imgNose: document.getElementById("nose"),
       imgCloth: document.getElementById("cloth") ?? '',
       imgAcessory: document.getElementById("acessory") ?? '',
-      resAvatar: document.querySelector(".result")
+      masterLayer: document.querySelector(".result")
     }
   );
 }
