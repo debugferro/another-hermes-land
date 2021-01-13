@@ -1,7 +1,7 @@
 import { resolveIdPattern } from './initialize/skincolor/initialize_assets_for_color';
 import initializeColorIndexes from './initialize/color/initialize_index';
 import { grabElements } from './initialize/grab_elements';
-import updateCanvas from './update_canvas';
+import { initializeCanvas, updateCanvas } from './update_canvas';
 // import takeBtnFromDom from './initialize/take_btn_from_dom';
 
 const iterateBackOrForward = (array, index, direction) => {
@@ -52,17 +52,17 @@ const iterateBackOrForward = (array, index, direction) => {
 //   });
 // };
 
-export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, layer, layers) {
-  console.log(`asset index was ${assetIndex.index}`)
-  console.log(`current asset was ${basicAssets[assetIndex.index]}`)
+export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, layer, mainCanvas) {
   assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
-  console.log(`asset index is now ${assetIndex.index}`)
   let currentAsset = basicAssets[assetIndex.index];
-  console.log(`current asset is now ${currentAsset}`)
   avDom.src = `/avatar/${currentAsset}`
   avDom.addEventListener("load", function () {
     console.log(`layer was: ${layer._assets[0].src}`)
-    layer.assets = [avDom];
+    //layer.assets = [avDom];
+    mainCanvas.context.clearRect(0, 0, layer._info.layer.width, layer._info.layer.height);
+    layer.draw();
+    updateCanvas(grabElements(), mainCanvas.context, mainCanvas.layers)
+    console.log(`layer now is: ${mainCanvas.layers.hair._assets[0].src}`)
   });
 }
 

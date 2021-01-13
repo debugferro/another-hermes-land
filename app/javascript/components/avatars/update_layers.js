@@ -9,9 +9,12 @@ class Layer {
   }
 
   draw() {
+    this._info.ctx.clearRect(0, 0, this._info.layer.width, this._info.layer.height);
+    //this._info.ctx = this._info.layer.getContext('2d');
     this._assets.forEach((asset) => {
       this._info.ctx.drawImage(asset, 0, 0);
     })
+    // console.log(this._info.ctx)
   }
 }
 
@@ -78,6 +81,7 @@ export function initializeLayers(dom, mainCtx) {
   const skinGroupCtx = skinGroup.getContext("2d");
 
   const faceCtx = createLayer(dom.imgBase, mainCtx, skinGroupCtx);
+
   const face = new Layer(faceCtx, [dom.imgBase]);
 
   const noseCtx = createLayer(dom.imgNose, mainCtx, skinGroupCtx);

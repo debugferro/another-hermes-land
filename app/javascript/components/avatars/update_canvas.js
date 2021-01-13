@@ -17,19 +17,24 @@ export function initializeCanvas(dom) {
   }
 }
 
-export function updateCanvas(context, layers) {
+export function updateCanvas(dom, context, layers) {
   // layers.base.updateLayers();
   // context.drawImage(layers.base.info.layer, 0, 0);
   // layers.eyes.draw();
   // context.drawImage(layers.eyes.info.layer, 0, 0);
-  layers.hair.draw();
-  context.drawImage(layers.hair._info.layer, 0, 0);
-  console.log(`hair now is:`)
-  console.log(layers.hair)
+  // layers.hair.draw();
+  // context.drawImage(layers.hair._info.layer, 0, 0);
   // layers.eyebrows.draw();
   // context.drawImage(layers.eyebrows.info.layer, 0, 0);
   // layers.acessory.draw();
   // context.drawImage(layers.acessory.info.layer, 0, 0);
   // layers.clothe.draw();
   // context.drawImage(layers.clothe.info.layer, 0, 0);
+  //context = dom.masterLayer.getContext('2d');
+  context.drawImage(layers.base.info.layer, 0, 0);
+  context.drawImage(layers.eyes._info.layer, 0, 0);
+  context.drawImage(layers.eyebrows._info.layer, 0, 0);
+  context.drawImage(layers.hair._info.layer, 0, 0);
+  context.drawImage(layers.acessory._info.layer, 0, 0);
+  context.drawImage(layers.clothe._info.layer, 0, 0);
 }

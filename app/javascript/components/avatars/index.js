@@ -1,4 +1,4 @@
-import { grabElements, setCurrentAssets } from './initialize/grab_elements';
+  import { grabElements, setCurrentAssets } from './initialize/grab_elements';
 import { initializeCanvas, updateCanvas} from './update_canvas';
 import { initializeAssetsForColor } from './initialize/skincolor/initialize_assets_for_color';
 import initializeColors from './initialize/color/initialize_color';
@@ -39,16 +39,14 @@ const avatarCreator = () => {
     // });
     // HAIR --------------------------------------------------------------------
     btnTo.change.hair.forward.addEventListener("click", () => {
-      changeAsset(assets.hairs, avDom.imgHair, 1, index.hair, mainCanvas.layers.hair)
-      console.log(`layer now is: ${mainCanvas.layers.hair._assets[0].src}`)
-      updateCanvas(mainCanvas.context, mainCanvas.layers);
+      changeAsset(assets.hairs, avDom.imgHair, 1, index.hair, mainCanvas.layers.hair, mainCanvas)
     });
-    // btnTo.change.hair.backwards.addEventListener("click", () => {
-    //   changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, assets.hairColors, assetColorOpt.hair)
-    // });
-    // btnTo.change.hair.color.addEventListener("click", () => {
-    //   changeColor(assetColorOpt.hair, avDom.imgHair)
-    // });
+    btnTo.change.hair.backwards.addEventListener("click", () => {
+      changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, mainCanvas.layers.hair, mainCanvas)
+    });
+    btnTo.change.hair.color.addEventListener("click", () => {
+      changeColor(assetColorOpt.hair, avDom.imgHair)
+    });
     // // EYEBROWS ----------------------------------------------------------------
     // btnTo.change.eyebrows.forward.addEventListener("click", () => {
     //   changeAsset(assets.eyebrows, avDom.imgEyebrows, 1, index.eyebrows, assets.eyebrowColors, assetColorOpt.eyebrows)
