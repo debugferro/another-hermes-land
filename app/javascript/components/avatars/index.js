@@ -7,7 +7,7 @@ import changeGender from './change_gender';
 import { getGender, getAssetsInfo, setIndex } from './initialize/get_assets_info';
 import takeBtnFromDom from './initialize/take_btn_from_dom';
 
-import { changeAsset, changeColor, changeSkinColor } from './change_asset';
+import { changeAsset, changeColor, changeInnerLayer } from './change_asset';
 
 // LOADEDCOLOR HAS MANY CLASS OBJECTS
 // INDEXES ARE CLASS OBJECTS
@@ -34,9 +34,13 @@ const avatarCreator = () => {
     // CHANGE ASSETS PARAMS: assets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null
     // CHANGE COLOR PARAMS: assetColorOpt, avDom
 
-    // btnTo.change.face.color.addEventListener("click", () => {
-    //   changeSkinColor(assetColorOpt.base, avDom.imgBase, filteredAssets, assets, btnTo)
-    // });
+    btnTo.change.face.color.addEventListener("click", () => {
+      const input = document.getElementById("skin-color");
+      input.click();
+      input.addEventListener("input", () => {
+        changeColor(event.target.value, mainCanvas.layers.base, mainCanvas)
+      })
+    });
     // HAIR --------------------------------------------------------------------
     btnTo.change.hair.forward.addEventListener("click", () => {
       changeAsset(assets.hairs, avDom.imgHair, 1, index.hair, mainCanvas.layers.hair, mainCanvas)
@@ -59,9 +63,13 @@ const avatarCreator = () => {
     btnTo.change.eyebrows.backwards.addEventListener("click", () => {
       changeAsset(assets.eyebrows, avDom.imgEyebrows, 0, index.eyebrows, mainCanvas.layers.eyebrows, mainCanvas)
     });
-    // btnTo.change.eyebrows.color.addEventListener("click", () => {
-    //   changeColor(assetColorOpt.eyebrows, avDom.imgEyebrows)
-    // });
+    btnTo.change.eyebrows.color.addEventListener("click", () => {
+      const input = document.getElementById("eyebrows-color");
+      input.click();
+      input.addEventListener("input", () => {
+        changeColor(event.target.value, mainCanvas.layers.eyebrows, mainCanvas)
+      })
+    });
     // // EYES --------------------------------------------------------------------
     // btnTo.change.eyes.forward.addEventListener("click", () => {
     //   changeAsset(filteredAssets.eyes, avDom.imgEyes, 1, index.eyes, assets.eyeColors, assetColorOpt.eyes);
@@ -72,10 +80,10 @@ const avatarCreator = () => {
     // btnTo.change.eyes.color.addEventListener("click", () => {
     //   changeColor(assetColorOpt.eyes, avDom.imgEyes);
     // });
-    // // MOUTH -------------------------------------------------------------------
-    // btnTo.change.mouth.forward.addEventListener("click", () => {
-    //   changeAsset(filteredAssets.mouths, avDom.imgMouth, 1, index.mouth);
-    // });
+    // MOUTH -------------------------------------------------------------------
+    btnTo.change.mouth.forward.addEventListener("click", () => {
+      changeInnerLayer(assets.mouths, avDom.imgMouth, 0, index.mouth, 'mouth', mainCanvas)
+    });
     // btnTo.change.mouth.backwards.addEventListener("click", () => {
     //   changeAsset(filteredAssets.mouths, avDom.imgMouth, 0, index.mouth);
     // });

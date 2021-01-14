@@ -6,11 +6,11 @@ export function initializeCanvas(dom) {
   dom.masterLayer.height = dom.imgBase.height;
   const layers = initializeLayers(dom, context);
   context.drawImage(layers.base.info.layer, 0, 0);
-  context.drawImage(layers.eyes._info.layer, 0, 0);
-  context.drawImage(layers.hair._info.layer, 0, 0);
-  context.drawImage(layers.eyebrows._info.layer, 0, 0);
-  context.drawImage(layers.acessory._info.layer, 0, 0);
-  context.drawImage(layers.clothe._info.layer, 0, 0);
+  context.drawImage(layers.eyes.info.layer, 0, 0);
+  context.drawImage(layers.hair.info.layer, 0, 0);
+  context.drawImage(layers.eyebrows.info.layer, 0, 0);
+  context.drawImage(layers.acessory.info.layer, 0, 0);
+  context.drawImage(layers.clothe.info.layer, 0, 0);
   return {
     layers,
     context
@@ -18,7 +18,7 @@ export function initializeCanvas(dom) {
 }
 
 export function updateCanvas(dom, context, layers) {
-  // layers.base.updateLayers();
+  // layers.base.draw();
   // context.drawImage(layers.base.info.layer, 0, 0);
   // layers.eyes.draw();
   // context.drawImage(layers.eyes.info.layer, 0, 0);
@@ -32,9 +32,9 @@ export function updateCanvas(dom, context, layers) {
   // context.drawImage(layers.clothe.info.layer, 0, 0);
   //context = dom.masterLayer.getContext('2d');
   context.drawImage(layers.base.info.layer, 0, 0);
-  context.drawImage(layers.eyes._info.layer, 0, 0);
-  context.drawImage(layers.eyebrows._info.layer, 0, 0);
-  context.drawImage(layers.hair._info.layer, 0, 0);
-  context.drawImage(layers.acessory._info.layer, 0, 0);
-  context.drawImage(layers.clothe._info.layer, 0, 0);
+  context.drawImage(layers.eyes.info.layer, 0, 0);
+  context.drawImage(layers.eyebrows.info.layer, 0, 0);
+  context.drawImage(layers.hair.info.layer, 0, 0);
+  context.drawImage(layers.acessory.info.layer, 0, 0);
+  context.drawImage(layers.clothe.info.layer, 0, 0);
 }

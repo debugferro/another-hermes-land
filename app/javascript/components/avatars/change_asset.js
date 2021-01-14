@@ -67,13 +67,10 @@ export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, lay
   let currentAsset = basicAssets[assetIndex.index];
   avDom.src = `/avatar/${currentAsset}`
   avDom.addEventListener("load", function () {
-    console.log(`layer was: ${layer._assets[0].src}`)
     //layer.assets = [avDom];
-    mainCanvas.context.clearRect(0, 0, layer._info.layer.width, layer._info.layer.height);
+    mainCanvas.context.clearRect(0, 0, layer.info.layer.width, layer.info.layer.height);
     layer.draw();
-    layer.color();
     updateCanvas(grabElements(), mainCanvas.context, mainCanvas.layers)
-    console.log(`layer now is: ${mainCanvas.layers.hair._assets[0].src}`)
   });
 }
 
@@ -81,12 +78,12 @@ export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, lay
 
 export function changeColor(input, layer, mainCanvas) {
   const color = hexToRgb(input);
-  mainCanvas.context.clearRect(0, 0, layer._info.layer.width, layer._info.layer.height)
+  console.log(color);
+  mainCanvas.context.clearRect(0, 0, layer.info.layer.width, layer.info.layer.height)
   layer.draw();
-  const imageData = layer._info.ctx.getImageData(0, 0, layer._info.layer.width, layer._info.layer.height); // Recebo array com a cor dos pixels
+  const imageData = layer.info.ctx.getImageData(0, 0, layer.info.layer.width, layer.info.layer.height); // Recebo array com a cor dos pixels
   const data = imageData.data
   const divisor = 1.5;
-  console.log(divisor)
   for (let i = 0; i < data.length; i += 4) { // we are jumping every 4 values of RGBA for every pixel
   // if (data[i] > 152 || data[i + 1] > 116 || data[i + 2] > 50) {
     let newR = !color.r ? 0 : color.r - data[i]/divisor;  // Vejo a diferença entre o atual valor do pixel
@@ -97,25 +94,20 @@ export function changeColor(input, layer, mainCanvas) {
     data[i + 2] += newB;
     // }
     }
-  layer._color = color;
-  layer._info.ctx.putImageData(imageData, 0, 0);
+  layer.color = color;
+  layer.info.ctx.putImageData(imageData, 0, 0);
   updateCanvas(grabElements(), mainCanvas.context, mainCanvas.layers)
 }
 
-export function changeSkinColor(assetColorOpt, avDom, filteredAssets, assets, btnTo) {
-  assetColorOpt.changeIndex(iterateBackOrForward(assetColorOpt.colors, assetColorOpt.index, 1).direction);
-  let currentColor = assetColorOpt.colors[assetColorOpt.index];
-  // resolving idPattern based on the current new color
-  const idPattern = resolveIdPattern(currentColor);
-  // redefining available assets based on the new skin color
-  filteredAssets.redefineAssets(assets, idPattern);
-  // TODO: change mouth, nose and eyes for its correspondent in the new skin color
-  btnTo.change.mouth.forward.click();
-  btnTo.change.nose.forward.click();
-  btnTo.change.eyes.forward.click();
-  // sending changes to canvas:
-  avDom.src = `/avatar/${currentColor}`
-    avDom.addEventListener("load", function () {
-    updateCanvas(grabElements());
+export function changeInnerLayer(basicAssets, avDom, movingDirection, assetIndex, target, mainCanvas) {
+  assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
+  let currentAsset = basicAssets[assetIndex.index];
+  avDom.src = `/avatar/${currentAsset}`
+  avDom.addEventListener("load", function () {
+    //layer.assets = [avDom];
+    const info = mainCanvas.layers.base.info
+    mainCanvas.context.clearRect(0, 0, info.layer.width, info.layer.height);
+    mainCanvas.layers.base.draw();
+    updateCanvas(grabElements(), mainCanvas.context, mainCanvas.layers)
   });
 }

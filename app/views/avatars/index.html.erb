@@ -21,13 +21,10 @@
       <div class="change-button">
           <div class="color-left">
             <div class="Btn-skincolor btn-color">
-              <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %></span>
+              <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %><input hidden type="color" id="skin-color" name="skin-color"></span>
             </div>
           </div>
         <div class="option">
-<!--           <div class="arrow-right-filler">
-            <span class="pointer"></span>
-          </div> -->
           Face
           <div class="Btn-base arrow-left-filler pointer first-card-arrow-pos-left solo-left">
             <span class="pointer">></span>
@@ -123,7 +120,7 @@
       <div class="change-button">
         <div class="color-right">
           <div class="Btn-eyebrowcolor btn-color kill-margin-left">
-            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %></span>
+            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %><input hidden type="color" id="eyebrows-color" name="eyebrows-color"></span>
           </div>
         </div>
         <div class="option justify-end">
