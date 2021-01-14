@@ -70,27 +70,27 @@ const avatarCreator = () => {
         changeColor(event.target.value, mainCanvas.layers.eyebrows, mainCanvas)
       })
     });
-    // // EYES --------------------------------------------------------------------
-    // btnTo.change.eyes.forward.addEventListener("click", () => {
-    //   changeAsset(filteredAssets.eyes, avDom.imgEyes, 1, index.eyes, assets.eyeColors, assetColorOpt.eyes);
-    // });
-    // btnTo.change.eyes.backwards.addEventListener("click", () => {
-    //   changeAsset(filteredAssets.eyes, avDom.imgEyes, 0, index.eyes, assets.eyeColors, assetColorOpt.eyes);
-    // });
+    // EYES --------------------------------------------------------------------
+    btnTo.change.eyes.forward.addEventListener("click", () => {
+      changeAsset(assets.eyes, avDom.imgEyes, 1, index.eyes, mainCanvas.layers.eyes, mainCanvas)
+    });
+    btnTo.change.eyes.backwards.addEventListener("click", () => {
+      changeAsset(assets.eyes, avDom.imgEyes, 0, index.eyes, mainCanvas.layers.eyes, mainCanvas)
+    });
     // btnTo.change.eyes.color.addEventListener("click", () => {
     //   changeColor(assetColorOpt.eyes, avDom.imgEyes);
     // });
     // MOUTH -------------------------------------------------------------------
     btnTo.change.mouth.forward.addEventListener("click", () => {
+      changeInnerLayer(assets.mouths, avDom.imgMouth, 1, index.mouth, 'mouth', mainCanvas)
+    });
+    btnTo.change.mouth.backwards.addEventListener("click", () => {
       changeInnerLayer(assets.mouths, avDom.imgMouth, 0, index.mouth, 'mouth', mainCanvas)
     });
-    // btnTo.change.mouth.backwards.addEventListener("click", () => {
-    //   changeAsset(filteredAssets.mouths, avDom.imgMouth, 0, index.mouth);
-    // });
-    // // NOSE --------------------------------------------------------------------
-    // btnTo.change.nose.forward.addEventListener("click", () => {
-    //   changeAsset(filteredAssets.noses, avDom.imgNose, 1, index.nose);
-    // });
+    // NOSE --------------------------------------------------------------------
+    btnTo.change.nose.forward.addEventListener("click", () => {
+      changeInnerLayer(assets.noses, avDom.imgNose, 1, index.nose, 'nose', mainCanvas)
+    });
     // btnTo.change.nose.backwards.addEventListener("click", () => {
     //   changeAsset(filteredAssets.noses, avDom.imgNose, 0, index.nose);
     // });

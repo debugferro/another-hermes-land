@@ -78,24 +78,9 @@ export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, lay
 
 export function changeColor(input, layer, mainCanvas) {
   const color = hexToRgb(input);
-  console.log(color);
   mainCanvas.context.clearRect(0, 0, layer.info.layer.width, layer.info.layer.height)
-  layer.draw();
-  const imageData = layer.info.ctx.getImageData(0, 0, layer.info.layer.width, layer.info.layer.height); // Recebo array com a cor dos pixels
-  const data = imageData.data
-  const divisor = 1.5;
-  for (let i = 0; i < data.length; i += 4) { // we are jumping every 4 values of RGBA for every pixel
-  // if (data[i] > 152 || data[i + 1] > 116 || data[i + 2] > 50) {
-    let newR = !color.r ? 0 : color.r - data[i]/divisor;  // Vejo a diferença entre o atual valor do pixel
-    let newG = !color.g ? 0 : color.g - data[i + 1]/divisor;  // e o valor que ele tem que chegar pra nova cor
-    let newB = !color.b ? 0 : color.b - data[i + 2]/divisor; // divido por 1.5 pra não estourar mt a cor
-    data[i]     += newR;
-    data[i + 1] += newG;  // Atribuo os novos valores somando o necessário que faltava
-    data[i + 2] += newB;
-    // }
-    }
   layer.color = color;
-  layer.info.ctx.putImageData(imageData, 0, 0);
+  layer.draw();
   updateCanvas(grabElements(), mainCanvas.context, mainCanvas.layers)
 }
 
