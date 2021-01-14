@@ -45,16 +45,20 @@ const avatarCreator = () => {
       changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, mainCanvas.layers.hair, mainCanvas)
     });
     btnTo.change.hair.color.addEventListener("click", () => {
-      changeColor(assetColorOpt.hair, avDom.imgHair)
+      const input = document.getElementById("hair-color");
+      input.click();
+      input.addEventListener("input", () => {
+        changeColor(event.target.value, mainCanvas.layers.hair, mainCanvas)
+      })
     });
-    // // EYEBROWS ----------------------------------------------------------------
-    // btnTo.change.eyebrows.forward.addEventListener("click", () => {
-    //   changeAsset(assets.eyebrows, avDom.imgEyebrows, 1, index.eyebrows, assets.eyebrowColors, assetColorOpt.eyebrows)
-    // });
+    // EYEBROWS ----------------------------------------------------------------
+    btnTo.change.eyebrows.forward.addEventListener("click", () => {
+      changeAsset(assets.eyebrows, avDom.imgEyebrows, 1, index.eyebrows, mainCanvas.layers.eyebrows, mainCanvas)
+    });
 
-    // btnTo.change.eyebrows.backwards.addEventListener("click", () => {
-    //   changeAsset(assets.eyebrows, avDom.imgEyebrows, 0, index.eyebrows, assets.eyebrowColors, assetColorOpt.eyebrows)
-    // });
+    btnTo.change.eyebrows.backwards.addEventListener("click", () => {
+      changeAsset(assets.eyebrows, avDom.imgEyebrows, 0, index.eyebrows, mainCanvas.layers.eyebrows, mainCanvas)
+    });
     // btnTo.change.eyebrows.color.addEventListener("click", () => {
     //   changeColor(assetColorOpt.eyebrows, avDom.imgEyebrows)
     // });

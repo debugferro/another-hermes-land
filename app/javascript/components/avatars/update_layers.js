@@ -1,21 +1,54 @@
+import { hexToRgb } from './change_asset';
+
 class Layer {
-  constructor(info, ChosenAssets) {
+  constructor(info, ChosenAssets, color = '#000000') {
     this._info = info;
     this._assets = ChosenAssets;
+    this._color = hexToRgb(color);
   }
 
   set assets(ChosenAssets) {
     this._assets = ChosenAssets;
   }
 
+  // set color(newColor) {
+  //   this._color = newColor
+  // }
+
+
   draw() {
     this._info.ctx.clearRect(0, 0, this._info.layer.width, this._info.layer.height);
-    //this._info.ctx = this._info.layer.getContext('2d');
+    this._info.ctx = this._info.layer.getContext('2d');
     this._assets.forEach((asset) => {
       this._info.ctx.drawImage(asset, 0, 0);
     })
     // console.log(this._info.ctx)
+    // if (this._color) {
+    //   this.constructor.color(this._info, this._color);
+    // }
   }
+
+  color() {
+    if (this._color.r, this._color.g, this._color.b != 0) {
+      const imageData = this._info.ctx.getImageData(0, 0, this._info.layer.width, this._info.layer.height); // Recebo array com a cor dos pixels
+      const data = imageData.data
+      console.log(this._color)
+      const divisor = 1.5;
+      console.log(divisor);
+      for (let i = 0; i < data.length; i += 4) { // we are jumping every 4 values of RGBA for every pixel
+      // if (data[i] > 152 || data[i + 1] > 116 && data[i + 2] > 50) {
+        let newR = !this._color.r ? 0 : this._color.r - data[i]/divisor;  // Vejo a diferença entre o atual valor do pixel
+        let newG = !this._color.g ? 0 : this._color.g - data[i + 1]/divisor;  // e o valor que ele tem que chegar pra nova cor
+        let newB = !this._color.b ? 0 : this._color.b - data[i + 2]/divisor; // divido por 1.5 pra não estourar mt a cor
+        data[i]     += newR;
+        data[i + 1] += newG;  // Atribuo os novos valores somando o necessário que faltava
+        data[i + 2] += newB;
+    // }
+      }
+      this._info.ctx.putImageData(imageData, 0, 0);
+    }
+  }
+
 }
 
 class SkinLayer {
