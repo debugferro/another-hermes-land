@@ -91,42 +91,42 @@ const avatarCreator = () => {
     btnTo.change.nose.forward.addEventListener("click", () => {
       changeInnerLayer(assets.noses, avDom.imgNose, 1, index.nose, 'nose', mainCanvas)
     });
-    // btnTo.change.nose.backwards.addEventListener("click", () => {
-    //   changeAsset(filteredAssets.noses, avDom.imgNose, 0, index.nose);
-    // });
+    btnTo.change.nose.backwards.addEventListener("click", () => {
+      changeInnerLayer(assets.noses, avDom.imgNose, 0, index.nose, 'nose', mainCanvas)
+    });
     // // ACESSORY ----------------------------------------------------------------
-    // btnTo.change.acessories.forward.addEventListener("click", () => {
-    //   changeAsset(assets.acessories, avDom.imgAcessory, 1, index.acessory, assets.acessoryColors, assetColorOpt.acessories);
-    // });
-    // btnTo.change.acessories.backwards.addEventListener("click", () => {
-    //   changeAsset(assets.acessories, avDom.imgAcessory, 0, index.acessory, assets.acessoryColors, assetColorOpt.acessories);
-    // });
+    btnTo.change.acessories.forward.addEventListener("click", () => {
+      changeAsset(assets.acessories, avDom.imgAcessory, 1, index.acessory, mainCanvas.layers.acessory, mainCanvas)
+    });
+    btnTo.change.acessories.backwards.addEventListener("click", () => {
+      changeAsset(assets.acessories, avDom.imgAcessory, 0, index.acessory, mainCanvas.layers.acessory, mainCanvas)
+    });
     // btnTo.change.acessories.color.addEventListener("click", () => {
     //   changeColor(assetColorOpt.acessories, avDom.imgAcessory);
     // });
     // // CLOTHES -----------------------------------------------------------------
-    // btnTo.change.clothes.forward.addEventListener("click", () => {
-    //   changeAsset(assets.clothes, avDom.imgCloth, 1, index.clothes);
-    // });
+    btnTo.change.clothes.forward.addEventListener("click", () => {
+      changeAsset(assets.clothes, avDom.imgCloth, 1, index.clothes, mainCanvas.layers.clothe, mainCanvas)
+    });
     // // GENDER ------------------------------------------------------------------
-    // btnTo.change.gender.toMale.addEventListener("click", () => {
-    //   changeGender("male");
-    // });
-    // btnTo.change.gender.toFemale.addEventListener("click", () => {
-    //   changeGender("female");
-    // });
-    // btnTo.save.addEventListener("click", () => {
-    //   let form      = document.querySelector(".sendAvatar");
-    //   let dataURI   = avDom.resAvatar.toDataURL('image/png');
-    //   let assetData = new Array (avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1), avDom.imgHair.src.slice(avDom.imgHair.src.lastIndexOf("/") + 1),
-    //     avDom.imgMouth.src.slice(avDom.imgMouth.src.lastIndexOf("/") + 1), avDom.imgEyes.src.slice(avDom.imgEyes.src.lastIndexOf("/") + 1),
-    //     avDom.imgEyebrows.src.slice(avDom.imgEyebrows.src.lastIndexOf("/") + 1), avDom.imgNose.src.slice(avDom.imgNose.src.lastIndexOf("/") + 1),
-    //     avDom.imgCloth.src.slice(avDom.imgCloth.src.lastIndexOf("/") + 1), avDom.imgAcessory.src.slice(avDom.imgAcessory.src.lastIndexOf("/") + 1)
-    //     );
-    //   document.getElementById("avatar_img").value        = dataURI;
-    //   document.getElementById("avatar_appearance").value = assetData;
-    //   form.submit();
-    // });
+    btnTo.change.gender.toMale.addEventListener("click", () => {
+      changeGender("male");
+    });
+    btnTo.change.gender.toFemale.addEventListener("click", () => {
+      changeGender("female");
+    });
+    btnTo.save.addEventListener("click", () => {
+      let form      = document.querySelector(".sendAvatar");
+      let dataURI   = avDom.resAvatar.toDataURL('image/png');
+      let assetData = new Array (avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1), avDom.imgHair.src.slice(avDom.imgHair.src.lastIndexOf("/") + 1),
+        avDom.imgMouth.src.slice(avDom.imgMouth.src.lastIndexOf("/") + 1), avDom.imgEyes.src.slice(avDom.imgEyes.src.lastIndexOf("/") + 1),
+        avDom.imgEyebrows.src.slice(avDom.imgEyebrows.src.lastIndexOf("/") + 1), avDom.imgNose.src.slice(avDom.imgNose.src.lastIndexOf("/") + 1),
+        avDom.imgCloth.src.slice(avDom.imgCloth.src.lastIndexOf("/") + 1), avDom.imgAcessory.src.slice(avDom.imgAcessory.src.lastIndexOf("/") + 1)
+        );
+      document.getElementById("avatar_img").value        = dataURI;
+      document.getElementById("avatar_appearance").value = assetData;
+      form.submit();
+    });
   }
 }
 
