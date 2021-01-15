@@ -4,7 +4,7 @@ class CreateAssets < ActiveRecord::Migration[6.0]
       t.string :category
       t.string :base
       t.boolean :skintonalized, default: :false
-      t.string :components, array: :true
+      t.string :components, array: true
 
       t.timestamps
     end

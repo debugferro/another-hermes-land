@@ -6,8 +6,8 @@ Asset.create!(category: "base", base: "f_:white;_face_1.png")
 Asset.create!(category: "base", base: "m_:white;_face_1.png")
 # Asset.create!(category: "base", base: "m_:white;_face_2.png")
 # Asset.create!(category: "base", base: "f_:white;_face_2.png")
-Asset.create!(category: "base", base: "f_:black;_face_1.png")
-Asset.create!(category: "base", base: "m_:black;_face_1.png")
+# Asset.create!(category: "base", base: "f_:black;_face_1.png")
+# Asset.create!(category: "base", base: "m_:black;_face_1.png")
 # Asset.create!(category: "base", base: "m_:black;_face_2.png")
 # Asset.create!(category: "base", base: "f_:black;_face_2.png")
 
@@ -74,11 +74,9 @@ Asset.create!(category: "eyebrows", base: "f_:red;_eyebrows_6.png")
 
 Asset.create!(category: "eyes", base: "f_eyes_b_1.png", components: ['f_eyes_c_1.png'])
 
-Asset.create!(category: "eyes", base: "f_:black;_eyes_2.png")
-Asset.create!(category: "eyes", base: "f_:white;_eyes_2.png")
+Asset.create!(category: "eyes", base: "f_eyes_2.png")
 
-Asset.create!(category: "eyes", base: "f_:white;_eyes_3.png")
-Asset.create!(category: "eyes", base: "f_:black;_eyes_3.png")
+Asset.create!(category: "eyes", base: "f_eyes_3.png")
 
 Asset.create!(category: "eyes", base: "f_:neutral;_eyes_4.png")
 
@@ -176,29 +174,21 @@ Asset.create!(category: "mouth", base: "n_:neutral;_mouth_6.png", skintonalized:
 
 # NOSES            <gender>_:<skin color>;_<category>_<id>.png
 
-Asset.create!(category: "nose", base: "f_:black;_nose_1.png")
 Asset.create!(category: "nose", base: "f_:white;_nose_1.png")
 
-Asset.create!(category: "nose", base: "f_:black;_nose_2.png")
 Asset.create!(category: "nose", base: "f_:white;_nose_2.png")
 
-Asset.create!(category: "nose", base: "f_:black;_nose_3.png")
 Asset.create!(category: "nose", base: "f_:white;_nose_3.png")
 
-Asset.create!(category: "nose", base: "m_:black;_nose_4.png")
 Asset.create!(category: "nose", base: "m_:white;_nose_4.png")
 
-Asset.create!(category: "nose", base: "n_:black;_nose_5.png")
 Asset.create!(category: "nose", base: "n_:white;_nose_5.png")
 
-Asset.create!(category: "nose", base: "n_:black;_nose_6.png")
 Asset.create!(category: "nose", base: "n_:white;_nose_6.png")
 
-Asset.create!(category: "nose", base: "n_:black;_nose_7.png")
 Asset.create!(category: "nose", base: "n_:white;_nose_7.png")
 
 Asset.create!(category: "nose", base: "n_:white;_nose_8.png")
-Asset.create!(category: "nose", base: "n_:black;_nose_8.png")
 
 Asset.create!(category: "nose", base: "n_:white;_nose_9.png")
 

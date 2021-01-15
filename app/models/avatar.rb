@@ -7,12 +7,12 @@ class Avatar < ApplicationRecord
 
   def set_default_assets
     female_defaults = []
-    female_defaults << Asset.where(path: 'f_:white;_face_1.png').first
-    female_defaults  << Asset.where(path: 'f_:neutral;_eye_1.png').first
-    female_defaults  << Asset.where(path: 'f_:blond;_eyebrows_5.png').first
-    female_defaults  << Asset.where(path: 'f_:white;_mouth_1.png').first
-    female_defaults  << Asset.where(path: 'f_:white;_nose_1.png').first
-    female_defaults  << Asset.where(path: 'f_:blond;_hair_1.png').first
+    female_defaults << Asset.where(base: 'f_:white;_face_1.png').first
+    female_defaults  << Asset.where(base: 'f_eyes_2.png').first
+    female_defaults  << Asset.where(base: 'f_:blond;_eyebrows_5.png').first
+    female_defaults  << Asset.where(base: 'f_mouth_1.png').first
+    female_defaults  << Asset.where(base: 'f_:white;_nose_1.png').first
+    female_defaults  << Asset.where(base: 'f_:blond;_hair_1.png').first
     self.assets.destroy_all
     female_defaults.each do |default|
       self.assets << default

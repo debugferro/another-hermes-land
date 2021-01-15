@@ -32,26 +32,6 @@ const iterateBackOrForward = (array, index, direction) => {
     }
   }
 
-// ----------------------------------------------------------------------------
-
-// export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null ) {
-//   // iterating over existing assets options
-//   assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
-//   let currentAsset = basicAssets[assetIndex.index];
-//   // loading existing colors options for the new asset
-//   if (allAssetsColors) {
-//     let initializedValues = initializeColorIndexes(currentAsset, allAssetsColors);
-//     assetColorOpt.changeColors(initializedValues.colors)
-//     assetColorOpt.changeIndex(initializedValues.index)
-//   }
-//   // sending changes to canvas:
-//   console.log(currentAsset)
-//   avDom.src = `/avatar/${currentAsset}`
-//   avDom.addEventListener("load", function () {
-//     updateCanvas(grabElements());
-//   });
-// };
-
 export function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
