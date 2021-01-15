@@ -23,7 +23,6 @@ class Layer {
   }
 
   updateColor() {
-    console.log(this.color);
     if (this.color.r != 0 || this.color.g != 0 || this.color.b != 0) {
       const imageData = this.info.ctx.getImageData(0, 0, this.info.layer.width, this.info.layer.height); // Recebo array com a cor dos pixels
       const data = imageData.data

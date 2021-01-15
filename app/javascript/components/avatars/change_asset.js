@@ -45,7 +45,7 @@ export function hexToRgb(hex) {
 export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, layer, mainCanvas) {
   assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
   let currentAsset = basicAssets[assetIndex.index];
-  avDom.src = `/avatar/${currentAsset}`
+  avDom.src = `/avatar/${currentAsset.base}`
   avDom.addEventListener("load", function () {
     //layer.assets = [avDom];
     mainCanvas.context.clearRect(0, 0, layer.info.layer.width, layer.info.layer.height);
@@ -67,7 +67,7 @@ export function changeColor(input, layer, mainCanvas) {
 export function changeInnerLayer(basicAssets, avDom, movingDirection, assetIndex, target, mainCanvas) {
   assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
   let currentAsset = basicAssets[assetIndex.index];
-  avDom.src = `/avatar/${currentAsset}`
+  avDom.src = `/avatar/${currentAsset.base}`
   avDom.addEventListener("load", function () {
     //layer.assets = [avDom];
     const info = mainCanvas.layers.base.info

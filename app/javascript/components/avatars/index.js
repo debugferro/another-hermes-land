@@ -4,7 +4,7 @@ import { initializeAssetsForColor } from './initialize/skincolor/initialize_asse
 import initializeColors from './initialize/color/initialize_color';
 
 import changeGender from './change_gender';
-import { getGender, getAssetsInfo, setIndex } from './initialize/get_assets_info';
+import { getGender, fetchAssetsData, setIndex } from './initialize/get_assets_info';
 import takeBtnFromDom from './initialize/take_btn_from_dom';
 
 import { changeAsset, changeColor, changeInnerLayer } from './change_asset';
@@ -13,19 +13,20 @@ import { changeAsset, changeColor, changeInnerLayer } from './change_asset';
 // INDEXES ARE CLASS OBJECTS
 
 const avatarCreator = () => {
-  window.onload = function() {
+  window.onload = async function() {
     // Getting img elements and constructing avatar canvas and assets for 1st time
     const avDom = grabElements();
     const mainCanvas = initializeCanvas(avDom);
     const currentAssetOf = setCurrentAssets(avDom);
     // // Getting avatar gender and all available assets for matching gender
     const avGender = getGender();
-    const assets = getAssetsInfo(avGender.allInfo, avGender.info);
+    const assets = await fetchAssetsData(avGender.info);
+    console.log(assets);
     // // Getting all the current available colors for current assets
     const currentFile = avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1);
-    const filteredAssets = initializeAssetsForColor(currentFile, assets);
+    // const filteredAssets = initializeAssetsForColor(currentFile, assets);
     // // Getting current loaded assets index
-    const index = setIndex(assets, filteredAssets, currentAssetOf);
+    const index = setIndex(assets, currentAssetOf);
     // const assetColorOpt = initializeColors(avDom, assets);
     const btnTo = takeBtnFromDom();
     // console.log(filteredAssets.eyes);

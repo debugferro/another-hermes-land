@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_190540) do
     t.string "base"
     t.boolean "skintonalized", default: false
     t.string "components", array: true
+    t.integer "gender", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -63,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_190540) do
     t.string "clothe_color", default: "#ffffff"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "gender", default: "f"
+    t.integer "gender", default: 1
     t.index ["user_id"], name: "index_avatars_on_user_id"
   end
 
