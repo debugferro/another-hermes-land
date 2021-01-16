@@ -49,6 +49,9 @@ export function changeAsset(basicAssets, avDom, movingDirection, assetIndex, lay
   avDom.addEventListener("load", function () {
     //layer.assets = [avDom];
     mainCanvas.context.clearRect(0, 0, layer.info.layer.width, layer.info.layer.height);
+    if (currentAsset.components) {
+      layer.assets.push(currentAsset.components)
+    }
     layer.draw();
     updateCanvas(grabElements(), mainCanvas.context, mainCanvas.layers)
   });

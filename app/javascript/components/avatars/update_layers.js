@@ -8,7 +8,6 @@ class Layer {
   }
 
 
-
   draw() {
     this.info.ctx.clearRect(0, 0, this.info.layer.width, this.info.layer.height);
     this.info.ctx = this.info.layer.getContext('2d');
@@ -16,10 +15,6 @@ class Layer {
       this.info.ctx.drawImage(asset, 0, 0);
     })
     this.updateColor();
-    // console.log(this._info.ctx)
-    // if (this._color) {
-    //   this.constructor.color(this._info, this._color);
-    // }
   }
 
   updateColor() {
@@ -57,7 +52,7 @@ class SkinLayer {
     this.info.ctx.clearRect(0, 0, this.info.layer.width, this.info.layer.height)
     this.info.ctx = this.info.layer.getContext('2d');
     this.components.forEach((component) => {
-      component.color = this.color;
+      component.color = this.color
       component.draw();
     })
     this.updateLayers();
@@ -66,6 +61,7 @@ class SkinLayer {
   updateLayers() {
     this.components.forEach((component) => {
       this.info.ctx.drawImage(component.info.layer, 0, 0);
+      console.log("Update layers is happening")
     })
   }
 
@@ -122,7 +118,7 @@ function createLayer(image, mainCtx, targetLayer = null) {
   }
 }
 
-export function initializeLayers(dom, mainCtx) {
+export function initializeLayers(dom, mainCtx, index, assets) {
   const skinGroup = document.createElement('canvas');
   const skinGroupCtx = skinGroup.getContext("2d");
 
@@ -190,3 +186,20 @@ export function initializeLayers(dom, mainCtx) {
   acessoryCtx.width = mainCtx.width;
   acessoryCtx.height = mainCtx.height;
   acessoryCtx.drawImage(dom.imgAcessory, 0, 0);*/
+
+  // drawDemo(){
+  //   this.info.ctx.clearRect(0, 0, this.info.layer.width, this.info.layer.height);
+  //   this.info.ctx = this.info.layer.getContext('2d');
+  //   const imgs = [];
+  //   this.assets.forEach((asset) => {
+  //     const imgs = new Image();
+  //     img.onload = () => {
+  //       this.info.ctx.drawImage(img, 0, 0);
+  //       console.log('image loaded')
+  //     }
+  //     img.src = `/avatar/${asset.base}`;
+  //     imgs.push(img);
+  //     console.log('image sourcered')
+  //   })
+  //   if (this.assets[0].skintonalized) { this.updateColor() }
+  // }

@@ -1,4 +1,4 @@
-  import { grabElements, setCurrentAssets } from './initialize/grab_elements';
+import { grabElements, setCurrentAssets } from './initialize/grab_elements';
 import { initializeCanvas, updateCanvas} from './update_canvas';
 import { initializeAssetsForColor } from './initialize/skincolor/initialize_assets_for_color';
 import initializeColors from './initialize/color/initialize_color';
@@ -16,17 +16,18 @@ const avatarCreator = () => {
   window.onload = async function() {
     // Getting img elements and constructing avatar canvas and assets for 1st time
     const avDom = grabElements();
-    const mainCanvas = initializeCanvas(avDom);
     const currentAssetOf = setCurrentAssets(avDom);
-    // // Getting avatar gender and all available assets for matching gender
+
     const avGender = getGender();
     const assets = await fetchAssetsData(avGender.info);
+    const index = setIndex(assets, currentAssetOf);
+    const mainCanvas = initializeCanvas(avDom, index, assets);
+    // // Getting avatar gender and all available assets for matching gender
     console.log(assets);
     // // Getting all the current available colors for current assets
     const currentFile = avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1);
     // const filteredAssets = initializeAssetsForColor(currentFile, assets);
     // // Getting current loaded assets index
-    const index = setIndex(assets, currentAssetOf);
     // const assetColorOpt = initializeColors(avDom, assets);
     const btnTo = takeBtnFromDom();
     // console.log(filteredAssets.eyes);

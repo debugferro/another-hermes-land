@@ -1,10 +1,10 @@
 import { initializeLayers } from './update_layers';
 
-export function initializeCanvas(dom) {
+export function initializeCanvas(dom, assets, index) {
   const context          = dom.masterLayer.getContext("2d");
   dom.masterLayer.width  = dom.imgBase.width;
   dom.masterLayer.height = dom.imgBase.height;
-  const layers = initializeLayers(dom, context);
+  const layers = initializeLayers(dom, context, assets, index);
   context.drawImage(layers.base.info.layer, 0, 0);
   context.drawImage(layers.eyes.info.layer, 0, 0);
   context.drawImage(layers.hair.info.layer, 0, 0);
