@@ -24,6 +24,7 @@ class Main {
   }
 
   render() {
+    this.ctx.clearRect(0, 0, this.element.width, this.element.height);
     this.avElements.forEach((element) => {
       this.ctx.drawImage(element.canvas.layer, 0, 0);
     })

@@ -30,6 +30,7 @@ class AvatarElement {
     this.imgsElements = [];
     this.okImgs = 0;
     this.ready = false;
+    this.canvas.ctx.clearRect(0, 0, this.canvas.ctx.width, this.canvas.ctx.height);
     this.loadImages();
   }
 
