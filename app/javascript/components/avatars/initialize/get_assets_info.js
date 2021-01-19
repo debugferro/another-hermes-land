@@ -31,16 +31,16 @@ class assetIndex {
   }
 }
 
-export function setIndex(assets, currentAssetOf) {
+export function setIndex(assets, avatar) {
   return {
     base: new assetIndex(0),
-    hair: new assetIndex(assets.hairs.findIndex(assetObj => assetObj.base === currentAssetOf.hair)),
-    eyes: new assetIndex(assets.eyes.findIndex(assetObj => assetObj.base === currentAssetOf.eyes)),
-    mouth: new assetIndex(assets.mouths.findIndex(assetObj => assetObj.base === currentAssetOf.mouth)),
-    eyebrows: new assetIndex(assets.eyebrows.findIndex(assetObj => assetObj.base === currentAssetOf.eyebrows)),
-    nose: new assetIndex(assets.noses.findIndex(assetObj => assetObj.base === currentAssetOf.nose)),
-    clothes: new assetIndex(assets.clothes.findIndex(assetObj => assetObj.base === currentAssetOf.clothes)),
-    acessory: new assetIndex(assets.acessories.findIndex(assetObj => assetObj.base === currentAssetOf.acessory))
+    hair: new assetIndex(assets.hairs.findIndex(assetObj => assetObj.id === avatar.hair.id)),
+    eyes: new assetIndex(assets.eyes.findIndex(assetObj => assetObj.id === avatar.eyes.id)),
+    mouth: new assetIndex(assets.mouths.findIndex(assetObj => assetObj.id === avatar.mouth.id)),
+    eyebrows: new assetIndex(assets.eyebrows.findIndex(assetObj => assetObj.id === avatar.eyebrows.id)),
+    nose: new assetIndex(assets.noses.findIndex(assetObj => assetObj.id === avatar.nose.id)),
+    acessory: new assetIndex(assets.acessories.findIndex(assetObj => assetObj.id === avatar.acessory && avatar.acessory.id)),
+    clothes: new assetIndex(assets.clothes.findIndex(assetObj => assetObj.id === avatar.clothe && avatar.clothe.id))
   }
 }
 

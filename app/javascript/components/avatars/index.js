@@ -17,15 +17,14 @@ const avatarCreator = () => {
     // Getting img elements and constructing avatar canvas and assets for 1st time
     const avDom = grabElements();
     const avatar = await getAvatar();
-    const currentAssetOf = setCurrentAssets(avDom);
+    //const currentAssetOf = setCurrentAssets(avDom); // TO REMOVE
 
-    const avGender = getGender();
-    const assets = await fetchAssetsData(avGender.info);
-    const index = setIndex(assets, currentAssetOf);
-    // const mainCanvas = initializeCanvas(avDom, index, assets);
+    const avGender = getGender(); // TO REMOVE
+    const assets = await fetchAssetsData(avatar.gender);
+    const index = setIndex(assets, avatar); // TO REDO
     const mainCanvas = initCanvas(avDom, avatar);
     // // Getting avatar gender and all available assets for matching gender
-    console.log(assets);
+
     // // Getting all the current available colors for current assets
     const currentFile = avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1);
     // const filteredAssets = initializeAssetsForColor(currentFile, assets);
@@ -47,7 +46,7 @@ const avatarCreator = () => {
     });
     // HAIR --------------------------------------------------------------------
     btnTo.change.hair.forward.addEventListener("click", () => {
-      changeAsset(assets.hairs, avDom.imgHair, 1, index.hair, mainCanvas.layers.hair, mainCanvas)
+      changeAsset(assets.hairs, avDom.imgHair, 1, index.hair, mainCanvas.hair, mainCanvas)
     });
     btnTo.change.hair.backwards.addEventListener("click", () => {
       changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, mainCanvas.layers.hair, mainCanvas)
