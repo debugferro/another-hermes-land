@@ -40,7 +40,7 @@ export function setIndex(assets, avatar) {
     eyebrows: new assetIndex(assets.eyebrows.findIndex(assetObj => assetObj.id === avatar.eyebrows.id)),
     nose: new assetIndex(assets.noses.findIndex(assetObj => assetObj.id === avatar.nose.id)),
     acessory: new assetIndex(assets.acessories.findIndex(assetObj => assetObj.id === avatar.acessory && avatar.acessory.id)),
-    clothes: new assetIndex(assets.clothes.findIndex(assetObj => assetObj.id === avatar.clothe && avatar.clothe.id))
+    clothe: new assetIndex(assets.clothes.findIndex(assetObj => assetObj.id === avatar.clothe && avatar.clothe.id))
   }
 }
 

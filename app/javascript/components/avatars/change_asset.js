@@ -42,21 +42,15 @@ export function hexToRgb(hex) {
 }
 
 
-export function changeAsset(assets, movingDirection, assetIndex, layer) {
+export function changeAsset(assets, movingDirection, assetIndex, layer, connections = null) {
   assetIndex.changeIndex(iterateBackOrForward(assets, assetIndex.index, movingDirection).direction);
   let currentAsset = assets[assetIndex.index];
-  layer.change([currentAsset])
-
-  // avDom.src = `/avatar/${currentAsset.base}`
-  // avDom.addEventListener("load", function () {
-  //   //layer.assets = [avDom];
-  //   mainCanvas.context.clearRect(0, 0, layer.info.layer.width, layer.info.layer.height);
-  //   if (currentAsset.components) {
-  //     layer.assets.push(currentAsset.components)
-  //   }
-  //   layer.draw();
-  //   updateCanvas(grabElements(), mainCanvas.context, mainCanvas.layers)
-  // });
+  if (connections) {
+    connections.push(currentAsset)
+    layer.change(connections)
+  } else {
+    layer.change([currentAsset])
+  }
 }
 
 

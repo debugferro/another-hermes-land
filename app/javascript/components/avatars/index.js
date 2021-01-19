@@ -51,67 +51,67 @@ const avatarCreator = () => {
       changeAsset(assets.hairs, 1, index.hair, layers.hair)
     });
     btnTo.change.hair.backwards.addEventListener("click", () => {
-      changeAsset(assets.hairs, avDom.imgHair, 0, index.hair, mainCanvas.layers.hair, mainCanvas)
+      changeAsset(assets.hairs, 0, index.hair, layers.hair)
     });
-    btnTo.change.hair.color.addEventListener("click", () => {
-      const input = document.getElementById("hair-color");
-      input.click();
-      input.addEventListener("input", () => {
-        changeColor(event.target.value, mainCanvas.layers.hair, mainCanvas)
-      })
-    });
+    // btnTo.change.hair.color.addEventListener("click", () => {
+    //   const input = document.getElementById("hair-color");
+    //   input.click();
+    //   input.addEventListener("input", () => {
+    //     changeColor(event.target.value, mainCanvas.layers.hair, mainCanvas)
+    //   })
+    // });
     // EYEBROWS ----------------------------------------------------------------
     btnTo.change.eyebrows.forward.addEventListener("click", () => {
-      changeAsset(assets.eyebrows, avDom.imgEyebrows, 1, index.eyebrows, mainCanvas.layers.eyebrows, mainCanvas)
+      changeAsset(assets.eyebrows, 1, index.eyebrows, layers.eyebrows)
     });
 
     btnTo.change.eyebrows.backwards.addEventListener("click", () => {
-      changeAsset(assets.eyebrows, avDom.imgEyebrows, 0, index.eyebrows, mainCanvas.layers.eyebrows, mainCanvas)
+      changeAsset(assets.eyebrows, 0, index.eyebrows, layers.eyebrows)
     });
-    btnTo.change.eyebrows.color.addEventListener("click", () => {
-      const input = document.getElementById("eyebrows-color");
-      input.click();
-      input.addEventListener("input", () => {
-        changeColor(event.target.value, mainCanvas.layers.eyebrows, mainCanvas)
-      })
-    });
+    // btnTo.change.eyebrows.color.addEventListener("click", () => {
+    //   const input = document.getElementById("eyebrows-color");
+    //   input.click();
+    //   input.addEventListener("input", () => {
+    //     changeColor(event.target.value, mainCanvas.layers.eyebrows, mainCanvas)
+    //   })
+    // });
     // EYES --------------------------------------------------------------------
     btnTo.change.eyes.forward.addEventListener("click", () => {
-      changeAsset(assets.eyes, avDom.imgEyes, 1, index.eyes, mainCanvas.layers.eyes, mainCanvas)
+      changeAsset(assets.eyes, 1, index.eyes, layers.eyes)
     });
     btnTo.change.eyes.backwards.addEventListener("click", () => {
-      changeAsset(assets.eyes, avDom.imgEyes, 0, index.eyes, mainCanvas.layers.eyes, mainCanvas)
+      changeAsset(assets.eyes, 0, index.eyes, layers.eyes)
     });
     // btnTo.change.eyes.color.addEventListener("click", () => {
     //   changeColor(assetColorOpt.eyes, avDom.imgEyes);
     // });
     // MOUTH -------------------------------------------------------------------
     btnTo.change.mouth.forward.addEventListener("click", () => {
-      changeInnerLayer(assets.mouths, avDom.imgMouth, 1, index.mouth, 'mouth', mainCanvas)
+      changeAsset(assets.mouths, 1, index.mouth, layers.skin, [avatar.face, avatar.nose])
     });
     btnTo.change.mouth.backwards.addEventListener("click", () => {
-      changeInnerLayer(assets.mouths, avDom.imgMouth, 0, index.mouth, 'mouth', mainCanvas)
+      changeAsset(assets.mouths, 0, index.mouth, layers.skin, [avatar.face, avatar.nose])
     });
     // NOSE --------------------------------------------------------------------
     btnTo.change.nose.forward.addEventListener("click", () => {
-      changeInnerLayer(assets.noses, avDom.imgNose, 1, index.nose, 'nose', mainCanvas)
+      changeAsset(assets.noses, 1, index.nose, layers.skin, [avatar.face, avatar.mouth])
     });
     btnTo.change.nose.backwards.addEventListener("click", () => {
-      changeInnerLayer(assets.noses, avDom.imgNose, 0, index.nose, 'nose', mainCanvas)
+      changeAsset(assets.noses, 0, index.nose, layers.skin, [avatar.face, avatar.mouth])
     });
     // // ACESSORY ----------------------------------------------------------------
     btnTo.change.acessories.forward.addEventListener("click", () => {
-      changeAsset(assets.acessories, avDom.imgAcessory, 1, index.acessory, mainCanvas.layers.acessory, mainCanvas)
+      changeAsset(assets.acessories, 1, index.acessory, layers.acessory)
     });
     btnTo.change.acessories.backwards.addEventListener("click", () => {
-      changeAsset(assets.acessories, avDom.imgAcessory, 0, index.acessory, mainCanvas.layers.acessory, mainCanvas)
+      changeAsset(assets.acessories, 0, index.acessory, layers.acessory)
     });
     // btnTo.change.acessories.color.addEventListener("click", () => {
     //   changeColor(assetColorOpt.acessories, avDom.imgAcessory);
     // });
     // // CLOTHES -----------------------------------------------------------------
     btnTo.change.clothes.forward.addEventListener("click", () => {
-      changeAsset(assets.clothes, avDom.imgCloth, 1, index.clothes, mainCanvas.layers.clothe, mainCanvas)
+      changeAsset(assets.clothes, 1, index.clothe, layers.clothe)
     });
     // // GENDER ------------------------------------------------------------------
     btnTo.change.gender.toMale.addEventListener("click", () => {
