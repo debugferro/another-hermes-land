@@ -51,11 +51,13 @@ class AvatarElement {
 
   resolveUrls() {
     this.assets.forEach((asset) => {
-      this.assetsUrls.push(asset.base);
-      if (asset.components) {
-        asset.components.forEach((component) => {
-          this.assetsUrls.push(component)
-        })
+      if (asset) {
+        this.assetsUrls.push(asset.base);
+        if (asset.components) {
+          asset.components.forEach((component) => {
+            this.assetsUrls.push(component)
+          })
+        }
       }
     })
   }
@@ -76,6 +78,10 @@ class AvatarElement {
       this.imgsElements.push(img);
       img.onload = this.load.bind(this);
       img.src = `/avatar/${this.assetsUrls[i]}`
+    }
+    if  (this.assetsUrls.length === 0) {
+      this.ready = true;
+      this.main.layerIsReady();
     }
   }
 
@@ -184,6 +190,8 @@ export function initializeLayers(avatar, mainCanvas) {
   const eyesEl = new AvatarElement(eyesCanvas, [avatar.eyes], mainCanvas);
   const eyebrowsEl = new AvatarElement(eyebrowCanvas, [avatar.eyebrows], mainCanvas);
   const hairEl = new AvatarElement(hairCanvas, [avatar.hair], mainCanvas);
+  const acessoryEl = new AvatarElement(acessoryCanvas, [avatar.acessories], mainCanvas);
+  const clotheEl = new AvatarElement(clotheCanvas, [avatar.clothes], mainCanvas);
   // const skinGroup = document.createElement('canvas');
   // const skinGroupCtx = skinGroup.getContext("2d");
 
@@ -207,7 +215,9 @@ export function initializeLayers(avatar, mainCanvas) {
       skin: skinEl,
       eyes: eyesEl,
       eyebrows: eyebrowsEl,
-      hair: hairEl
+      hair: hairEl,
+      acessory: acessoryEl,
+      clothe: clotheEl
     // base: new SkinLayer({layer: skinGroup, ctx: skinGroupCtx}, face, nose, mouth),
     // face: face,
     // nose: nose,
