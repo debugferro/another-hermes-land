@@ -1,42 +1,101 @@
 import { hexToRgb } from './change_asset';
 
-class Layer {
-  constructor(info, ChosenAssets, color = '#000000') {
-    this.info = info;
-    this.assets = ChosenAssets;
-    this.color = typeof(color) === "string" ? hexToRgb(color) : color;
+// class Layer {
+//   constructor(info, ChosenAssets, color = '#000000') {
+//     this.info = info;
+//     this.assets = ChosenAssets;
+//     this.color = typeof(color) === "string" ? hexToRgb(color) : color;
+//   }
+
+
+//   draw() {
+//     this.info.ctx.clearRect(0, 0, this.info.layer.width, this.info.layer.height);
+//     this.info.ctx = this.info.layer.getContext('2d');
+//     this.assets.forEach((asset) => {
+//       this.info.ctx.drawImage(asset, 0, 0);
+//     })
+//     this.updateColor();
+//   }
+
+//   updateColor() {
+//     if (this.color.r != 0 || this.color.g != 0 || this.color.b != 0) {
+//       const imageData = this.info.ctx.getImageData(0, 0, this.info.layer.width, this.info.layer.height); // Recebo array com a cor dos pixels
+//       const data = imageData.data
+//       const divisor = 1.5;
+//       for (let i = 0; i < data.length; i += 4) { // we are jumping every 4 values of RGBA for every pixel
+//       // if (data[i] > 152 || data[i + 1] > 116 && data[i + 2] > 50) {
+//         let newR = !this.color.r ? 0 : this.color.r - data[i]/divisor;  // Vejo a diferença entre o atual valor do pixel
+//         let newG = !this.color.g ? 0 : this.color.g - data[i + 1]/divisor;  // e o valor que ele tem que chegar pra nova cor
+//         let newB = !this.color.b ? 0 : this.color.b - data[i + 2]/divisor; // divido por 1.5 pra não estourar mt a cor
+//         data[i]     += newR;
+//         data[i + 1] += newG;  // Atribuo os novos valores somando o necessário que faltava
+//         data[i + 2] += newB;
+//     // }
+//       }
+//       this.info.ctx.putImageData(imageData, 0, 0);
+//     }
+//   }
+
+// }
+
+class AvatarElement {
+  constructor(canvas, assets, mainCanvas) {
+    this.canvas = canvas
+    this.assets = assets
+    this.main = mainCanvas
+    this.assetsUrls = [];
+    this.imgsElements = [];
+    this.okImgs = 0;
+    this.ready = false;
   }
 
-
-  draw() {
-    this.info.ctx.clearRect(0, 0, this.info.layer.width, this.info.layer.height);
-    this.info.ctx = this.info.layer.getContext('2d');
+  resolveUrls() {
     this.assets.forEach((asset) => {
-      this.info.ctx.drawImage(asset, 0, 0);
+      this.assetsUrls.push(asset.base);
+      if (asset.components) {
+        asset.components.forEach((component) => {
+          this.assetsUrls.push(component)
+        })
+      }
     })
-    this.updateColor();
   }
 
-  updateColor() {
-    if (this.color.r != 0 || this.color.g != 0 || this.color.b != 0) {
-      const imageData = this.info.ctx.getImageData(0, 0, this.info.layer.width, this.info.layer.height); // Recebo array com a cor dos pixels
-      const data = imageData.data
-      const divisor = 1.5;
-      for (let i = 0; i < data.length; i += 4) { // we are jumping every 4 values of RGBA for every pixel
-      // if (data[i] > 152 || data[i + 1] > 116 && data[i + 2] > 50) {
-        let newR = !this.color.r ? 0 : this.color.r - data[i]/divisor;  // Vejo a diferença entre o atual valor do pixel
-        let newG = !this.color.g ? 0 : this.color.g - data[i + 1]/divisor;  // e o valor que ele tem que chegar pra nova cor
-        let newB = !this.color.b ? 0 : this.color.b - data[i + 2]/divisor; // divido por 1.5 pra não estourar mt a cor
-        data[i]     += newR;
-        data[i + 1] += newG;  // Atribuo os novos valores somando o necessário que faltava
-        data[i + 2] += newB;
-    // }
-      }
-      this.info.ctx.putImageData(imageData, 0, 0);
+  change(assets) {
+    this.assets = assets;
+    this.assetsUrls = [];
+    this.imgsElements = [];
+    this.okImgs = 0;
+    this.ready = false;
+    this.loadImages();
+  }
+
+  loadImages() {
+    this.resolveUrls();
+    for (let i = 0; i < this.assetsUrls.length; i++) {
+      let img = new Image();
+      this.imgsElements.push(img);
+      img.onload = this.load.bind(this);
+      img.src = `/avatar/${this.assetsUrls[i]}`
     }
   }
 
+  load() {
+    this.okImgs += 1;
+    if (this.okImgs >= this.assetsUrls.length) {
+      this.draw();
+    }
+  }
+
+  draw() {
+    this.imgsElements.forEach((img) => {
+      this.canvas.ctx.drawImage(img, 0, 0);
+    })
+    this.ready = true;
+    this.main.layerIsReady();
+  }
 }
+
+
 
 class SkinLayer {
   constructor(info, face, nose, mouth, color = '#000000') {
@@ -102,52 +161,62 @@ class SkinLayer {
 }
 
 
-function createLayer(image, mainCtx, targetLayer = null) {
+function createLayer(mainCanvas) {
   let layer = document.createElement('canvas');
   const ctx = layer.getContext("2d");
-  ctx.width = mainCtx.width;
-  ctx.height = mainCtx.height;
-  ctx.drawImage(image, 0, 0);
-  if (targetLayer) {
-    targetLayer.drawImage(layer, 0, 0)
-  }
+  ctx.width = mainCanvas.element.width;
+  ctx.height = mainCanvas.element.height;
   return {
     layer: layer,
-    ctx: ctx,
-    mainCtx: targetLayer
+    ctx: ctx
   }
 }
 
-export function initializeLayers(dom, mainCtx, index, assets) {
-  const skinGroup = document.createElement('canvas');
-  const skinGroupCtx = skinGroup.getContext("2d");
+export function initializeLayers(avatar, mainCanvas) {
+  const skinCanvas = createLayer(mainCanvas);
+  const eyesCanvas = createLayer(mainCanvas);
+  const eyebrowCanvas = createLayer(mainCanvas);
+  const hairCanvas = createLayer(mainCanvas);
+  const acessoryCanvas = createLayer(mainCanvas);
+  const clotheCanvas = createLayer(mainCanvas);
 
-  const faceCtx = createLayer(dom.imgBase, mainCtx, skinGroupCtx);
+  const skinEl = new AvatarElement(skinCanvas, [avatar.face, avatar.nose, avatar.mouth], mainCanvas);
+  const eyesEl = new AvatarElement(eyesCanvas, [avatar.eyes], mainCanvas);
+  const eyebrowsEl = new AvatarElement(eyebrowCanvas, [avatar.eyebrows], mainCanvas);
+  const hairEl = new AvatarElement(hairCanvas, [avatar.hair], mainCanvas);
+  // const skinGroup = document.createElement('canvas');
+  // const skinGroupCtx = skinGroup.getContext("2d");
 
-  const face = new Layer(faceCtx, [dom.imgBase]);
+  // const faceCtx = createLayer(mainCtx);
 
-  const noseCtx = createLayer(dom.imgNose, mainCtx, skinGroupCtx);
-  const nose = new Layer(noseCtx, [dom.imgNose]);
+  // const face = new Layer(faceCtx, [dom.imgBase]);
 
-  const mouthCtx = createLayer(dom.imgMouth, mainCtx, skinGroupCtx);
-  const mouth = new Layer(mouthCtx, [dom.imgMouth]);
+  // const noseCtx = createLayer(mainCtx);
+  // const nose = new Layer(noseCtx, [dom.imgNose]);
 
-  const eyesCtx = createLayer(dom.imgEyes, mainCtx);
-  const hairCtx = createLayer(dom.imgHair, mainCtx);
-  const eyebrowsCtx = createLayer(dom.imgEyebrows, mainCtx);
-  const acessoryCtx = createLayer(dom.imgAcessory, mainCtx);
-  const clothesCtx = createLayer(dom.imgCloth, mainCtx);
+  // const mouthCtx = createLayer(mainCtx);
+  // const mouth = new Layer(mouthCtx, [dom.imgMouth]);
+
+  // const eyesCanvas = createLayer(mainCtx);
+  // const hairCtx = createLayer(mainCtx);
+  // const eyebrowsCtx = createLayer(mainCtx);
+  // const acessoryCtx = createLayer(mainCtx);
+  // const clothesCtx = createLayer(mainCtx);
 
   return {
-    base: new SkinLayer({layer: skinGroup, ctx: skinGroupCtx}, face, nose, mouth),
-    face: face,
-    nose: nose,
-    mouth: mouth,
-    eyes: new Layer(eyesCtx, [dom.imgEyes]),
-    hair: new Layer(hairCtx, [dom.imgHair]),
-    eyebrows: new Layer(eyebrowsCtx, [dom.imgEyebrows]),
-    acessory: new Layer(acessoryCtx, [dom.imgAcessory]),
-    clothe: new Layer(clothesCtx, [dom.imgCloth])
+      skin: skinEl,
+      eyes: eyesEl,
+      eyebrows: eyebrowsEl,
+      hair: hairEl
+    // base: new SkinLayer({layer: skinGroup, ctx: skinGroupCtx}, face, nose, mouth),
+    // face: face,
+    // nose: nose,
+    // mouth: mouth,
+    // eyes: new AvatarElement(eyesCanvas, [dom.imgEyes]),
+    // hair: new Layer(hairCtx, [dom.imgHair]),
+    // eyebrows: new Layer(eyebrowsCtx, [dom.imgEyebrows]),
+    // acessory: new Layer(acessoryCtx, [dom.imgAcessory]),
+    // clothe: new Layer(clothesCtx, [dom.imgCloth])
   }
 }
 

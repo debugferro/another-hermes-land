@@ -1,6 +1,14 @@
 require "faker"
 
 Asset.destroy_all
+Avatar.destroy_all
+MyLanguage.destroy_all
+MyInterest.destroy_all
+Language.destroy_all
+Participant.destroy_all
+Message.destroy_all
+ChatRoom.destroy_all
+User.destroy_all
 
 Asset.create!(category: "base", base: "f_:white;_face_1.png", gender: 1)
 Asset.create!(category: "base", base: "m_:white;_face_1.png", gender: -1)
@@ -205,14 +213,6 @@ Asset.create!(category: "cloth", base: "n_:black;_clothes_4.png")
 Asset.create!(category: "cloth", base: "n_:red;_clothes_4.png")
 Asset.create!(category: "cloth", base: "n_:white;_clothes_4.png")
 
-Avatar.destroy_all
-MyLanguage.destroy_all
-MyInterest.destroy_all
-Language.destroy_all
-Participant.destroy_all
-Message.destroy_all
-ChatRoom.destroy_all
-User.destroy_all
 selected_languages = ["English", "French", "Portuguese", "Chinese", "German"]
 Language::LANGUAGES.each do | language |
  Language.create(name: language)

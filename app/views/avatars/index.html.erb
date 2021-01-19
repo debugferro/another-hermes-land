@@ -2,6 +2,8 @@
 <div class="avatar-data">
   <%= content_tag :div, class: "avatar_information", data: { bases: @bases, basecolors: @base_colors, eyes: @eyes, eyecolors: @eye_colors, hairs: @hairs, haircolors: @colorized_hairs, mouths: @mouths, eyebrows: @eyebrows, eyebrowcolors: @eyebrow_colors, noses: @noses, clothes: @clothes, acessories: @acessories, acessorycolors: @acessory_colors, gender: @gender } do %>
   <% end %>
+  <%= content_tag :div, class: "avdata", data: { id: @avatar.id } do %>
+  <% end %>
   <%= image_tag "/avatar/#{@base}", id: 'face', class: 'hidden-content' %>
   <%= image_tag "/avatar/#{@hair}", id: 'hair', class: 'hidden-content'%>
   <%= image_tag "/avatar/#{@mouth}", id: 'mouth', class: 'hidden-content'%>

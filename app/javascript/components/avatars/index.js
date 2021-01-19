@@ -1,5 +1,5 @@
-import { grabElements, setCurrentAssets } from './initialize/grab_elements';
-import { initializeCanvas, updateCanvas} from './update_canvas';
+import { grabElements, setCurrentAssets, getAvatar } from './initialize/grab_elements';
+import { initializeCanvas, updateCanvas, initCanvas } from './update_canvas';
 import { initializeAssetsForColor } from './initialize/skincolor/initialize_assets_for_color';
 import initializeColors from './initialize/color/initialize_color';
 
@@ -16,12 +16,14 @@ const avatarCreator = () => {
   window.onload = async function() {
     // Getting img elements and constructing avatar canvas and assets for 1st time
     const avDom = grabElements();
+    const avatar = await getAvatar();
     const currentAssetOf = setCurrentAssets(avDom);
 
     const avGender = getGender();
     const assets = await fetchAssetsData(avGender.info);
     const index = setIndex(assets, currentAssetOf);
-    const mainCanvas = initializeCanvas(avDom, index, assets);
+    // const mainCanvas = initializeCanvas(avDom, index, assets);
+    const mainCanvas = initCanvas(avDom, avatar);
     // // Getting avatar gender and all available assets for matching gender
     console.log(assets);
     // // Getting all the current available colors for current assets
