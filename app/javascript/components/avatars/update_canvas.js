@@ -46,6 +46,14 @@ export function initCanvas(dom, avatar) {
   layers.hair.loadImages();
   layers.acessory.loadImages();
   layers.clothe.loadImages();
+  return {
+    skin: layers.skin,
+    eyes: layers.eyes,
+    eyebrows: layers.eyebrows,
+    hair: layers.hair,
+    acessory: layers.acessory,
+    clothe: layers.clothe
+  }
 }
 
 
