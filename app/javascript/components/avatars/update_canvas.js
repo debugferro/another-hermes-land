@@ -41,12 +41,12 @@ export function initCanvas(dom, avatar) {
   const layers = initializeLayers(avatar, mainCanvas)
   mainCanvas.avElements.push(layers.skin, layers.eyes, layers.eyebrows, layers.hair, layers.acessory, layers.clothe)
 
-  layers.skin.loadImages();
-  layers.eyes.loadImages();
-  layers.eyebrows.loadImages();
-  layers.hair.loadImages();
-  layers.acessory.loadImages();
-  layers.clothe.loadImages();
+  layers.skin.init();
+  layers.eyes.init();
+  layers.eyebrows.init();
+  layers.hair.init();
+  layers.acessory.init();
+  layers.clothe.init();
   return {
     skin: layers.skin,
     eyes: layers.eyes,

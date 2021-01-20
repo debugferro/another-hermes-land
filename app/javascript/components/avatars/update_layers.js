@@ -37,29 +37,17 @@ class AvatarElement {
     this.okImgs = 0;
     this.ready = false;
     this.canvas.ctx.clearRect(0, 0, this.canvas.ctx.width, this.canvas.ctx.height);
-    this.loadImages();
+    this.init();
   }
 
-  loadImages() {
+  init() {
     this.resolveUrls();
-    for (let i = 0; i < this.assetsUrls.length; i++) {
-      let img = new Image();
-      this.assetImgs.push(img);
-      img.onload = this.load.bind(this);
-      img.src = `/avatar/${this.assetsUrls[i]}`
-    }
-    this.loadBaseAssets(this.componentUrls, this.componentImgs);
-    // for (let i = 0; i < this.componentUrls.length; i++) {
-    //   let img = new Image();
-    //   this.componentImgs.push(img);
-    //   img.onload = this.load.bind(this);
-    //   img.src = `/avatar/${this.componentUrls[i]}`
-    // }
-
     if  (this.assetsUrls.length === 0) {
       this.ready = true;
       this.main.layerIsReady();
     }
+    this.loadBaseAssets(this.assetsUrls, this.assetImgs);
+    this.loadBaseAssets(this.componentUrls, this.componentImgs);
   }
 
   loadBaseAssets(urlList, imgList) {
