@@ -6,7 +6,11 @@ class AvatarElement {
     this.assets = assets
     this.main = mainCanvas
     this.assetsUrls = [];
-    this.imgsElements = [];
+    this.componentUrls = [];
+    this.assetColors = [];
+    this.componentColors = [];
+    this.assetImgs = [];
+    this.componentImgs = [];
     this.okImgs = 0;
     this.ready = false;
   }
@@ -17,7 +21,7 @@ class AvatarElement {
         this.assetsUrls.push(asset.base);
         if (asset.components) {
           asset.components.forEach((component) => {
-            this.assetsUrls.push(component)
+            this.componentUrls.push(component)
           })
         }
       }
@@ -27,7 +31,9 @@ class AvatarElement {
   change(assets) {
     this.assets = assets;
     this.assetsUrls = [];
-    this.imgsElements = [];
+    this.componentUrls = [];
+    this.assetImgs = [];
+    this.componentImgs = [];
     this.okImgs = 0;
     this.ready = false;
     this.canvas.ctx.clearRect(0, 0, this.canvas.ctx.width, this.canvas.ctx.height);
@@ -38,29 +44,59 @@ class AvatarElement {
     this.resolveUrls();
     for (let i = 0; i < this.assetsUrls.length; i++) {
       let img = new Image();
-      this.imgsElements.push(img);
+      this.assetImgs.push(img);
       img.onload = this.load.bind(this);
       img.src = `/avatar/${this.assetsUrls[i]}`
     }
+    this.loadBaseAssets(this.componentUrls, this.componentImgs);
+    // for (let i = 0; i < this.componentUrls.length; i++) {
+    //   let img = new Image();
+    //   this.componentImgs.push(img);
+    //   img.onload = this.load.bind(this);
+    //   img.src = `/avatar/${this.componentUrls[i]}`
+    // }
+
     if  (this.assetsUrls.length === 0) {
       this.ready = true;
       this.main.layerIsReady();
     }
   }
 
+  loadBaseAssets(urlList, imgList) {
+    for (let i = 0; i < urlList.length; i++) {
+      let img = new Image();
+      imgList.push(img);
+      img.onload = this.load.bind(this);
+      img.src = `/avatar/${urlList[i]}`
+    }
+  }
+
   load() {
     this.okImgs += 1;
-    if (this.okImgs >= this.assetsUrls.length) {
+    if (this.okImgs >= this.assetsUrls.length + this.componentUrls.length ) {
       this.draw();
     }
   }
 
   draw() {
-    this.imgsElements.forEach((img) => {
+    this.assetImgs.forEach((img) => {
       this.canvas.ctx.drawImage(img, 0, 0);
+    })
+    this.componentImgs.forEach((img) => {
+      let layer = this.drawComponent(img);
+      this.canvas.ctx.drawImage(layer, 0, 0);
     })
     this.ready = true;
     this.main.layerIsReady();
+  }
+
+  drawComponent(img) {
+    let layer = document.createElement('canvas');
+    const ctx = layer.getContext("2d");
+    ctx.width = this.canvas.layer.width
+    ctx.height = this.canvas.layer.height
+    ctx.drawImage(img, 0, 0);
+    return layer;
   }
 }
 
@@ -82,6 +118,14 @@ export function initializeLayers(avatar, mainCanvas) {
   const hairCanvas = createLayer(mainCanvas);
   const acessoryCanvas = createLayer(mainCanvas);
   const clotheCanvas = createLayer(mainCanvas);
+
+  // const faceCanvas = createLayer(mainCanvas);
+  // const noseCanvas = createLayer(mainCanvas);
+  // const mouthCanvas = createLayer(mainCanvas);
+
+  // const face = new AvatarElement(faceCanvas, [avatar.face], skinCanvas)
+  // const nose = new AvatarElement(noseCanvas, [avatar.nose], skinCanvas)
+  // const nose = new AvatarElement(mouthCanvas, [avatar.mouth], skinCanvas)
 
   const skinEl = new AvatarElement(skinCanvas, [avatar.face, avatar.nose, avatar.mouth], mainCanvas);
   const eyesEl = new AvatarElement(eyesCanvas, [avatar.eyes], mainCanvas);
