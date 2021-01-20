@@ -13,6 +13,28 @@ class AvatarElement {
     this.componentImgs = [];
     this.okImgs = 0;
     this.ready = false;
+    this.paitingMode = false;
+    this.componentLayers = [];
+  }
+
+  init() {
+    this.resolveUrls();
+    this.resolveColors();
+    if  (this.assetsUrls.length === 0) {
+      this.ready = true;
+      this.main.layerIsReady();
+    }
+    this.loadImages(this.assetsUrls, this.assetImgs);
+    this.loadImages(this.componentUrls, this.componentImgs);
+  }
+
+  resolveColors() {
+    for(let i = 0; i < this.assetUrls.length; i++) {
+      this.assetColors.push("#ffffff");
+    }
+    for(let i = 0; i < this.componentUrls.length; i++) {
+      this.componentColors.push("#ffffff");
+    }
   }
 
   resolveUrls() {
@@ -40,17 +62,31 @@ class AvatarElement {
     this.init();
   }
 
-  init() {
-    this.resolveUrls();
-    if  (this.assetsUrls.length === 0) {
-      this.ready = true;
-      this.main.layerIsReady();
-    }
-    this.loadBaseAssets(this.assetsUrls, this.assetImgs);
-    this.loadBaseAssets(this.componentUrls, this.componentImgs);
+  hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
   }
 
-  loadBaseAssets(urlList, imgList) {
+  changeColor(type, hex, target = null) {
+    // components, 2, hex
+    // base, hex
+    this.okImgs = 0;
+    this.paitingMode = true;
+    if (type === 'components') {
+      this.componentColors[target] = hex;
+    } else if (type === 'base') {
+      this.assetColors[0] = hex;
+    }
+    this.loadImages(this.assetsUrls, this.assetImgs);
+    this.loadImages(this.componentUrls, this.componentImgs);
+  }
+
+
+  loadImages(urlList, imgList) {
     for (let i = 0; i < urlList.length; i++) {
       let img = new Image();
       imgList.push(img);
@@ -61,10 +97,40 @@ class AvatarElement {
 
   load() {
     this.okImgs += 1;
-    if (this.okImgs >= this.assetsUrls.length + this.componentUrls.length ) {
-      this.draw();
+    if (this.okImgs >= this.assetsUrls.length + this.componentUrls.length) {
+      if (!this.paitingMode) { this.draw(); }
+      if (this.paitingMode) { console.log("PaitingMode"); }
     }
   }
+
+  changeColor(target, r, g, b) {
+    const imageData = target.ctx.getImageData(0, 0, canvas.width, canvas.height); // Recebo array com a cor dos pixels
+    const data = imageData.data
+    for (let i = 0; i < data.length; i += 4) { // we are jumping every 4 values of RGBA for every pixel
+      // if (data[i] > 120 || data[i + 1] > 110 || data[i + 2] > 100) {
+      let newR = !r ? 0 : r - data[i]/1.5;  // Vejo a diferença entre o atual valor do pixel
+      let newG = !g ? 0 : g - data[i + 1]/1.5;  // e o valor que ele tem que chegar pra nova cor
+      let newB = !b ? 0 : b - data[i + 2]/1.5; // divido por 1.5 pra não estourar mt a cor
+      data[i]     += newR;
+      data[i + 1] += newG;  // Atribuo os novos valores somando o necessário que faltava
+      data[i + 2] += newB;
+    }
+    target.ctx.putImageData(imageData, 0, 0);
+  }
+
+  drawToColor() {
+    if (type === 'base') {
+      this.assetImgs.forEach((img) => {
+        this.canvas.ctx.drawImage(img, 0, 0);
+      })
+
+
+    } else if (type === 'components') {
+
+    }
+  }
+
+
 
   draw() {
     this.assetImgs.forEach((img) => {
