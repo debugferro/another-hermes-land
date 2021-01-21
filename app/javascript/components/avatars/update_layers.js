@@ -76,10 +76,10 @@ class AvatarElement {
     // components, 2, hex
     // base, hex
     this.ready = false;
-    this.okImgs = 0;
+    // this.okImgs = 0;
     this.paitingMode = true;
-    this.componentImgs = [];
-    this.assetImgs = [];
+    // this.componentImgs = [];
+    // this.assetImgs = [];
     if (type === 'components') {
       this.componentColors[target] = hex;
     } else if (type === 'base') {
@@ -87,8 +87,9 @@ class AvatarElement {
     }
     this.paitingType = type;
     this.canvas.ctx.clearRect(0, 0, this.canvas.layer.width, this.canvas.layer.height);
-    this.loadImages(this.assetsUrls, this.assetImgs);
-    this.loadImages(this.componentUrls, this.componentImgs);
+    this.drawToColor();
+    // this.loadImages(this.assetsUrls, this.assetImgs);
+    // this.loadImages(this.componentUrls, this.componentImgs);
   }
 
 
