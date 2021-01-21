@@ -45,6 +45,11 @@ export function hexToRgb(hex) {
 export function changeAsset(assets, movingDirection, assetIndex, layer, connections = null) {
   assetIndex.changeIndex(iterateBackOrForward(assets, assetIndex.index, movingDirection).direction);
   let currentAsset = assets[assetIndex.index];
+  if (currentAsset.skintonalized && currentAsset.category === 'mouth') {
+    layer.assetColors[0] = layer.skin.assetColors[0];
+  } else if (!currentAsset.skintonalized && currentAsset.category === 'mouth') {
+    layer.assetColors[0] = '#000000';
+  }
   if (connections) {
     connections.push(currentAsset)
     layer.change(connections)

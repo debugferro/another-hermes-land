@@ -10,7 +10,7 @@ function hexToRgb(hex) {
   }
 
 class AvatarElement {
-  constructor(canvas, assets, mainCanvas, colors) {
+  constructor(canvas, assets, mainCanvas, colors, skin = null) {
     this.canvas = canvas
     this.assets = assets
     this.main = mainCanvas
@@ -23,8 +23,8 @@ class AvatarElement {
     this.okImgs = 0;
     this.ready = false;
     this.paitingType = null;
-    this.componentLayers = [];
     this.colors = colors;
+    this.skin = skin;
   }
 
   init() {
@@ -117,19 +117,19 @@ class AvatarElement {
   drawToColor() {
     for(let i = 0; i < this.assetImgs.length; i++) {
       let layer = this.drawComponent(this.assetImgs[i]);
-      if (this.paitingType === 'base') {
+      // if (this.paitingType === 'base') {
         const assetColor = hexToRgb(this.assetColors[0]);
         this.changeTargetColor(layer, assetColor.r, assetColor.g, assetColor.b)
-      }
+      // }
       this.canvas.ctx.drawImage(layer, 0, 0);
     }
 
     for(let t = 0; t < this.componentImgs.length; t++) {
       let layer = this.drawComponent(this.componentImgs[t]);
-      if (this.paitingType === 'components') {
+      // if (this.paitingType === 'components') {
         const compColor = hexToRgb(this.componentColors[t]);
         this.changeTargetColor(layer, compColor.r, compColor.g, compColor.b);
-      }
+      // }
       this.canvas.ctx.drawImage(layer, 0, 0);
     }
     this.ready = true;
@@ -195,7 +195,7 @@ export function initializeLayers(avatar, mainCanvas) {
   const clotheCanvas = createLayer(mainCanvas);
 
   const skinEl = new AvatarElement(skinCanvas, [avatar.face, avatar.nose], mainCanvas, avatar.colorOf.skin);
-  const mouthEl = new AvatarElement(mouthCanvas, [avatar.mouth], mainCanvas, avatar.colorOf.mouth);
+  const mouthEl = new AvatarElement(mouthCanvas, [avatar.mouth], mainCanvas, avatar.colorOf.mouth, skinEl);
   const eyesEl = new AvatarElement(eyesCanvas, [avatar.eyes], mainCanvas, avatar.colorOf.eyes);
   const eyebrowsEl = new AvatarElement(eyebrowCanvas, [avatar.eyebrows], mainCanvas, avatar.colorOf.eyebrows);
   const hairEl = new AvatarElement(hairCanvas, [avatar.hair], mainCanvas, avatar.colorOf.hair);
