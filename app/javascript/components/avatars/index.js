@@ -82,9 +82,13 @@ const avatarCreator = () => {
     btnTo.change.eyes.backwards.addEventListener("click", () => {
       changeAsset(assets.eyes, 0, index.eyes, layers.eyes)
     });
-    // btnTo.change.eyes.color.addEventListener("click", () => {
-    //   changeColor(assetColorOpt.eyes, avDom.imgEyes);
-    // });
+    btnTo.change.eyes.color.addEventListener("click", () => {
+      const input = document.getElementById("eyes-color");
+      input.click();
+      input.addEventListener("input", () => {
+        changeColor(event.target.value, layers.eyes, 'components', 0);
+      })
+    });
     // MOUTH -------------------------------------------------------------------
     btnTo.change.mouth.forward.addEventListener("click", () => {
       changeAsset(assets.mouths, 1, index.mouth, layers.skin, [avatar.face, avatar.nose])

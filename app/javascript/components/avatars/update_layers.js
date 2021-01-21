@@ -14,6 +14,7 @@ class AvatarElement {
     this.okImgs = 0;
     this.ready = false;
     this.paitingMode = false;
+    this.paitingType = null;
     this.componentLayers = [];
   }
 
@@ -29,7 +30,7 @@ class AvatarElement {
   }
 
   resolveColors() {
-    for(let i = 0; i < this.assetUrls.length; i++) {
+    for(let i = 0; i < this.assetsUrls.length; i++) {
       this.assetColors.push("#ffffff");
     }
     for(let i = 0; i < this.componentUrls.length; i++) {
@@ -74,13 +75,18 @@ class AvatarElement {
   changeColor(type, hex, target = null) {
     // components, 2, hex
     // base, hex
+    this.ready = false;
     this.okImgs = 0;
     this.paitingMode = true;
+    this.componentImgs = [];
+    this.assetImgs = [];
     if (type === 'components') {
       this.componentColors[target] = hex;
     } else if (type === 'base') {
       this.assetColors[0] = hex;
     }
+    this.paitingType = type;
+    this.canvas.ctx.clearRect(0, 0, this.canvas.ctx.width, this.canvas.ctx.height);
     this.loadImages(this.assetsUrls, this.assetImgs);
     this.loadImages(this.componentUrls, this.componentImgs);
   }
@@ -99,12 +105,13 @@ class AvatarElement {
     this.okImgs += 1;
     if (this.okImgs >= this.assetsUrls.length + this.componentUrls.length) {
       if (!this.paitingMode) { this.draw(); }
-      if (this.paitingMode) { console.log("PaitingMode"); }
+      if (this.paitingMode) { this.drawToColor(); }
     }
   }
 
-  changeColor(target, r, g, b) {
-    const imageData = target.ctx.getImageData(0, 0, canvas.width, canvas.height); // Recebo array com a cor dos pixels
+  changeTargetColor(target, r, g, b) {
+    const ctx = target.getContext("2d");
+    const imageData = ctx.getImageData(0, 0, this.canvas.layer.width, this.canvas.layer.height); // Recebo array com a cor dos pixels
     const data = imageData.data
     for (let i = 0; i < data.length; i += 4) { // we are jumping every 4 values of RGBA for every pixel
       // if (data[i] > 120 || data[i + 1] > 110 || data[i + 2] > 100) {
@@ -115,22 +122,27 @@ class AvatarElement {
       data[i + 1] += newG;  // Atribuo os novos valores somando o necessário que faltava
       data[i + 2] += newB;
     }
-    target.ctx.putImageData(imageData, 0, 0);
+    ctx.putImageData(imageData, 0, 0);
   }
 
   drawToColor() {
-    if (type === 'base') {
+    if (this.paitingType === 'base') {
       this.assetImgs.forEach((img) => {
         this.canvas.ctx.drawImage(img, 0, 0);
       })
-
-
-    } else if (type === 'components') {
-
+      let color = this.hexToRgb(this.assetColors[0]);
+      this.changeTargetColor(this.canvas.layer, color.r, color.g, color.b)
+    } else if (this.paitingType === 'components') {
+      for(let i = 0; i < this.componentImgs.length; i++) {
+        let layer = this.drawComponent(this.componentImgs[i]);
+        this.canvas.ctx.drawImage(layer, 0, 0);
+        let color = this.hexToRgb(this.componentColors[i]);
+        this.changeTargetColor(layer, color.r, color.g, color.b);
+      }
     }
+    this.ready = true;
+    this.main.layerIsReady();
   }
-
-
 
   draw() {
     this.assetImgs.forEach((img) => {
