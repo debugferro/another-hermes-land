@@ -59,7 +59,7 @@ class AvatarElement {
     this.componentImgs = [];
     this.okImgs = 0;
     this.ready = false;
-    this.canvas.ctx.clearRect(0, 0, this.canvas.ctx.width, this.canvas.ctx.height);
+    this.canvas.ctx.clearRect(0, 0, this.canvas.layer.width, this.canvas.layer.height);
     this.init();
   }
 
@@ -86,7 +86,7 @@ class AvatarElement {
       this.assetColors[0] = hex;
     }
     this.paitingType = type;
-    this.canvas.ctx.clearRect(0, 0, this.canvas.ctx.width, this.canvas.ctx.height);
+    this.canvas.ctx.clearRect(0, 0, this.canvas.layer.width, this.canvas.layer.height);
     this.loadImages(this.assetsUrls, this.assetImgs);
     this.loadImages(this.componentUrls, this.componentImgs);
   }
@@ -127,18 +127,19 @@ class AvatarElement {
 
   drawToColor() {
     if (this.paitingType === 'base') {
-      this.assetImgs.forEach((img) => {
-        this.canvas.ctx.drawImage(img, 0, 0);
-      })
       let color = this.hexToRgb(this.assetColors[0]);
       this.changeTargetColor(this.canvas.layer, color.r, color.g, color.b)
-    } else if (this.paitingType === 'components') {
-      for(let i = 0; i < this.componentImgs.length; i++) {
-        let layer = this.drawComponent(this.componentImgs[i]);
-        this.canvas.ctx.drawImage(layer, 0, 0);
+    }
+    this.assetImgs.forEach((img) => {
+      this.canvas.ctx.drawImage(img, 0, 0);
+    })
+    for(let i = 0; i < this.componentImgs.length; i++) {
+      let layer = this.drawComponent(this.componentImgs[i]);
+      if (this.paitingType === 'components') {
         let color = this.hexToRgb(this.componentColors[i]);
         this.changeTargetColor(layer, color.r, color.g, color.b);
       }
+      this.canvas.ctx.drawImage(layer, 0, 0);
     }
     this.ready = true;
     this.main.layerIsReady();
