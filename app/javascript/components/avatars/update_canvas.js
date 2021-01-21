@@ -39,9 +39,10 @@ export function initCanvas(dom, avatar) {
   dom.masterLayer.width = dom.masterLayer.height = 144;
   const mainCanvas = new Main(dom.masterLayer, context)
   const layers = initializeLayers(avatar, mainCanvas)
-  mainCanvas.avElements.push(layers.skin, layers.eyes, layers.eyebrows, layers.hair, layers.acessory, layers.clothe)
+  mainCanvas.avElements.push(layers.skin, layers.mouth, layers.eyes, layers.eyebrows, layers.hair, layers.acessory, layers.clothe)
 
   layers.skin.init();
+  layers.mouth.init();
   layers.eyes.init();
   layers.eyebrows.init();
   layers.hair.init();
@@ -49,6 +50,7 @@ export function initCanvas(dom, avatar) {
   layers.clothe.init();
   return {
     skin: layers.skin,
+    mouth: layers.mouth,
     eyes: layers.eyes,
     eyebrows: layers.eyebrows,
     hair: layers.hair,

@@ -20,7 +20,7 @@ const avatarCreator = () => {
 
     //const currentAssetOf = setCurrentAssets(avDom); // TO REMOVE
     //const avGender = getGender(); // TO REMOVE
-
+    console.log(avatar)
     const assets = await fetchAssetsData(avatar.gender);
     const index = setIndex(assets, avatar);
     const layers = initCanvas(avDom, avatar);
@@ -43,12 +43,16 @@ const avatarCreator = () => {
       const input = document.getElementById("skin-color");
       input.click();
       input.addEventListener("input", () => {
-        changeColor(event.target.value, mainCanvas.layers.base, mainCanvas)
+        changeColor(event.target.value, layers.skin, 'base');
+        if (layers.mouth.assets[0].skintonalized) {
+          changeColor(event.target.value, layers.mouth, 'base');
+        }
       })
     });
     // HAIR --------------------------------------------------------------------
     btnTo.change.hair.forward.addEventListener("click", () => {
       changeAsset(assets.hairs, 1, index.hair, layers.hair)
+      console.log(layers.hair);
     });
     btnTo.change.hair.backwards.addEventListener("click", () => {
       changeAsset(assets.hairs, 0, index.hair, layers.hair)
@@ -86,15 +90,17 @@ const avatarCreator = () => {
       const input = document.getElementById("eyes-color");
       input.click();
       input.addEventListener("input", () => {
-        changeColor(event.target.value, layers.eyes, 'components', 0);
+        changeColor(event.target.value, layers.eyes, 'components', 1);
       })
+      console.log(layers.eyes);
     });
     // MOUTH -------------------------------------------------------------------
     btnTo.change.mouth.forward.addEventListener("click", () => {
-      changeAsset(assets.mouths, 1, index.mouth, layers.skin, [avatar.face, avatar.nose])
+      changeAsset(assets.mouths, 1, index.mouth, layers.mouth)
+      console.log(layers.mouth);
     });
     btnTo.change.mouth.backwards.addEventListener("click", () => {
-      changeAsset(assets.mouths, 0, index.mouth, layers.skin, [avatar.face, avatar.nose])
+      changeAsset(assets.mouths, 0, index.mouth, layers.mouth)
     });
     // NOSE --------------------------------------------------------------------
     btnTo.change.nose.forward.addEventListener("click", () => {

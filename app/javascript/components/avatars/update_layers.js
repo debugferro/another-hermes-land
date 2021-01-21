@@ -1,7 +1,7 @@
 import { hexToRgb } from './change_asset';
 
 class AvatarElement {
-  constructor(canvas, assets, mainCanvas) {
+  constructor(canvas, assets, mainCanvas, colors) {
     this.canvas = canvas
     this.assets = assets
     this.main = mainCanvas
@@ -184,29 +184,24 @@ function createLayer(mainCanvas) {
 
 export function initializeLayers(avatar, mainCanvas) {
   const skinCanvas = createLayer(mainCanvas);
+  const mouthCanvas = createLayer(mainCanvas);
   const eyesCanvas = createLayer(mainCanvas);
   const eyebrowCanvas = createLayer(mainCanvas);
   const hairCanvas = createLayer(mainCanvas);
   const acessoryCanvas = createLayer(mainCanvas);
   const clotheCanvas = createLayer(mainCanvas);
 
-  // const faceCanvas = createLayer(mainCanvas);
-  // const noseCanvas = createLayer(mainCanvas);
-  // const mouthCanvas = createLayer(mainCanvas);
-
-  // const face = new AvatarElement(faceCanvas, [avatar.face], skinCanvas)
-  // const nose = new AvatarElement(noseCanvas, [avatar.nose], skinCanvas)
-  // const nose = new AvatarElement(mouthCanvas, [avatar.mouth], skinCanvas)
-
-  const skinEl = new AvatarElement(skinCanvas, [avatar.face, avatar.nose, avatar.mouth], mainCanvas);
-  const eyesEl = new AvatarElement(eyesCanvas, [avatar.eyes], mainCanvas);
-  const eyebrowsEl = new AvatarElement(eyebrowCanvas, [avatar.eyebrows], mainCanvas);
-  const hairEl = new AvatarElement(hairCanvas, [avatar.hair], mainCanvas);
-  const acessoryEl = new AvatarElement(acessoryCanvas, [avatar.acessories], mainCanvas);
-  const clotheEl = new AvatarElement(clotheCanvas, [avatar.clothes], mainCanvas);
+  const skinEl = new AvatarElement(skinCanvas, [avatar.face, avatar.nose], mainCanvas, avatar.colorOf.skin);
+  const mouthEl = new AvatarElement(mouthCanvas, [avatar.mouth], mainCanvas, avatar.colorOf.mouth);
+  const eyesEl = new AvatarElement(eyesCanvas, [avatar.eyes], mainCanvas, avatar.colorOf.eyes);
+  const eyebrowsEl = new AvatarElement(eyebrowCanvas, [avatar.eyebrows], mainCanvas, avatar.colorOf.eyebrows);
+  const hairEl = new AvatarElement(hairCanvas, [avatar.hair], mainCanvas, avatar.colorOf.hair);
+  const acessoryEl = new AvatarElement(acessoryCanvas, [avatar.acessories], mainCanvas, avatar.colorOf.acessory);
+  const clotheEl = new AvatarElement(clotheCanvas, [avatar.clothes], mainCanvas, avatar.colorOf.clothe);
 
   return {
       skin: skinEl,
+      mouth: mouthEl,
       eyes: eyesEl,
       eyebrows: eyebrowsEl,
       hair: hairEl,

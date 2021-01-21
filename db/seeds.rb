@@ -82,7 +82,7 @@ Asset.create!(category: "eyebrows", base: "f_:red;_eyebrows_6.png")
 
 Asset.create!(category: "eyes", base: "f_eyes_b_1.png", components: ['f_eyes_c_1.png'], gender: 1)
 
-Asset.create!(category: "eyes", base: "f_eyes_2.png", gender: 1)
+Asset.create!(category: "eyes", base: "f_eyes_b_2.png", components: ['f_eyes_c1_2.png', 'f_eyes_c2_2.png'], gender: 1)
 
 Asset.create!(category: "eyes", base: "f_eyes_3.png", gender: 1)
 

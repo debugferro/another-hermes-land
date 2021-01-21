@@ -58,16 +58,3 @@ export function changeAsset(assets, movingDirection, assetIndex, layer, connecti
 export function changeColor(input, layer, type, target = null) {
   layer.changeColor(type, input, target);
 }
-
-export function changeInnerLayer(basicAssets, avDom, movingDirection, assetIndex, target, mainCanvas) {
-  assetIndex.changeIndex(iterateBackOrForward(basicAssets, assetIndex.index, movingDirection).direction);
-  let currentAsset = basicAssets[assetIndex.index];
-  avDom.src = `/avatar/${currentAsset.base}`
-  avDom.addEventListener("load", function () {
-    //layer.assets = [avDom];
-    const info = mainCanvas.layers.base.info
-    mainCanvas.context.clearRect(0, 0, info.layer.width, info.layer.height);
-    mainCanvas.layers.base.draw();
-    updateCanvas(grabElements(), mainCanvas.context, mainCanvas.layers)
-  });
-}
