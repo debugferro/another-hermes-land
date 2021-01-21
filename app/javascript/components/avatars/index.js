@@ -53,13 +53,13 @@ const avatarCreator = () => {
     btnTo.change.hair.backwards.addEventListener("click", () => {
       changeAsset(assets.hairs, 0, index.hair, layers.hair)
     });
-    // btnTo.change.hair.color.addEventListener("click", () => {
-    //   const input = document.getElementById("hair-color");
-    //   input.click();
-    //   input.addEventListener("input", () => {
-    //     changeColor(event.target.value, mainCanvas.layers.hair, mainCanvas)
-    //   })
-    // });
+    btnTo.change.hair.color.addEventListener("click", () => {
+      const input = document.getElementById("hair-color");
+      input.click();
+      input.addEventListener("input", () => {
+        changeColor(event.target.value, layers.hair, 'base');
+      })
+    });
     // EYEBROWS ----------------------------------------------------------------
     btnTo.change.eyebrows.forward.addEventListener("click", () => {
       changeAsset(assets.eyebrows, 1, index.eyebrows, layers.eyebrows)

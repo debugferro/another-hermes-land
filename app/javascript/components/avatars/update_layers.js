@@ -127,13 +127,15 @@ class AvatarElement {
   }
 
   drawToColor() {
-    if (this.paitingType === 'base') {
-      let color = this.hexToRgb(this.assetColors[0]);
-      this.changeTargetColor(this.canvas.layer, color.r, color.g, color.b)
+    for(let i = 0; i < this.assetImgs.length; i++) {
+      let layer = this.drawComponent(this.assetImgs[i]);
+      if (this.paitingType === 'base') {
+        let color = this.hexToRgb(this.assetColors[0]);
+        this.changeTargetColor(layer, color.r, color.g, color.b)
+      }
+      this.canvas.ctx.drawImage(layer, 0, 0);
     }
-    this.assetImgs.forEach((img) => {
-      this.canvas.ctx.drawImage(img, 0, 0);
-    })
+
     for(let i = 0; i < this.componentImgs.length; i++) {
       let layer = this.drawComponent(this.componentImgs[i]);
       if (this.paitingType === 'components') {
@@ -148,7 +150,8 @@ class AvatarElement {
 
   draw() {
     this.assetImgs.forEach((img) => {
-      this.canvas.ctx.drawImage(img, 0, 0);
+      let layer = this.drawComponent(img);
+      this.canvas.ctx.drawImage(layer, 0, 0);
     })
     this.componentImgs.forEach((img) => {
       let layer = this.drawComponent(img);
