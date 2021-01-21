@@ -55,13 +55,13 @@ ActiveRecord::Schema.define(version: 2020_12_06_190540) do
 
   create_table "avatars", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "skin_color", default: "#ffffff"
-    t.string "eyebrows_color", default: "#ffffff"
-    t.string "eyes_color", default: ["#ffffff"], array: true
-    t.string "hair_color", default: "#ffffff"
-    t.string "mouth_color", default: "#ffffff"
-    t.string "acessory_color", default: ["#ffffff"], array: true
-    t.string "clothe_color", default: "#ffffff"
+    t.string "skin_color", default: ["#000000"], array: true
+    t.string "eyebrows_color", default: ["#000000"], array: true
+    t.string "eyes_color", default: ["#000000"], array: true
+    t.string "hair_color", default: ["#000000"], array: true
+    t.string "mouth_color", default: ["#000000"], array: true
+    t.string "acessory_color", default: ["#000000"], array: true
+    t.string "clothe_color", default: ["#000000"], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "gender", default: 1

@@ -82,6 +82,7 @@ const avatarCreator = () => {
     // EYES --------------------------------------------------------------------
     btnTo.change.eyes.forward.addEventListener("click", () => {
       changeAsset(assets.eyes, 1, index.eyes, layers.eyes)
+      console.log(layers.eyes);
     });
     btnTo.change.eyes.backwards.addEventListener("click", () => {
       changeAsset(assets.eyes, 0, index.eyes, layers.eyes)

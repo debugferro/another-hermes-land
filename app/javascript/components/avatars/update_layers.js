@@ -1,4 +1,13 @@
-import { hexToRgb } from './change_asset';
+// import { hexToRgb } from './change_asset';
+
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
 
 class AvatarElement {
   constructor(canvas, assets, mainCanvas, colors) {
@@ -13,9 +22,9 @@ class AvatarElement {
     this.componentImgs = [];
     this.okImgs = 0;
     this.ready = false;
-    this.paitingMode = false;
     this.paitingType = null;
     this.componentLayers = [];
+    this.colors = colors;
   }
 
   init() {
@@ -30,11 +39,16 @@ class AvatarElement {
   }
 
   resolveColors() {
-    for(let i = 0; i < this.assetsUrls.length; i++) {
-      this.assetColors.push("#ffffff");
+    if (this.assetColors.length === 0) {
+      const c = this.colors.shift();
+      this.assetColors.push(c);
     }
-    for(let i = 0; i < this.componentUrls.length; i++) {
-      this.componentColors.push("#ffffff");
+    while (this.componentColors.length < this.componentUrls.length) {
+      if (this.colors.length != 0){
+        this.componentColors.push(this.colors.shift());
+      } else {
+        this.componentColors.push('#000000');
+      }
     }
   }
 
@@ -63,21 +77,13 @@ class AvatarElement {
     this.init();
   }
 
-  hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
-  }
 
   changeColor(type, hex, target = null) {
     // components, 2, hex
     // base, hex
     this.ready = false;
     // this.okImgs = 0;
-    this.paitingMode = true;
+    // this.paitingMode = true;
     // this.componentImgs = [];
     // this.assetImgs = [];
     if (type === 'components') {
@@ -88,8 +94,6 @@ class AvatarElement {
     this.paitingType = type;
     this.canvas.ctx.clearRect(0, 0, this.canvas.layer.width, this.canvas.layer.height);
     this.drawToColor();
-    // this.loadImages(this.assetsUrls, this.assetImgs);
-    // this.loadImages(this.componentUrls, this.componentImgs);
   }
 
 
@@ -105,9 +109,31 @@ class AvatarElement {
   load() {
     this.okImgs += 1;
     if (this.okImgs >= this.assetsUrls.length + this.componentUrls.length) {
-      if (!this.paitingMode) { this.draw(); }
-      if (this.paitingMode) { this.drawToColor(); }
+      this.drawToColor();
     }
+  }
+
+
+  drawToColor() {
+    for(let i = 0; i < this.assetImgs.length; i++) {
+      let layer = this.drawComponent(this.assetImgs[i]);
+      if (this.paitingType === 'base') {
+        const assetColor = hexToRgb(this.assetColors[0]);
+        this.changeTargetColor(layer, assetColor.r, assetColor.g, assetColor.b)
+      }
+      this.canvas.ctx.drawImage(layer, 0, 0);
+    }
+
+    for(let t = 0; t < this.componentImgs.length; t++) {
+      let layer = this.drawComponent(this.componentImgs[t]);
+      if (this.paitingType === 'components') {
+        const compColor = hexToRgb(this.componentColors[t]);
+        this.changeTargetColor(layer, compColor.r, compColor.g, compColor.b);
+      }
+      this.canvas.ctx.drawImage(layer, 0, 0);
+    }
+    this.ready = true;
+    this.main.layerIsReady();
   }
 
   changeTargetColor(target, r, g, b) {
@@ -126,29 +152,15 @@ class AvatarElement {
     ctx.putImageData(imageData, 0, 0);
   }
 
-  drawToColor() {
-    for(let i = 0; i < this.assetImgs.length; i++) {
-      let layer = this.drawComponent(this.assetImgs[i]);
-      if (this.paitingType === 'base') {
-        let color = this.hexToRgb(this.assetColors[0]);
-        this.changeTargetColor(layer, color.r, color.g, color.b)
-      }
-      this.canvas.ctx.drawImage(layer, 0, 0);
-    }
-
-    for(let i = 0; i < this.componentImgs.length; i++) {
-      let layer = this.drawComponent(this.componentImgs[i]);
-      if (this.paitingType === 'components') {
-        let color = this.hexToRgb(this.componentColors[i]);
-        this.changeTargetColor(layer, color.r, color.g, color.b);
-      }
-      this.canvas.ctx.drawImage(layer, 0, 0);
-    }
-    this.ready = true;
-    this.main.layerIsReady();
+  drawComponent(img) {
+    let layer = document.createElement('canvas');
+    const ctx = layer.getContext("2d");
+    ctx.width = this.canvas.layer.width
+    ctx.height = this.canvas.layer.height
+    ctx.drawImage(img, 0, 0);
+    return layer;
   }
-
-  draw() {
+/*  draw() {
     this.assetImgs.forEach((img) => {
       let layer = this.drawComponent(img);
       this.canvas.ctx.drawImage(layer, 0, 0);
@@ -159,16 +171,7 @@ class AvatarElement {
     })
     this.ready = true;
     this.main.layerIsReady();
-  }
-
-  drawComponent(img) {
-    let layer = document.createElement('canvas');
-    const ctx = layer.getContext("2d");
-    ctx.width = this.canvas.layer.width
-    ctx.height = this.canvas.layer.height
-    ctx.drawImage(img, 0, 0);
-    return layer;
-  }
+  }*/
 }
 
 function createLayer(mainCanvas) {
@@ -209,6 +212,34 @@ export function initializeLayers(avatar, mainCanvas) {
       clothe: clotheEl
   }
 }
+
+
+
+
+// Posso ter mais de uma cor, variando de acordo com a quantidade de componenter
+// A mudança de cor ocorre via o número do index da array de cores
+// Como posso manter o array de cores do tamanho do número de componentes e
+// manter as cores conforme haja a mudança de assets?
+// Quando inicializar preciso receber a array de cores
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // class Layer {
