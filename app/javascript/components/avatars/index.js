@@ -91,6 +91,14 @@ const avatarCreator = () => {
       const input = document.getElementById("eyes-color");
       input.click();
       input.addEventListener("input", () => {
+        changeColor(event.target.value, layers.eyes, 'components', 0);
+      })
+      console.log(layers.eyes);
+    });
+    btnTo.change.eyes.makeup.addEventListener("click", () => {
+      const input = document.getElementById("eyes-makeup-color");
+      input.click();
+      input.addEventListener("input", () => {
         changeColor(event.target.value, layers.eyes, 'components', 1);
       })
       console.log(layers.eyes);

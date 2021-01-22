@@ -5,6 +5,7 @@ export default function takeBtnFromDom() {
   let btnEyes     = document.querySelector(".Btn-eyes");
   let btnEyesBack = document.querySelector(".Btn-eyesback");
   let btnEyeColor = document.querySelector(".Btn-eyecolor");
+  let btnMakeUpColor = document.querySelector(".Btn-makeupcolor");
   // ---------------------------------------------------------------------------
   let btnHair      = document.querySelector(".Btn-hair");
   let btnHairBack  = document.querySelector(".Btn-hairback");
@@ -37,7 +38,8 @@ export default function takeBtnFromDom() {
       eyes: {
         forward: btnEyes,
         backwards: btnEyesBack,
-        color: btnEyeColor
+        color: btnEyeColor,
+        makeup: btnMakeUpColor
       },
       hair: {
         forward: btnHair,
