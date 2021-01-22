@@ -84,11 +84,11 @@ Asset.create!(category: "eyes", base: "f_eyes_b_1.png", components: ['f_eyes_c_1
 
 Asset.create!(category: "eyes", base: "f_eyes_b_2.png", components: ['f_eyes_c1_2.png', 'f_eyes_c2_2.png'], gender: 1)
 
-Asset.create!(category: "eyes", base: "f_eyes_3.png", gender: 1)
+Asset.create!(category: "eyes", base: "f_eyes_b_3.png", components: ['f_eyes_c1_3.png', 'f_eyes_c2_3.png'], gender: 1)
 
 Asset.create!(category: "eyes", base: "f_:neutral;_eyes_4.png", gender: 1)
 
-Asset.create!(category: "eyes", base: "f_:neutral;_eyes_5.png", gender: 1)
+Asset.create!(category: "eyes", base: "f_eyes_b_5.png", components: ['f_eyes_c1_5.png'], gender: 1)
 
 Asset.create!(category: "eyes", base: "f_:neutral;_eyes_6.png", gender: 1)
 
@@ -97,17 +97,17 @@ Asset.create!(category: "eyes", base: "f_:neutral;_eyes_7.png", gender: 1)
 Asset.create!(category: "eyes", base: "n_:neutral;_eyes_8.png")
 Asset.create!(category: "eyes", base: "n_:neutral;_eyesc_8.png")
 
-Asset.create!(category: "eyes", base: "n_:neutral;_eyes_9.png")
-Asset.create!(category: "eyes", base: "n_:neutral;_eyesc_9.png")
+Asset.create!(category: "eyes", base: "n_eyes_b_9.png", components: ['n_eyes_c1_9.png'])
 
-Asset.create!(category: "eyes", base: "f_:neutral;_eyes_10.png", gender: 1)
-Asset.create!(category: "eyes", base: "f_:neutral;_eyesc_10.png", gender: 1)
-Asset.create!(category: "eyes", base: "f_:neutral;_eyesc2_10.png", gender: 1)
+Asset.create!(category: "eyes", base: "f_eyes_b_10.png", components: ['f_eyes_c1_10.png', 'f_eyes_c2_10.png'], gender: 1)
 
-Asset.create!(category: "eyes", base: "n_:neutral;_eyes_11.png")
-Asset.create!(category: "eyes", base: "n_:neutral;_eyesc_11.png")
+Asset.create!(category: "eyes", base: "f_eyes_b_11.png", components: ['f_eyes_c1_11.png'], gender: 1)
 
 Asset.create!(category: "eyes", base: "m_:white;_eyes_12.png", gender: -1)
+
+Asset.create!(category: "eyes", base: "f_eyes_b_13.png", components: ['f_eyes_c1_13.png'], gender: 1)
+
+Asset.create!(category: "eyes", base: "n_eyes_b_14.png", components: ['n_eyes_c1_14.png'])
 
 # HAIR            <gender>_:<hair_color>;_<category>_<id>.png
 
@@ -179,6 +179,8 @@ Asset.create!(category: "mouth", base: "n_mouth_4.png", skintonalized: true)
 Asset.create!(category: "mouth", base: "n_:neutral;_mouth_5.png")
 
 Asset.create!(category: "mouth", base: "n_:neutral;_mouth_6.png", skintonalized: true)
+
+Asset.create!(category: "mouth", base: "n_mouth_b_7.png", components: ['n_mouth_c1_7.png'], skintonalized: true)
 
 # NOSES            <gender>_:<skin color>;_<category>_<id>.png
 
