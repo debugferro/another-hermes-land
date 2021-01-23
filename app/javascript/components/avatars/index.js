@@ -14,17 +14,13 @@ const avatarCreator = () => {
     // Getting html elements and getting avatar assets from database
     const avDom = grabElements();
     const avatar = await getAvatar();
-
-    //const currentAssetOf = setCurrentAssets(avDom); // TO REMOVE
-    //const avGender = getGender(); // TO REMOVE
+    console.log(avatar);
     // Getting asset data from database
     const assets = await fetchAssetsData(avatar.gender);
     // Setting correspondant index for the assets that compose the present avatar
     // and initializing canvas and its layers
     const index = setIndex(assets, avatar);
     const layers = initCanvas(avDom, avatar);
-    // const currentFile = avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1); // TO REMOVE
-
     const btnTo = takeBtnFromDom();
 
     btnTo.change.face.color.addEventListener("click", () => {
@@ -102,10 +98,11 @@ const avatarCreator = () => {
     });
     // NOSE --------------------------------------------------------------------
     btnTo.change.nose.forward.addEventListener("click", () => {
-      changeAsset(assets.noses, 1, index.nose, layers.skin, [avatar.face, avatar.mouth])
+      console.log(layers.skin);
+      changeAsset(assets.noses, 1, index.nose, layers.skin, [layers.skin.assets[0]])
     });
     btnTo.change.nose.backwards.addEventListener("click", () => {
-      changeAsset(assets.noses, 0, index.nose, layers.skin, [avatar.face, avatar.mouth])
+      changeAsset(assets.noses, 0, index.nose, layers.skin, [layers.skin.assets[0]])
     });
     // // ACESSORY ----------------------------------------------------------------
     btnTo.change.acessories.forward.addEventListener("click", () => {

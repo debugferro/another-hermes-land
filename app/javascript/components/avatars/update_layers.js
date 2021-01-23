@@ -34,7 +34,7 @@ export function initializeLayers(avatar, mainCanvas) {
   const eyesEl = new AvatarElement(eyesCanvas, [avatar.eyes], mainCanvas, avatar.colorOf.eyes);
   const eyebrowsEl = new AvatarElement(eyebrowCanvas, [avatar.eyebrows], mainCanvas, avatar.colorOf.eyebrows);
   const hairEl = new AvatarElement(hairCanvas, [avatar.hair], mainCanvas, avatar.colorOf.hair);
-  const acessoryEl = new AvatarElement(acessoryCanvas, [avatar.acessories], mainCanvas, avatar.colorOf.acessory);
+  const acessoryEl = new AvatarElement(acessoryCanvas, [avatar.acessory], mainCanvas, avatar.colorOf.acessory);
   const clotheEl = new AvatarElement(clotheCanvas, [avatar.clothes], mainCanvas, avatar.colorOf.clothe);
 
   return {
