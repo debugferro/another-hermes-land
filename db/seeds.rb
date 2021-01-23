@@ -1,227 +1,6 @@
 require "faker"
 
 Asset.destroy_all
-
-Asset.create!(category: "base", path: "f_:white;_face_1.png", colorized: false)
-Asset.create!(category: "base", path: "m_:white;_face_1.png", colorized: false)
-# Asset.create!(category: "base", path: "m_:white;_face_2.png", colorized: false)
-# Asset.create!(category: "base", path: "f_:white;_face_2.png", colorized: false)
-Asset.create!(category: "base", path: "f_:black;_face_1.png", colorized: true)
-Asset.create!(category: "base", path: "m_:black;_face_1.png", colorized: true)
-# Asset.create!(category: "base", path: "m_:black;_face_2.png", colorized: true)
-# Asset.create!(category: "base", path: "f_:black;_face_2.png", colorized: true)
-
-
-# ACESSORIES            <gender>_:<color>;_<category>_<id>.png
-
-Asset.create!(category: "acessory", path: "n_:default;_acessory_1.png", colorized: false)
-
-Asset.create!(category: "acessory", path: "f_:purple;_acessory_2.png", colorized: false)
-Asset.create!(category: "acessory", path: "f_:purple2;_acessory_2.png", colorized: true)
-Asset.create!(category: "acessory", path: "f_:purple3;_acessory_2.png", colorized: true)
-
-Asset.create!(category: "acessory", path: "f_:default;_acessory_3.png", colorized: false)
-
-Asset.create!(category: "acessory", path: "m_:blond;_acessory_4.png", colorized: false)
-Asset.create!(category: "acessory", path: "m_:black;_acessory_4.png", colorized: true)
-
-Asset.create!(category: "acessory", path: "f_:pink;_acessory_5.png", colorized: false)
-Asset.create!(category: "acessory", path: "f_:red;_acessory_5.png", colorized: true)
-
-Asset.create!(category: "acessory", path: "n_:default;_acessory_6.png", colorized: false)
-Asset.create!(category: "acessory", path: "n_:pink;_acessory_6.png", colorized: true)
-
-Asset.create!(category: "acessory", path: "f_:default;_acessory_7.png", colorized: false)
-Asset.create!(category: "acessory", path: "f_:black;_acessory_7.png", colorized: true)
-Asset.create!(category: "acessory", path: "f_:blue;_acessory_7.png", colorized: true)
-
-Asset.create!(category: "acessory", path: "f_:default;_acessory_8.png", colorized: false)
-
-Asset.create!(category: "acessory", path: "f_:default;_acessory_9.png", colorized: false)
-Asset.create!(category: "acessory", path: "f_:blue;_acessory_9.png", colorized: true)
-Asset.create!(category: "acessory", path: "f_:yellow;_acessory_9.png", colorized: true)
-
-Asset.create!(category: "acessory", path: "f_:default;_acessory_10.png", colorized: false)
-Asset.create!(category: "acessory", path: "f_:white;_acessory_10.png", colorized: true)
-
-Asset.create!(category: "acessory", path: "f_:default;_acessory_11.png", colorized: false)
-Asset.create!(category: "acessory", path: "f_:red;_acessory_11.png", colorized: true)
-
-Asset.create!(category: "acessory", path: "f_:default;_acessory_12.png", colorized: false)
-
-# EYEBROWS            <gender>_:<hair color>;_<category>_<id>.png
-
-Asset.create!(category: "eyebrows", path: "n_:blond;_eyebrows_1.png", colorized: false)
-Asset.create!(category: "eyebrows", path: "n_:black;_eyebrows_1.png", colorized: true)
-
-Asset.create!(category: "eyebrows", path: "n_:blond;_eyebrows_2.png", colorized: false)
-Asset.create!(category: "eyebrows", path: "n_:cocoa;_eyebrows_2.png", colorized: true)
-Asset.create!(category: "eyebrows", path: "n_:black;_eyebrows_2.png", colorized: true)
-
-Asset.create!(category: "eyebrows", path: "m_:blond;_eyebrows_3.png", colorized: false)
-Asset.create!(category: "eyebrows", path: "m_:black;_eyebrows_3.png", colorized: true)
-
-Asset.create!(category: "eyebrows", path: "m_:blond;_eyebrows_4.png", colorized: false)
-
-Asset.create!(category: "eyebrows", path: "f_:blond;_eyebrows_5.png", colorized: false)
-
-Asset.create!(category: "eyebrows", path: "f_:blond;_eyebrows_6.png", colorized: false)
-Asset.create!(category: "eyebrows", path: "f_:cocoa;_eyebrows_6.png", colorized: true)
-Asset.create!(category: "eyebrows", path: "f_:black;_eyebrows_6.png", colorized: true)
-Asset.create!(category: "eyebrows", path: "f_:red;_eyebrows_6.png", colorized: true)
-
-# EYES            <gender>_:<skin color>;_<category>_<id>.png
-
-Asset.create!(category: "eyes", path: "f_:neutral;_eye_1.png", colorized: false)
-Asset.create!(category: "eyes", path: "f_:neutral;_eyec_1.png", colorized: true)
-
-Asset.create!(category: "eyes", path: "f_:black;_eyes_2.png", colorized: false)
-Asset.create!(category: "eyes", path: "f_:white;_eyes_2.png", colorized: false)
-
-Asset.create!(category: "eyes", path: "f_:white;_eyes_3.png", colorized: false)
-Asset.create!(category: "eyes", path: "f_:black;_eyes_3.png", colorized: false)
-
-Asset.create!(category: "eyes", path: "f_:neutral;_eyes_4.png", colorized: false)
-
-Asset.create!(category: "eyes", path: "f_:neutral;_eyes_5.png", colorized: false)
-
-Asset.create!(category: "eyes", path: "f_:neutral;_eyes_6.png", colorized: false)
-
-Asset.create!(category: "eyes", path: "f_:neutral;_eyes_7.png", colorized: false)
-
-Asset.create!(category: "eyes", path: "n_:neutral;_eyes_8.png", colorized: false)
-Asset.create!(category: "eyes", path: "n_:neutral;_eyesc_8.png", colorized: true)
-
-Asset.create!(category: "eyes", path: "n_:neutral;_eyes_9.png", colorized: false)
-Asset.create!(category: "eyes", path: "n_:neutral;_eyesc_9.png", colorized: true)
-
-Asset.create!(category: "eyes", path: "f_:neutral;_eyes_10.png", colorized: false)
-Asset.create!(category: "eyes", path: "f_:neutral;_eyesc_10.png", colorized: true)
-Asset.create!(category: "eyes", path: "f_:neutral;_eyesc2_10.png", colorized: true)
-
-Asset.create!(category: "eyes", path: "n_:neutral;_eyes_11.png", colorized: false)
-Asset.create!(category: "eyes", path: "n_:neutral;_eyesc_11.png", colorized: true)
-
-Asset.create!(category: "eyes", path: "m_:white;_eyes_12.png", colorized: false)
-
-# HAIR            <gender>_:<hair_color>;_<category>_<id>.png
-
-Asset.create!(category: "hair", path: "f_:blond;_hair_1.png", colorized: false)
-
-Asset.create!(category: "hair", path: "f_:blond;_hair_2.png", colorized: false)
-Asset.create!(category: "hair", path: "f_:cocoa;_hair_2.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:black;_hair_2.png", colorized: true)
-
-Asset.create!(category: "hair", path: "f_:blond;_hair_3.png", colorized: false)
-Asset.create!(category: "hair", path: "f_:cocoa;_hair_3.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:black;_hair_3.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:red;_hair_3.png", colorized: true)
-
-Asset.create!(category: "hair", path: "f_:blond;_hair_4.png", colorized: false)
-Asset.create!(category: "hair", path: "f_:black;_hair_4.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:cocoa;_hair_4.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:red;_hair_4.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:white;_hair_4.png", colorized: true)
-
-Asset.create!(category: "hair", path: "f_:blond;_hair_5.png", colorized: false)
-Asset.create!(category: "hair", path: "f_:cocoa;_hair_5.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:red;_hair_5.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:white;_hair_5.png", colorized: true)
-
-Asset.create!(category: "hair", path: "f_:blond;_hair_6.png", colorized: false)
-Asset.create!(category: "hair", path: "f_:cocoa;_hair_6.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:red;_hair_6.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:black;_hair_6.png", colorized: true)
-
-Asset.create!(category: "hair", path: "f_:blond;_hair_7.png", colorized: false)
-
-Asset.create!(category: "hair", path: "f_:blond;_hair_8.png", colorized: false)
-Asset.create!(category: "hair", path: "f_:black;_hair_8.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:white;_hair_8.png", colorized: true)
-Asset.create!(category: "hair", path: "f_:cocoa;_hair_8.png", colorized: true)
-
-Asset.create!(category: "hair", path: "n_:blond;_hair_9.png", colorized: false)
-Asset.create!(category: "hair", path: "n_:cocoa;_hair_9.png", colorized: true)
-Asset.create!(category: "hair", path: "n_:black;_hair_9.png", colorized: true)
-
-Asset.create!(category: "hair", path: "n_:black;_hair_10.png", colorized: false)
-Asset.create!(category: "hair", path: "n_:blond;_hair_10.png", colorized: true)
-Asset.create!(category: "hair", path: "n_:cocoa;_hair_10.png", colorized: true)
-
-Asset.create!(category: "hair", path: "m_:blond;_hair_11.png", colorized: false)
-
-Asset.create!(category: "hair", path: "m_:blond;_hair_12.png", colorized: false)
-Asset.create!(category: "hair", path: "m_:cocoa;_hair_12.png", colorized: true)
-Asset.create!(category: "hair", path: "m_:white;_hair_12.png", colorized: true)
-Asset.create!(category: "hair", path: "m_:black;_hair_12.png", colorized: true)
-
-Asset.create!(category: "hair", path: "m_:blond;_hair_13.png", colorized: false)
-Asset.create!(category: "hair", path: "m_:black;_hair_13.png", colorized: true)
-
-Asset.create!(category: "hair", path: "m_:blond;_hair_14.png", colorized: false)
-Asset.create!(category: "hair", path: "m_:cocoa;_hair_14.png", colorized: true)
-Asset.create!(category: "hair", path: "m_:black;_hair_14.png", colorized: true)
-Asset.create!(category: "hair", path: "m_:red;_hair_14.png", colorized: true)
-
-# MOUTHS            <gender>_:<skin color>;_<category>_<id>.png
-
-Asset.create!(category: "mouth", path: "f_:black;_mouth_1.png", colorized: false)
-Asset.create!(category: "mouth", path: "f_:white;_mouth_1.png", colorized: false)
-
-Asset.create!(category: "mouth", path: "f_:black;_mouth_2.png", colorized: false)
-Asset.create!(category: "mouth", path: "f_:white;_mouth_2.png", colorized: false)
-
-Asset.create!(category: "mouth", path: "f_:black;_mouth_3.png", colorized: false)
-Asset.create!(category: "mouth", path: "f_:white;_mouth_3.png", colorized: false)
-
-Asset.create!(category: "mouth", path: "n_:black;_mouth_4.png", colorized: false)
-Asset.create!(category: "mouth", path: "n_:white;_mouth_4.png", colorized: false)
-
-Asset.create!(category: "mouth", path: "n_:neutral;_mouth_5.png", colorized: false)
-
-Asset.create!(category: "mouth", path: "n_:neutral;_mouth_6.png", colorized: false)
-
-# NOSES            <gender>_:<skin color>;_<category>_<id>.png
-
-Asset.create!(category: "nose", path: "f_:black;_nose_1.png", colorized: false)
-Asset.create!(category: "nose", path: "f_:white;_nose_1.png", colorized: false)
-
-Asset.create!(category: "nose", path: "f_:black;_nose_2.png", colorized: false)
-Asset.create!(category: "nose", path: "f_:white;_nose_2.png", colorized: false)
-
-Asset.create!(category: "nose", path: "f_:black;_nose_3.png", colorized: false)
-Asset.create!(category: "nose", path: "f_:white;_nose_3.png", colorized: false)
-
-Asset.create!(category: "nose", path: "m_:black;_nose_4.png", colorized: false)
-Asset.create!(category: "nose", path: "m_:white;_nose_4.png", colorized: false)
-
-Asset.create!(category: "nose", path: "n_:black;_nose_5.png", colorized: false)
-Asset.create!(category: "nose", path: "n_:white;_nose_5.png", colorized: false)
-
-Asset.create!(category: "nose", path: "n_:black;_nose_6.png", colorized: false)
-Asset.create!(category: "nose", path: "n_:white;_nose_6.png", colorized: false)
-
-Asset.create!(category: "nose", path: "n_:black;_nose_7.png", colorized: false)
-Asset.create!(category: "nose", path: "n_:white;_nose_7.png", colorized: false)
-
-Asset.create!(category: "nose", path: "n_:white;_nose_8.png", colorized: false)
-Asset.create!(category: "nose", path: "n_:black;_nose_8.png", colorized: false)
-
-Asset.create!(category: "nose", path: "n_:white;_nose_9.png", colorized: false)
-
-# CLOTHES
-
-Asset.create!(category: "cloth", path: "n_:default;_clothes_1.png", colorized: false)
-
-Asset.create!(category: "cloth", path: "n_:default;_clothes_2.png", colorized: false)
-
-Asset.create!(category: "cloth", path: "n_:default;_clothes_3.png", colorized: false)
-
-Asset.create!(category: "cloth", path: "n_:default;_clothes_4.png", colorized: false)
-Asset.create!(category: "cloth", path: "n_:black;_clothes_4.png", colorized: false)
-Asset.create!(category: "cloth", path: "n_:red;_clothes_4.png", colorized: false)
-Asset.create!(category: "cloth", path: "n_:white;_clothes_4.png", colorized: false)
-
 Avatar.destroy_all
 MyLanguage.destroy_all
 MyInterest.destroy_all
@@ -230,6 +9,212 @@ Participant.destroy_all
 Message.destroy_all
 ChatRoom.destroy_all
 User.destroy_all
+
+Asset.create!(category: "base", base: "f_:white;_face_1.png", gender: 1)
+Asset.create!(category: "base", base: "m_:white;_face_1.png", gender: -1)
+# Asset.create!(category: "base", base: "m_:white;_face_2.png")
+# Asset.create!(category: "base", base: "f_:white;_face_2.png")
+# Asset.create!(category: "base", base: "f_:black;_face_1.png")
+# Asset.create!(category: "base", base: "m_:black;_face_1.png")
+# Asset.create!(category: "base", base: "m_:black;_face_2.png")
+# Asset.create!(category: "base", base: "f_:black;_face_2.png")
+
+
+# ACESSORIES            <gender>_:<color>;_<category>_<id>.png
+
+Asset.create!(category: "acessory", base: "n_:default;_acessory_1.png")
+
+Asset.create!(category: "acessory", base: "f_:purple;_acessory_2.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:purple2;_acessory_2.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:purple3;_acessory_2.png", gender: 1)
+
+Asset.create!(category: "acessory", base: "f_:default;_acessory_3.png", gender: 1)
+
+Asset.create!(category: "acessory", base: "m_:blond;_acessory_4.png", gender: -1)
+Asset.create!(category: "acessory", base: "m_:black;_acessory_4.png", gender: -1)
+
+Asset.create!(category: "acessory", base: "f_:pink;_acessory_5.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:red;_acessory_5.png", gender: 1)
+
+Asset.create!(category: "acessory", base: "n_:default;_acessory_6.png")
+Asset.create!(category: "acessory", base: "n_:pink;_acessory_6.png")
+
+Asset.create!(category: "acessory", base: "f_:default;_acessory_7.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:black;_acessory_7.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:blue;_acessory_7.png", gender: 1)
+
+Asset.create!(category: "acessory", base: "f_:default;_acessory_8.png", gender: 1)
+
+Asset.create!(category: "acessory", base: "f_:default;_acessory_9.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:blue;_acessory_9.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:yellow;_acessory_9.png", gender: 1)
+
+Asset.create!(category: "acessory", base: "f_:default;_acessory_10.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:white;_acessory_10.png", gender: 1)
+
+Asset.create!(category: "acessory", base: "f_:default;_acessory_11.png", gender: 1)
+Asset.create!(category: "acessory", base: "f_:red;_acessory_11.png", gender: 1)
+
+Asset.create!(category: "acessory", base: "f_:default;_acessory_12.png", gender: 1)
+
+# EYEBROWS            <gender>_:<hair color>;_<category>_<id>.png
+
+Asset.create!(category: "eyebrows", base: "n_:blond;_eyebrows_1.png")
+Asset.create!(category: "eyebrows", base: "n_:black;_eyebrows_1.png")
+
+Asset.create!(category: "eyebrows", base: "n_:blond;_eyebrows_2.png")
+Asset.create!(category: "eyebrows", base: "n_:cocoa;_eyebrows_2.png")
+Asset.create!(category: "eyebrows", base: "n_:black;_eyebrows_2.png")
+
+Asset.create!(category: "eyebrows", base: "m_:blond;_eyebrows_3.png", gender: -1)
+Asset.create!(category: "eyebrows", base: "m_:black;_eyebrows_3.png", gender: -1)
+
+Asset.create!(category: "eyebrows", base: "m_:blond;_eyebrows_4.png", gender: -1)
+
+Asset.create!(category: "eyebrows", base: "f_:blond;_eyebrows_5.png", gender: 1)
+
+Asset.create!(category: "eyebrows", base: "f_:blond;_eyebrows_6.png", gender: 1)
+Asset.create!(category: "eyebrows", base: "f_:cocoa;_eyebrows_6.png", gender: 1)
+Asset.create!(category: "eyebrows", base: "f_:black;_eyebrows_6.png", gender: 1)
+Asset.create!(category: "eyebrows", base: "f_:red;_eyebrows_6.png")
+
+# EYES            <gender>_:<skin color>;_<category>_<id>.png
+
+Asset.create!(category: "eyes", base: "f_eyes_b_1.png", components: ['f_eyes_c_1.png'], gender: 1)
+
+Asset.create!(category: "eyes", base: "f_eyes_b_2.png", components: ['f_eyes_c1_2.png', 'f_eyes_c2_2.png'], gender: 1)
+
+Asset.create!(category: "eyes", base: "f_eyes_b_3.png", components: ['f_eyes_c1_3.png', 'f_eyes_c2_3.png'], gender: 1)
+
+Asset.create!(category: "eyes", base: "f_:neutral;_eyes_4.png", gender: 1)
+
+Asset.create!(category: "eyes", base: "f_eyes_b_5.png", components: ['f_eyes_c1_5.png'], gender: 1)
+
+Asset.create!(category: "eyes", base: "f_:neutral;_eyes_6.png", gender: 1)
+
+Asset.create!(category: "eyes", base: "f_:neutral;_eyes_7.png", gender: 1)
+
+Asset.create!(category: "eyes", base: "n_:neutral;_eyes_8.png")
+Asset.create!(category: "eyes", base: "n_:neutral;_eyesc_8.png")
+
+Asset.create!(category: "eyes", base: "n_eyes_b_9.png", components: ['n_eyes_c1_9.png'])
+
+Asset.create!(category: "eyes", base: "f_eyes_b_10.png", components: ['f_eyes_c1_10.png', 'f_eyes_c2_10.png'], gender: 1)
+
+Asset.create!(category: "eyes", base: "f_eyes_b_11.png", components: ['f_eyes_c1_11.png'], gender: 1)
+
+Asset.create!(category: "eyes", base: "m_:white;_eyes_12.png", gender: -1)
+
+Asset.create!(category: "eyes", base: "f_eyes_b_13.png", components: ['f_eyes_c1_13.png'], gender: 1)
+
+Asset.create!(category: "eyes", base: "n_eyes_b_14.png", components: ['n_eyes_c1_14.png'])
+
+# HAIR            <gender>_:<hair_color>;_<category>_<id>.png
+
+Asset.create!(category: "hair", base: "f_:blond;_hair_1.png", gender: 1)
+
+Asset.create!(category: "hair", base: "f_:blond;_hair_2.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:cocoa;_hair_2.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:black;_hair_2.png", gender: 1)
+
+Asset.create!(category: "hair", base: "f_:blond;_hair_3.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:cocoa;_hair_3.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:black;_hair_3.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:red;_hair_3.png")
+
+Asset.create!(category: "hair", base: "f_:blond;_hair_4.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:black;_hair_4.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:cocoa;_hair_4.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:red;_hair_4.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:white;_hair_4.png", gender: 1)
+
+Asset.create!(category: "hair", base: "f_:blond;_hair_5.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:cocoa;_hair_5.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:red;_hair_5.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:white;_hair_5.png", gender: 1)
+
+Asset.create!(category: "hair", base: "f_:blond;_hair_6.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:cocoa;_hair_6.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:red;_hair_6.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:black;_hair_6.png", gender: 1)
+
+Asset.create!(category: "hair", base: "f_:blond;_hair_7.png", gender: 1)
+
+Asset.create!(category: "hair", base: "f_:blond;_hair_8.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:black;_hair_8.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:white;_hair_8.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:cocoa;_hair_8.png", gender: 1)
+
+Asset.create!(category: "hair", base: "n_:blond;_hair_9.png")
+Asset.create!(category: "hair", base: "n_:cocoa;_hair_9.png")
+Asset.create!(category: "hair", base: "n_:black;_hair_9.png")
+
+Asset.create!(category: "hair", base: "n_:black;_hair_10.png")
+Asset.create!(category: "hair", base: "n_:blond;_hair_10.png")
+Asset.create!(category: "hair", base: "n_:cocoa;_hair_10.png")
+
+Asset.create!(category: "hair", base: "m_:blond;_hair_11.png", gender: -1)
+
+Asset.create!(category: "hair", base: "m_:blond;_hair_12.png", gender: -1)
+Asset.create!(category: "hair", base: "m_:cocoa;_hair_12.png", gender: -1)
+Asset.create!(category: "hair", base: "m_:white;_hair_12.png", gender: -1)
+Asset.create!(category: "hair", base: "m_:black;_hair_12.png", gender: -1)
+
+Asset.create!(category: "hair", base: "m_:blond;_hair_13.png", gender: -1)
+Asset.create!(category: "hair", base: "m_:black;_hair_13.png", gender: -1)
+
+Asset.create!(category: "hair", base: "m_:blond;_hair_14.png", gender: -1)
+Asset.create!(category: "hair", base: "m_:cocoa;_hair_14.png", gender: -1)
+Asset.create!(category: "hair", base: "m_:black;_hair_14.png", gender: -1)
+Asset.create!(category: "hair", base: "m_:red;_hair_14.png", gender: -1)
+
+# MOUTHS            <gender>_:<skin color>;_<category>_<id>.png
+
+Asset.create!(category: "mouth", base: "f_mouth_1.png", gender: 1)
+
+Asset.create!(category: "mouth", base: "f_mouth_2.png", skintonalized: true, gender: 1)
+
+Asset.create!(category: "mouth", base: "n_mouth_4.png", skintonalized: true)
+
+Asset.create!(category: "mouth", base: "n_:neutral;_mouth_5.png")
+
+Asset.create!(category: "mouth", base: "n_:neutral;_mouth_6.png", skintonalized: true)
+
+Asset.create!(category: "mouth", base: "n_mouth_b_7.png", components: ['n_mouth_c1_7.png'], skintonalized: true)
+
+# NOSES            <gender>_:<skin color>;_<category>_<id>.png
+
+Asset.create!(category: "nose", base: "f_:white;_nose_1.png", gender: 1)
+
+Asset.create!(category: "nose", base: "f_:white;_nose_2.png", gender: 1)
+
+Asset.create!(category: "nose", base: "f_:white;_nose_3.png", gender: 1)
+
+Asset.create!(category: "nose", base: "m_:white;_nose_4.png")
+
+Asset.create!(category: "nose", base: "n_:white;_nose_5.png")
+
+Asset.create!(category: "nose", base: "n_:white;_nose_6.png")
+
+Asset.create!(category: "nose", base: "n_:white;_nose_7.png")
+
+Asset.create!(category: "nose", base: "n_:white;_nose_8.png")
+
+Asset.create!(category: "nose", base: "n_:white;_nose_9.png")
+
+# CLOTHES
+
+Asset.create!(category: "cloth", base: "n_:default;_clothes_1.png")
+
+Asset.create!(category: "cloth", base: "n_:default;_clothes_2.png")
+
+Asset.create!(category: "cloth", base: "n_:default;_clothes_3.png")
+
+Asset.create!(category: "cloth", base: "n_:default;_clothes_4.png")
+Asset.create!(category: "cloth", base: "n_:black;_clothes_4.png")
+Asset.create!(category: "cloth", base: "n_:red;_clothes_4.png")
+Asset.create!(category: "cloth", base: "n_:white;_clothes_4.png")
+
 selected_languages = ["English", "French", "Portuguese", "Chinese", "German"]
 Language::LANGUAGES.each do | language |
  Language.create(name: language)

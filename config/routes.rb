@@ -13,4 +13,12 @@ Rails.application.routes.draw do
   resources :interests, only: [:index, :show, :create, :update]
   resources :my_interests, only: [:index, :create, :update, :destroy]
   resources :my_languages, only: [:index, :create, :update, :destroy]
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :assets, only: [:index]
+      resources :avatars, only: [:show]
+    end
+ end
+
 end

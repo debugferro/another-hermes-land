@@ -73,7 +73,7 @@
   margin-top: 3em;
 }
 
-.result {
+#avatarCanvas {
   border-radius: 50%;
     width: 12em;
     background-color: $hermes-filler;
@@ -455,12 +455,6 @@ button.big-button:active::before {
 // .card-content {
 //   display: grid;
 //   margin-top: 3em;
-// }
-
-// .result {
-//   border-radius: 50%;
-//     width: 12em;
-//     border: 15px solid #F39237;
 // }
 
 // .Btn-female, .Btn-male {

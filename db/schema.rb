@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_07_155051) do
+ActiveRecord::Schema.define(version: 2020_12_06_190540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,10 +38,12 @@ ActiveRecord::Schema.define(version: 2020_12_07_155051) do
 
   create_table "assets", force: :cascade do |t|
     t.string "category"
-    t.string "path"
+    t.string "base"
+    t.boolean "skintonalized", default: false
+    t.string "components", array: true
+    t.integer "gender", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "colorized", default: true
   end
 
   create_table "assets_avatars", id: false, force: :cascade do |t|
@@ -53,9 +55,16 @@ ActiveRecord::Schema.define(version: 2020_12_07_155051) do
 
   create_table "avatars", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.string "skin_color", default: ["#000000"], array: true
+    t.string "eyebrows_color", default: ["#000000"], array: true
+    t.string "eyes_color", default: ["#000000"], array: true
+    t.string "hair_color", default: ["#000000"], array: true
+    t.string "mouth_color", default: ["#000000"], array: true
+    t.string "acessory_color", default: ["#000000"], array: true
+    t.string "clothe_color", default: ["#000000"], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "gender", default: "f"
+    t.integer "gender", default: 1
     t.index ["user_id"], name: "index_avatars_on_user_id"
   end
 
