@@ -33,14 +33,6 @@ class AvatarsController < ApplicationController
     @clothes = write_paths(Asset.where(category: "cloth"))
   end
 
-  def create
-
-  end
-
-  def edit
-
-  end
-
   def update
     if params[:avatar][:gender]
       case params[:avatar][:gender]
@@ -67,10 +59,9 @@ class AvatarsController < ApplicationController
       photo = open(photo['url'])
       @user.photo.attach(io: photo, filename: 'teste')
       @avatar.assets.destroy_all
-      @assets = params[:avatar][:appearance].split(',')
+      @assets = params[:avatar][:assets].split(',')
       @assets.each do |asset|
-        asset_found = Asset.where(path: asset)
-        @avatar.assets << asset_found
+        @avatar.assets << Asset.find(asset.to_i)
       end
       @user.save
       @avatar.save

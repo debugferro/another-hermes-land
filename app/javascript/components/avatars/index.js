@@ -53,6 +53,7 @@ const avatarCreator = () => {
     btnTo.change.hair.forward.addEventListener("click", () => {
       changeAsset(assets.hairs, 1, index.hair, layers.hair)
       console.log(layers.hair);
+      console.log(layers.hair.assets[0].id)
     });
     btnTo.change.hair.backwards.addEventListener("click", () => {
       changeAsset(assets.hairs, 0, index.hair, layers.hair)
@@ -72,13 +73,13 @@ const avatarCreator = () => {
     btnTo.change.eyebrows.backwards.addEventListener("click", () => {
       changeAsset(assets.eyebrows, 0, index.eyebrows, layers.eyebrows)
     });
-    // btnTo.change.eyebrows.color.addEventListener("click", () => {
-    //   const input = document.getElementById("eyebrows-color");
-    //   input.click();
-    //   input.addEventListener("input", () => {
-    //     changeColor(event.target.value, mainCanvas.layers.eyebrows, mainCanvas)
-    //   })
-    // });
+    btnTo.change.eyebrows.color.addEventListener("click", () => {
+      const input = document.getElementById("eyebrows-color");
+      input.click();
+      input.addEventListener("input", () => {
+        changeColor(event.target.value, layers.eyebrows, 'base');
+      })
+    });
     // EYES --------------------------------------------------------------------
     btnTo.change.eyes.forward.addEventListener("click", () => {
       changeAsset(assets.eyes, 1, index.eyes, layers.eyes)
@@ -141,14 +142,18 @@ const avatarCreator = () => {
     });
     btnTo.save.addEventListener("click", () => {
       let form      = document.querySelector(".sendAvatar");
-      let dataURI   = avDom.resAvatar.toDataURL('image/png');
-      let assetData = new Array (avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1), avDom.imgHair.src.slice(avDom.imgHair.src.lastIndexOf("/") + 1),
-        avDom.imgMouth.src.slice(avDom.imgMouth.src.lastIndexOf("/") + 1), avDom.imgEyes.src.slice(avDom.imgEyes.src.lastIndexOf("/") + 1),
-        avDom.imgEyebrows.src.slice(avDom.imgEyebrows.src.lastIndexOf("/") + 1), avDom.imgNose.src.slice(avDom.imgNose.src.lastIndexOf("/") + 1),
-        avDom.imgCloth.src.slice(avDom.imgCloth.src.lastIndexOf("/") + 1), avDom.imgAcessory.src.slice(avDom.imgAcessory.src.lastIndexOf("/") + 1)
-        );
-      document.getElementById("avatar_img").value        = dataURI;
-      document.getElementById("avatar_appearance").value = assetData;
+      let dataURI   = avDom.masterLayer.toDataURL('image/png');
+      // let assetData = new Array (avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1), avDom.imgHair.src.slice(avDom.imgHair.src.lastIndexOf("/") + 1),
+      //   avDom.imgMouth.src.slice(avDom.imgMouth.src.lastIndexOf("/") + 1), avDom.imgEyes.src.slice(avDom.imgEyes.src.lastIndexOf("/") + 1),
+      //   avDom.imgEyebrows.src.slice(avDom.imgEyebrows.src.lastIndexOf("/") + 1), avDom.imgNose.src.slice(avDom.imgNose.src.lastIndexOf("/") + 1),
+      //   avDom.imgCloth.src.slice(avDom.imgCloth.src.lastIndexOf("/") + 1), avDom.imgAcessory.src.slice(avDom.imgAcessory.src.lastIndexOf("/") + 1)
+      //   );
+      let assetData = new Array();
+      for(let key in layers) {
+       layers[key].assets.forEach((asset) => { if (asset) { assetData.push(asset.id) } })
+      }
+      document.getElementById("avatar_img").value    = dataURI;
+      document.getElementById("avatar_assets").value = assetData;
       form.submit();
     });
   }
