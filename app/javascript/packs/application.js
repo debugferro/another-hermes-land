@@ -34,11 +34,7 @@ import { hideDiv } from '../components/hide_div';
 import { initChatRoomCable } from '../channels/chat_room_channel';
 import { sendMessage } from '../components/send_message';
 import { loadScroll } from '../components/load_scroll';
-// import { setAvatar } from '../components/set_avatar';
-// import { createAvatar } from '../components/create_avatar';
 import avatarCreator from '../components/avatars/index';
-// import { filterDropdown } from '../components/filter_dropdown'
-
 
 document.addEventListener("turbolinks:load", function() {
   $(".nav-item").on("click", function(){
@@ -52,7 +48,7 @@ document.addEventListener("turbolinks:load", function() {
   sendMessage();
   loadScroll();
   // setAvatar();
-  if (document.querySelector(".avatar_information")) {
+  if (document.getElementById("avatarCanvas")) {
     avatarCreator();
   }
   if (document.querySelector(".data-bubble")) {
@@ -60,24 +56,4 @@ document.addEventListener("turbolinks:load", function() {
       $('[data-toggle="tooltip"]').tooltip()
     })
   }
-  // filterDropdown();
 });
-
-
-// document.addEventListener('turbolinks:load', () => {
-//   // Call your functions here, e.g:
-//   // initSelect2();
-// });
-
-
-      // <%= form_tag users_path, method: :get do %>
-      //   <%= text_field_tag :query,
-      //     params[:query],
-      //     class: "form-control",
-      //     placeholder: "Find a user"
-      //   %>
-      //   <%= hidden_field_tag(:parent_id, "5") %>
-      //   <%= submit_tag "Search", class: "btn btn-primary" %>
-      // <% end %>
-      // <%= f.input :countries, as: :select, collection: User::COUNTRIES, input_html: { class: 'select2 form-large', multiple: true }  %>
-      // <%= f.input :languages, as: :select, collection: Language.all, input_html: { class: 'select2 form-large', multiple: true }  %>

@@ -1,13 +1,5 @@
-import { resolveIdPattern } from './initialize/skincolor/initialize_assets_for_color';
-import initializeColorIndexes from './initialize/color/initialize_index';
-import { grabElements } from './initialize/grab_elements';
-import { initializeCanvas, updateCanvas } from './update_canvas';
-// import takeBtnFromDom from './initialize/take_btn_from_dom';
-
 const iterateBackOrForward = (array, index, direction) => {
-    if(index > array.length - 1) {
-      index = 0;
-    }
+    if(index > array.length - 1) { index = 0; }
 
     if (direction == 1){
       if(index == array.length - 1) {
@@ -31,16 +23,6 @@ const iterateBackOrForward = (array, index, direction) => {
       }
     }
   }
-
-export function hexToRgb(hex) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
-}
-
 
 export function changeAsset(assets, movingDirection, assetIndex, layer, connections = null) {
   assetIndex.changeIndex(iterateBackOrForward(assets, assetIndex.index, movingDirection).direction);

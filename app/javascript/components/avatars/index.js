@@ -1,43 +1,31 @@
-import { grabElements, setCurrentAssets, getAvatar } from './initialize/grab_elements';
-import { initializeCanvas, updateCanvas, initCanvas } from './update_canvas';
-import { initializeAssetsForColor } from './initialize/skincolor/initialize_assets_for_color';
-import initializeColors from './initialize/color/initialize_color';
-
+import { grabElements, getAvatar } from './initialize/grab_elements';
+import { initCanvas } from './update_canvas';
 import changeGender from './change_gender';
-import { getGender, fetchAssetsData, setIndex } from './initialize/get_assets_info';
+import { fetchAssetsData, setIndex } from './initialize/get_assets_info';
 import takeBtnFromDom from './initialize/take_btn_from_dom';
 
-import { changeAsset, changeColor, changeInnerLayer } from './change_asset';
+import { changeAsset, changeColor } from './change_asset';
 
 // LOADEDCOLOR HAS MANY CLASS OBJECTS
 // INDEXES ARE CLASS OBJECTS
 
 const avatarCreator = () => {
   window.onload = async function() {
-    // Getting img elements and constructing avatar canvas and assets for 1st time
+    // Getting html elements and getting avatar assets from database
     const avDom = grabElements();
     const avatar = await getAvatar();
 
     //const currentAssetOf = setCurrentAssets(avDom); // TO REMOVE
     //const avGender = getGender(); // TO REMOVE
-    console.log(avatar)
+    // Getting asset data from database
     const assets = await fetchAssetsData(avatar.gender);
+    // Setting correspondant index for the assets that compose the present avatar
+    // and initializing canvas and its layers
     const index = setIndex(assets, avatar);
     const layers = initCanvas(avDom, avatar);
-    const mainCanvas = null;
-    // // Getting avatar gender and all available assets for matching gender
+    // const currentFile = avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1); // TO REMOVE
 
-    // // Getting all the current available colors for current assets
-    const currentFile = avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1);
-    // const filteredAssets = initializeAssetsForColor(currentFile, assets);
-    // // Getting current loaded assets index
-    // const assetColorOpt = initializeColors(avDom, assets);
     const btnTo = takeBtnFromDom();
-    // console.log(filteredAssets.eyes);
-
-
-    // CHANGE ASSETS PARAMS: assets, avDom, movingDirection, assetIndex, allAssetsColors = null, assetColorOpt = null
-    // CHANGE COLOR PARAMS: assetColorOpt, avDom
 
     btnTo.change.face.color.addEventListener("click", () => {
       const input = document.getElementById("skin-color");
@@ -143,11 +131,6 @@ const avatarCreator = () => {
     btnTo.save.addEventListener("click", () => {
       let form      = document.querySelector(".sendAvatar");
       let dataURI   = avDom.masterLayer.toDataURL('image/png');
-      // let assetData = new Array (avDom.imgBase.src.slice(avDom.imgBase.src.lastIndexOf("/") + 1), avDom.imgHair.src.slice(avDom.imgHair.src.lastIndexOf("/") + 1),
-      //   avDom.imgMouth.src.slice(avDom.imgMouth.src.lastIndexOf("/") + 1), avDom.imgEyes.src.slice(avDom.imgEyes.src.lastIndexOf("/") + 1),
-      //   avDom.imgEyebrows.src.slice(avDom.imgEyebrows.src.lastIndexOf("/") + 1), avDom.imgNose.src.slice(avDom.imgNose.src.lastIndexOf("/") + 1),
-      //   avDom.imgCloth.src.slice(avDom.imgCloth.src.lastIndexOf("/") + 1), avDom.imgAcessory.src.slice(avDom.imgAcessory.src.lastIndexOf("/") + 1)
-      //   );
       let assetData = new Array();
       let colorData = {};
       for(let key in layers) {
@@ -164,12 +147,3 @@ const avatarCreator = () => {
 }
 
 export default avatarCreator;
-
-    // {
-    //   dom: dom,
-    //   assets: assets,
-    //   avatar: {
-    //     gender: avGender,
-
-    //   }
-    // }

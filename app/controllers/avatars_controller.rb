@@ -54,7 +54,7 @@ class AvatarsController < ApplicationController
       @avatar.save
       redirect_to avatars_path
     end
-    unless params[:avatar][:img].blank?
+    return unless params[:avatar][:img]
       photo = Cloudinary::Uploader.upload(params[:avatar][:img])
       photo = open(photo['url'])
       @user.photo.attach(io: photo, filename: 'teste')
@@ -68,7 +68,6 @@ class AvatarsController < ApplicationController
       @user.save
       @avatar.save
       redirect_to :root
-    end
   end
 
   private
@@ -107,9 +106,3 @@ class AvatarsController < ApplicationController
     assets.map { |asset| asset.base }
   end
 end
-    # avatar << Asset.where(path: 'f_:white;_face_1.png').first
-    # avatar  << Asset.where(path: 'f_:neutral;_eye_1.png').first
-    # avatar  << Asset.where(path: 'f_:blond;_eyebrows_5.png').first
-    # avatar  << Asset.where(path: 'f_:white;_nose_1.png').first
-    # avatar  << Asset.where(path: 'f_:white;_mouth_1.png').first
-    # avatar  << Asset.where(path: 'f_:blond;_hair_1.png').first
