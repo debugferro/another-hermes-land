@@ -213,6 +213,7 @@
   <%= simple_form_for @avatar, method: 'patch', html: { class: "sendAvatar" } do |f| %>
     <%= f.hidden_field :img, value: "" %>
     <%= f.hidden_field :assets, value: "" %>
+    <%= f.hidden_field :colors, value: "" %>
     <%= f.submit "Start", class: 'hidden-content' %>
   <% end %>
 

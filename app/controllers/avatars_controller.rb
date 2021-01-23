@@ -63,6 +63,8 @@ class AvatarsController < ApplicationController
       @assets.each do |asset|
         @avatar.assets << Asset.find(asset.to_i)
       end
+      colors = JSON.parse(params[:avatar][:colors]).symbolize_keys
+      colors.each { |key, value| @avatar[key] = value }
       @user.save
       @avatar.save
       redirect_to :root

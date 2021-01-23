@@ -149,11 +149,15 @@ const avatarCreator = () => {
       //   avDom.imgCloth.src.slice(avDom.imgCloth.src.lastIndexOf("/") + 1), avDom.imgAcessory.src.slice(avDom.imgAcessory.src.lastIndexOf("/") + 1)
       //   );
       let assetData = new Array();
+      let colorData = {};
       for(let key in layers) {
        layers[key].assets.forEach((asset) => { if (asset) { assetData.push(asset.id) } })
+       layers[key].assetColors.forEach((color) => { colorData[`${key}_color`] = [color]; })
+       layers[key].componentColors.forEach((color) => { colorData[`${key}_color`].push(color); })
       }
       document.getElementById("avatar_img").value    = dataURI;
       document.getElementById("avatar_assets").value = assetData;
+      document.getElementById("avatar_colors").value = JSON.stringify(colorData);
       form.submit();
     });
   }

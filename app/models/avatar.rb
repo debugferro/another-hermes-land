@@ -1,6 +1,6 @@
 class Avatar < ApplicationRecord
   belongs_to :user
-  before_save :set_default_assets
+  after_create_commit :set_default_assets
 
   has_one_attached :photo
   has_and_belongs_to_many :assets
