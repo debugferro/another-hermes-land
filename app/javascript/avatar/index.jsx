@@ -5,6 +5,12 @@ import PropTypes from 'prop-types'
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
+import ReduxThunk from 'redux-thunk';
+import thunk from 'redux-thunk';
+
+import AvatarCanvas from './containers/avatar_canvas';
+import avatarReducer from './reducers/avatar_reducer';
+
 const container = document.querySelector('.container');
 
 // const Hello = props => (
@@ -20,13 +26,20 @@ const container = document.querySelector('.container');
 // }
 
 const initialState = {
-  avatarId: container.dataset.id
+  avatarElements: []
 }
+
+const reducers = combineReducers({
+  avatarElements: avatarReducer
+});
+
+const middlewares = applyMiddleware(thunk);
+const store = createStore(reducers, initialState, middlewares)
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Provider>
-
+    <Provider store={store}>
+      <AvatarCanvas id={container.dataset.id} />
     </Provider>,
     container)
 })
