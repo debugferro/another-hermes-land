@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 
 import AvatarCanvas from './containers/avatar_canvas';
 import avatarReducer from './reducers/avatar_reducer';
+import avatarLayersReducer from './reducers/avatar_layers_reducer';
 
 const container = document.querySelector('.container');
 
@@ -26,11 +27,13 @@ const container = document.querySelector('.container');
 // }
 
 const initialState = {
-  avatarElements: []
+  avatarElements: null,
+  avatarLayers: null
 }
 
 const reducers = combineReducers({
-  avatarElements: avatarReducer
+  avatarElements: avatarReducer,
+  avatarLayers: avatarLayersReducer
 });
 
 const middlewares = applyMiddleware(thunk);

@@ -48,9 +48,9 @@ document.addEventListener("turbolinks:load", function() {
   sendMessage();
   loadScroll();
   // setAvatar();
-  if (document.getElementById("avatarCanvas")) {
-    avatarCreator();
-  }
+  // if (document.getElementById("avatarCanvas")) {
+  //   avatarCreator();
+  // }
   if (document.querySelector(".data-bubble")) {
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
