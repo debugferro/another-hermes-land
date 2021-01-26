@@ -8,7 +8,7 @@ class Showcase extends Component {
   renderIntegrants = () => {
     if (this.props.showcaseItems.length > 0) {
       return this.props.showcaseItems.map((integrant) => {
-        return <Integrant key={integrant.id} base={integrant.base} components={integrant.components} />
+        return <Integrant key={integrant.id} base={integrant.base} components={integrant.components} integrant={integrant} />
       })
     } else {
       return <p>Select a category...</p>
@@ -18,7 +18,7 @@ class Showcase extends Component {
   render() {
     const src = `./avatar/buttons/${this.props.type}.png`
     return (
-      <div>
+      <div className="showcase">
         {this.renderIntegrants()}
       </div>
     );

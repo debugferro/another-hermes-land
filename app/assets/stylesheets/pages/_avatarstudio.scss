@@ -2,3 +2,38 @@
   width: 54px;
   height: 54px;
 }
+
+.absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.relative {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.showcase {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.avIntegrant {
+  overflow: hidden;
+  width: 7em;
+  height: 7em;
+}
+
+.hiddenEl {
+  visibility: hidden;
+}
+
+.pshow {
+  font-weight: bold;
+}
+
+.active {
+  border: 1px solid red;
+}

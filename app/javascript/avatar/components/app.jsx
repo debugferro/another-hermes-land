@@ -13,6 +13,7 @@ class App extends Component {
         <AvatarCanvas id={this.props.avatarId} />
         <IntegrantButton type={'hairs'} />
         <IntegrantButton type={'eyebrows'} />
+        <IntegrantButton type={'eyes'} />
         <Showcase />
       </div>
     );

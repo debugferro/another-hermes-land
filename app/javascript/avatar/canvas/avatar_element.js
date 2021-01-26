@@ -84,9 +84,16 @@ export default class AvatarElement {
   resolveColors() {
     // Verify if the colors array matches the number of base and components
     // If not, it will insert a default color hex so it can be changed.
-    if (this.assetColors.length === 0) {
-      const c = this.colors.shift();
-      this.assetColors.push(c);
+    // if (this.assetColors.length === 0 && this.colors > 0) {
+    //   const c = this.colors.shift();
+    //   this.assetColors.push(c);
+    // }
+    while (this.assetColors.length < this.assetsUrls.length) {
+      if (this.colors.length != 0) {
+        this.assetColors.push(this.colors.shift());
+      } else {
+        this.assetColors.push('#000000');
+      }
     }
     while (this.componentColors.length < this.componentUrls.length) {
       if (this.colors.length != 0){

@@ -42,9 +42,9 @@ function initializeLayers(avatar, mainCanvas) {
 }
 
 export const initCanvas = (avatar, canvas) => {
-    const context = canvas.current.getContext("2d");
-    canvas.current.width = canvas.current.height = 144;
-    const mainCanvas = new Main(canvas.current, context)
+    const context = canvas.getContext("2d");
+    canvas.width = canvas.height = 144;
+    const mainCanvas = new Main(canvas, context)
     const layers = initializeLayers(avatar, mainCanvas)
     mainCanvas.avElements.push(layers.skin, layers.mouth, layers.eyes, layers.eyebrows, layers.hair, layers.acessory, layers.clothe)
 
