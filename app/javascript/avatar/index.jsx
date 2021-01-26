@@ -8,32 +8,29 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import thunk from 'redux-thunk';
 
-import AvatarCanvas from './containers/avatar_canvas';
+import App from './components/app';
 import avatarReducer from './reducers/avatar_reducer';
 import avatarLayersReducer from './reducers/avatar_layers_reducer';
+import categoryReducer from './reducers/category_reducer';
+import avatarIntegrantsReducer from './reducers/avatar_integrants_reducer';
+import showcaseReducer from './reducers/showcase_reducer';
 
 const container = document.querySelector('.container');
 
-// const Hello = props => (
-//   <div>Hello {props.name}!</div>
-// )
-
-// Hello.defaultProps = {
-//   name: 'TESTE'
-// }
-
-// Hello.propTypes = {
-//   name: PropTypes.string
-// }
-
 const initialState = {
-  avatarElements: null,
-  avatarLayers: null
+  // avatar: null,
+  // avatarLayers: null,
+  // integrants: {},
+  selectedCategory: 'hair'
+  // showcaseItems: null
 }
 
 const reducers = combineReducers({
-  avatarElements: avatarReducer,
-  avatarLayers: avatarLayersReducer
+  avatar: avatarReducer,
+  avatarLayers: avatarLayersReducer,
+  integrants: avatarIntegrantsReducer,
+  selectedCategory: categoryReducer,
+  showcaseItems: showcaseReducer
 });
 
 const middlewares = applyMiddleware(thunk);
@@ -42,7 +39,7 @@ const store = createStore(reducers, initialState, middlewares)
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={store}>
-      <AvatarCanvas id={container.dataset.id} />
+      <App avatarId={container.dataset.id} />
     </Provider>,
     container)
 })

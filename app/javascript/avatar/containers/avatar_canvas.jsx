@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAvatar } from '../actions/index';
-import { initCanvas } from '../actions/init_canvas';
-// import Avatar from './avatar';
+import { initializeCanvas } from '../actions/index';
 
 class AvatarCanvas extends Component {
   constructor(props) {
@@ -13,27 +11,24 @@ class AvatarCanvas extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAvatar(this.props.id, this.canvas);
-    // this.props.initCanvas(this.props.avatarElements, this.canvas);
+    this.props.initializeCanvas(this.props.id, this.canvas, this.props.selectedCategory);
   }
 
   render() {
     return (
       <div>
-        <div>
-          <canvas id="avatarCanvas" ref={this.canvas}></canvas>
-        </div>
+        <canvas id="avatarCanvas" ref={this.canvas}></canvas>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { avatarElements: state.avatarElements };
+  return { avatar: state.avatar, selectedCategory: state.selectedCategory };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAvatar, initCanvas }, dispatch);
+  return bindActionCreators({ initializeCanvas }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AvatarCanvas);
