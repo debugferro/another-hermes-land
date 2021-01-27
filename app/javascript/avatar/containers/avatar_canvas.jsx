@@ -16,7 +16,7 @@ class AvatarCanvas extends Component {
 
   render() {
     return (
-      <div>
+      <div className="avatar-container">
         <canvas id="avatarCanvas" ref={this.canvas}></canvas>
       </div>
     );

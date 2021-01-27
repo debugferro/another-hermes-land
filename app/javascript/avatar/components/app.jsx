@@ -9,11 +9,13 @@ import Showcase from '../containers/showcase';
 class App extends Component {
   render(){
     return(
-      <div>
+      <div className="studio-container">
         <AvatarCanvas id={this.props.avatarId} />
+        <div className="menu-container">
         <IntegrantButton type={'hairs'} />
         <IntegrantButton type={'eyebrows'} />
         <IntegrantButton type={'eyes'} />
+        </div>
         <Showcase />
       </div>
     );
