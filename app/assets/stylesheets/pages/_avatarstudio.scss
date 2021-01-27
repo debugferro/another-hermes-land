@@ -16,14 +16,61 @@
 }
 
 .showcase {
-  display: flex;
-  flex-flow: wrap;
+  // display: flex;
+  // flex-flow: wrap;
+  // overflow-y: scroll;
+  // width: 29em;
+  // height: 19em;
+  border-radius: 2em;
+  background-color: #F2D492;
+  box-shadow: 0px 0px 20px black inset;
+  height: 24em;
+  position: relative;
+  width: 31em;
 }
+
+.showcase-content {
+  display: flex;
+  position: relative;
+  flex-flow: wrap;
+  border-radius: 2em;
+  overflow-y: scroll;
+  top: 1.5em;
+  left: 1em;
+  width: 28em;
+  height: 20em;
+  canvas {
+    height: 8em;
+    width: 8em;
+  }
+}
+
+.showcase-content::-webkit-scrollbar-track {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px inset;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.showcase-content::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.showcase-content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 6px inset;
+    background-color: $hermes-filler;
+}
+
 
 .avIntegrant {
   overflow: hidden;
+  margin: 1em;
+  border: 1px solid black;
+  box-shadow: 1px 1px 6px black;
   width: 7em;
   height: 7em;
+  background-color: $hermes-white;
 }
 
 .hiddenEl {
@@ -35,5 +82,15 @@
 }
 
 .active {
-  border: 1px solid red;
+  border: 3px dotted #D63230;
+  /* outline-style: dotted; */
+  /* outline-color: #633838; */
+  /* outline-width: 4px; */
+}
+
+.loading {
+  position: absolute;
+  left: 2.5em;
+  top: 2.5em;
+  width: 2em;
 }

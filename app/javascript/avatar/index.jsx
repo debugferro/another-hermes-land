@@ -13,7 +13,7 @@ import avatarReducer from './reducers/avatar_reducer';
 import avatarLayersReducer from './reducers/avatar_layers_reducer';
 import categoryReducer from './reducers/category_reducer';
 import avatarIntegrantsReducer from './reducers/avatar_integrants_reducer';
-import showcaseReducer from './reducers/showcase_reducer';
+import { showcaseReducer, showcaseSelectedReducer } from './reducers/showcase_reducer';
 
 const container = document.querySelector('.container');
 
@@ -30,7 +30,8 @@ const reducers = combineReducers({
   avatarLayers: avatarLayersReducer,
   integrants: avatarIntegrantsReducer,
   selectedCategory: categoryReducer,
-  showcaseItems: showcaseReducer
+  showcaseItems: showcaseReducer,
+  showcaseSelected: showcaseSelectedReducer
 });
 
 const middlewares = applyMiddleware(thunk);

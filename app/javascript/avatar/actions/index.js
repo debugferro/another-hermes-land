@@ -3,6 +3,7 @@ export const FETCH_ALL_AVATAR_ELEMENTS = "FETCH_ALL_AVATAR_ELEMENTS";
 export const CHANGE_CATEGORY = "CHANGE_CATEGORY";
 export const SHOW_ITEMS = "SHOW_ITEMS";
 export const CHANGE_AV_INTEGRANT = "CHANGE_AV_INTEGRANT";
+export const SELECT_ITEM = "SELECT_ITEM";
 
 import thunk from 'redux-thunk';
 import { initCanvas, INITIALIZE_CANVAS_LAYERS } from './init_canvas';
@@ -47,7 +48,13 @@ export const changeAvIntegrant = (layer, asset, category) => {
       category,
       asset
     }
+  }
+}
 
+export const selectItem = (item) => {
+  return {
+    type: SELECT_ITEM,
+    payload: item
   }
 }
 

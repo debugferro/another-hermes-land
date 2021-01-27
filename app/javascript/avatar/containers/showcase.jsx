@@ -5,6 +5,13 @@ import { changeCategory } from '../actions/index';
 import Integrant from '../components/integrant';
 
 class Showcase extends Component {
+  // constructor(props) {
+  //   super(props)
+
+  //   this.state = {
+  //     clicked:
+  //   }
+  // }
   renderIntegrants = () => {
     if (this.props.showcaseItems.length > 0) {
       return this.props.showcaseItems.map((integrant) => {
@@ -19,7 +26,9 @@ class Showcase extends Component {
     const src = `./avatar/buttons/${this.props.type}.png`
     return (
       <div className="showcase">
+        <div className="showcase-content">
         {this.renderIntegrants()}
+        </div>
       </div>
     );
   }
