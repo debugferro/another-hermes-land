@@ -35,27 +35,21 @@ class Integrant extends Component {
   }
 
   handleClick = () => {
-    // console.log(this.props.avatarLayers);
-    const layer = this.props.avatarLayers[this.props.integrant.category];
+    const layers = this.props.avatarLayers;
     const category = this.props.integrant.category;
-    this.props.changeAvIntegrant(layer, [this.props.integrant], category);
+    // let asset;
+    // if (category === 'nose') { asset = [this.props.integrant] }
+    this.props.changeAvIntegrant(layers, this.props.integrant, category);
     this.props.selectItem(this.props.integrant);
-    // this.props.avatarLayers[this.props.integrant.category].change([this.props.integrant]);
-    // console.log(this.props.avatarLayers);
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.state.clicked != nextState.clicked) { return true; }
-  //   if (this.props != nextProps) { return true; }
-  //   return true;
-  // }
-
   render(){
-    // const src = `./avatar/${this.props.base}`;
-    // <img src={`./avatar/${this.props.base}`} className="relative"></img>
-    // const canvasClassName = this.state.loaded ? "relative" : "relative hiddenEl";
-    // const pClassName = !this.state.loaded ? "pshow" : "pshow";
-    const divClass = this.props.selected && this.props.selected.id === this.props.integrant && this.props.integrant.id ? "relative avIntegrant pointer active" : "relative avIntegrant pointer";
+    let divClass = "relative avIntegrant pointer";
+    if (this.props.selected) {
+      divClass = this.props.selected.id === this.props.integrant.id ?
+      divClass + " active" : divClass;
+    }
+
     return(
       <div className={divClass} onClick={this.handleClick}>
         <img src="./avatar/buttons/loading.png" className="loading" />

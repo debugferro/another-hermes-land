@@ -13,15 +13,12 @@ export const initializeCanvas = (id, canvas) => {
   return async function(dispatch, getState) {
     const avResponse = await fetch(`${avatarsUrl}/${id}`);
     const avData = await avResponse.json();
-    console.log(avData);
     dispatch({type: FETCH_PRESENT_AVATAR, payload: avData});
-    console.log(avData);
     dispatch({type: INITIALIZE_CANVAS_LAYERS, payload: initCanvas(avData, canvas.current)})
     const assetsUrl = "./api/v1/assets";
     const response = await fetch(`${assetsUrl}?gender=${avData.gender}`);
     const integrantsData = await response.json();
     dispatch({type: FETCH_ALL_AVATAR_ELEMENTS, payload: integrantsData});
-    console.log(avData);
   }
 }
 
@@ -39,14 +36,19 @@ export const showItems = (integrants, category) => {
   }
 }
 
-export const changeAvIntegrant = (layer, asset, category) => {
-  // const newLayer = layer.change(asset);
-  console.log("Im here")
+export const changeAvIntegrant = (layers, asset, category) => {
+  const assets = [];
+  if (category === 'nose') {
+    category = 'skin';
+    assets.push(layers.skin.assets[0]);
+    assets.push(asset);
+  } else { assets.push(asset); }
+
   return {
     type: CHANGE_AV_INTEGRANT,
     payload: {
       category,
-      asset
+      assets
     }
   }
 }

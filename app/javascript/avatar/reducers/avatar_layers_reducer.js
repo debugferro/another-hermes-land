@@ -6,7 +6,7 @@ export default function(state = null, action) {
     case INITIALIZE_CANVAS_LAYERS:
       return action.payload;
     case CHANGE_AV_INTEGRANT:
-      state[action.payload.category].change(action.payload.asset);
+      state[action.payload.category].change(action.payload.assets);
       return state;
     default:
       return state;

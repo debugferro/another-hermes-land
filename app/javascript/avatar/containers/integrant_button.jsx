@@ -17,9 +17,9 @@ class IntegrantButton extends Component {
     console.log(this.props.layers)
     this.props.layers[this.props.layersType].assets.forEach((asset) => {
       this.props.integrants[this.props.integrantType].forEach((integrant) => {
-        //console.log(integrant.id === asset.id);
-        if (integrant && integrant.id === asset && asset.id) {
-          selected = integrant; return; }
+        if (integrant && asset) {
+          if (integrant.id === asset.id) { selected = integrant; return; }
+        } else { return; }
       })
     })
     return selected;
