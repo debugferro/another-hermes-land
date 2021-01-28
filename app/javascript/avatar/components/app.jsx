@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import AvatarCanvas from '../containers/avatar_canvas';
 import IntegrantButton from '../containers/integrant_button';
 import Showcase from '../containers/showcase';
+import ColorPicker from '../containers/color_picker';
 
 class App extends Component {
   render(){
@@ -27,6 +28,7 @@ class App extends Component {
         <div className="studio-right">
           <AvatarCanvas id={this.props.avatarId} />
           <Showcase />
+          <ColorPicker />
         </div>
       </div>
     );

@@ -177,3 +177,17 @@
     left: 0.5em;
   }
 }
+
+// Color picker
+
+.studio-color {
+  background-color: $hermes-filler;
+}
+
+.color-picker{
+  background-color: $hermes-green;
+  width: 10%;
+  img {
+    width: 100%;
+  }
+}

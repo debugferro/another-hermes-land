@@ -9,9 +9,6 @@ class Integrant extends Component {
     super(props);
 
     this.canvas = React.createRef();
-    // this.state = {
-    //   clicked: this.props.integrant.id === this.props.avatarLayers[this.props.integrant.category].assets[0].id ? true : false
-    // }
   }
 
   // handleImg = () => {
@@ -29,16 +26,11 @@ class Integrant extends Component {
     avatar[this.props.integrant.category] = this.props.integrant;
     avatar.colorOf = this.props.avatar.colorOf;
     initCanvas(avatar, this.canvas.current);
-    // if(this.props.integrant.id === this.props.avatarLayers[this.props.integrant.category].assets[0].id) {
-    //   this.setState
-    // }
   }
 
   handleClick = () => {
     const layers = this.props.avatarLayers;
     const category = this.props.integrant.category;
-    // let asset;
-    // if (category === 'nose') { asset = [this.props.integrant] }
     this.props.changeAvIntegrant(layers, this.props.integrant, category);
     this.props.selectItem(this.props.integrant);
   }
