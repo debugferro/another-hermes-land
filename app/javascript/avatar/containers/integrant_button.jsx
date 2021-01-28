@@ -26,7 +26,7 @@ class IntegrantButton extends Component {
   render() {
     const src = `./avatar/buttons/${this.props.type}.png`
     return (
-      <div onClick={this.handleClick} >
+      <div className="studio-assetbtn pointer" onClick={this.handleClick} >
         <img src={src} alt={this.props.type} className="categoryimg"></img>
       </div>
     );

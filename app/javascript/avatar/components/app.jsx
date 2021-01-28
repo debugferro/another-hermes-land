@@ -10,13 +10,21 @@ class App extends Component {
   render(){
     return(
       <div className="studio-container">
-        <AvatarCanvas id={this.props.avatarId} />
+      <div className="studio-left">
         <div className="menu-container">
-        <IntegrantButton type={'hairs'} />
-        <IntegrantButton type={'eyebrows'} />
-        <IntegrantButton type={'eyes'} />
+          <div className="menu-superior">
+          </div>
+          <div className="menu-inferior">
+            <IntegrantButton type={'hairs'} />
+            <IntegrantButton type={'eyebrows'} />
+            <IntegrantButton type={'eyes'} />
+          </div>
         </div>
-        <Showcase />
+      </div>
+        <div className="studio-right">
+          <AvatarCanvas id={this.props.avatarId} />
+          <Showcase />
+        </div>
       </div>
     );
   }
