@@ -9,9 +9,9 @@ class Integrant extends Component {
     super(props);
 
     this.canvas = React.createRef();
-    this.state = {
-      clicked: this.props.integrant.id === this.props.avatarLayers[this.props.integrant.category].assets[0].id ? true : false
-    }
+    // this.state = {
+    //   clicked: this.props.integrant.id === this.props.avatarLayers[this.props.integrant.category].assets[0].id ? true : false
+    // }
   }
 
   // handleImg = () => {
@@ -55,7 +55,7 @@ class Integrant extends Component {
     // <img src={`./avatar/${this.props.base}`} className="relative"></img>
     // const canvasClassName = this.state.loaded ? "relative" : "relative hiddenEl";
     // const pClassName = !this.state.loaded ? "pshow" : "pshow";
-    const divClass = this.props.selected.id === this.props.integrant.id ? "relative avIntegrant pointer active" : "relative avIntegrant pointer";
+    const divClass = this.props.selected && this.props.selected.id === this.props.integrant && this.props.integrant.id ? "relative avIntegrant pointer active" : "relative avIntegrant pointer";
     return(
       <div className={divClass} onClick={this.handleClick}>
         <img src="./avatar/buttons/loading.png" className="loading" />

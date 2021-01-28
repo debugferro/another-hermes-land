@@ -18,7 +18,11 @@ class Showcase extends Component {
         return <Integrant key={integrant.id} base={integrant.base} components={integrant.components} integrant={integrant} />
       })
     } else {
-      return <p>Select a category...</p>
+      return(
+        <div className="showcase-unload">
+          <p>Select a category...</p>
+        </div>
+      );
     }
   }
 

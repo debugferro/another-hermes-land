@@ -28,6 +28,7 @@
 
 .showcase-content {
   display: flex;
+  justify-content: center;
   position: relative;
   flex-flow: wrap;
   border-radius: 2em;
@@ -39,6 +40,23 @@
   canvas {
     height: 8em;
     width: 8em;
+  }
+}
+
+.showcase-unload {
+  background-color: $hermes-green;
+  height: 20%;
+  display: flex;
+  box-shadow: 1px 1px 7px black;
+  border-radius: 1em;
+  place-self: center;
+  p {
+    align-self: center;
+    font-weight: bold;
+    color: $hermes-white;
+    font-size: 123%;
+    margin-bottom: 0;
+    padding: 1em;
   }
 }
 
@@ -117,6 +135,9 @@
 
 .avatar-container {
   grid-area: avatar;
+  margin-left: 27%;
+  margin-top: 5%;
+  margin-bottom: 6%;
 }
 
 .studio-left {
@@ -130,7 +151,7 @@
 
 .studio-assetbtn {
   background-color: $hermes-green;
-  width: 4em;
+  //width: 4em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   padding: 0.3em;
@@ -140,18 +161,13 @@
   transition: 0.5s;
   img {
     transition: 0.5s;
-    width: 54px;
-    height: 54px;
+    width: inherit;
+    height: 100%;
     position: relative;
     top: 0em;
     left: 0em;
   }
 }
-
-// .categoryimg {
-//   width: 54px;
-//   height: 54px;
-// }
 
 .studio-assetbtn:hover {
   background-color: $hermes-bubblegreen;

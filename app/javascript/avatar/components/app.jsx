@@ -15,9 +15,12 @@ class App extends Component {
           <div className="menu-superior">
           </div>
           <div className="menu-inferior">
-            <IntegrantButton type={'hairs'} />
-            <IntegrantButton type={'eyebrows'} />
-            <IntegrantButton type={'eyes'} />
+            <IntegrantButton layersType={'hair'} integrantType={'hairs'} />
+            <IntegrantButton layersType={'eyebrows'} integrantType={'eyebrows'} />
+            <IntegrantButton layersType={'eyes'} integrantType={'eyes'} />
+            <IntegrantButton layersType={'mouth'} integrantType={'mouths'} />
+            <IntegrantButton layersType={'skin'} integrantType={'noses'} />
+            <IntegrantButton layersType={'acessory'} integrantType={'acessories'} />
           </div>
         </div>
       </div>

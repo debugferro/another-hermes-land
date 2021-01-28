@@ -12,7 +12,8 @@ export function showcaseReducer(state = [], action) {
 export function showcaseSelectedReducer(state = null, action) {
   switch (action.type) {
     case SELECT_ITEM:
-      return action.payload;
+      if (action.payload) { return action.payload; }
+      else { return state; }
     default:
       return state;
   }
