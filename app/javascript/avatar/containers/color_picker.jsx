@@ -58,13 +58,28 @@ class ColorPicker extends Component {
     }
   }
 
+  renderImage = () => {
+    const category = this.props.selectedCategory;
+    const type = this.props.type;
+    const target = this.props.target;
+    if(type === 'components') {
+      return (<img src={`./avatar/buttons/color-icons/${category}${target}.png`} alt="Color Picker"></img>);
+    } else if(type === 'base') {
+      if(category !== 'nose') {
+        return (<img src={`./avatar/buttons/color-icons/${category}.png`} alt="Color Picker"></img>);
+      } else if(category === 'nose') {
+        return (<img src={`./avatar/buttons/color-icons/skin.png`} alt="Color Picker"></img>);
+      }
+    }
+  }
+
   render() {
     const pickerClass = this.state.opened ? "" : "hiddenEl "
     return (
       <div className="studio-color" >
         <div ref={node => this.node = node} >
           <div className="color-picker" onClick={this.handleClick} >
-            <img src="./avatar/buttons/rgb.png" alt="Color Picker"></img>
+            {this.renderImage()}
           </div>
             <div className={pickerClass + "picker"} ref={r => this.colorPicker = r} />
         </div>
