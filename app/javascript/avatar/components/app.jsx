@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AvatarCanvas from '../containers/avatar_canvas';
-import IntegrantButton from '../containers/integrant_button';
 import Showcase from '../containers/showcase';
 import ColorPicker from '../containers/color_picker';
 
@@ -19,17 +18,7 @@ class App extends Component {
         <AvatarCanvas id={this.props.avatarId} />
       </div>
         <div className="studio-inferior">
-          <div className="showcase">
-            <div className="menu-inferior">
-              <IntegrantButton layersType={'hair'} integrantType={'hairs'} />
-              <IntegrantButton layersType={'eyebrows'} integrantType={'eyebrows'} />
-              <IntegrantButton layersType={'eyes'} integrantType={'eyes'} />
-              <IntegrantButton layersType={'mouth'} integrantType={'mouths'} />
-              <IntegrantButton layersType={'skin'} integrantType={'noses'} />
-              <IntegrantButton layersType={'acessory'} integrantType={'acessories'} />
-            </div>
-            <Showcase />
-          </div>
+          <Showcase />
         </div>
       </div>
     );

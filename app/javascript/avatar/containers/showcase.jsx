@@ -3,17 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeCategory } from '../actions/index';
 import Integrant from '../components/integrant';
+import IntegrantButton from '../containers/integrant_button';
 import ColorPicker from '../containers/color_picker';
 
 class Showcase extends Component {
-  // constructor(props) {
-  //   super(props)
-
-  //   this.state = {
-  //     clicked:
-  //   }
-  // }
   renderIntegrants = () => {
+    console.log(this.props.selected)
     if (this.props.showcaseItems.length > 0) {
       return this.props.showcaseItems.map((integrant) => {
         return <Integrant key={integrant.id} base={integrant.base} components={integrant.components} integrant={integrant} />
@@ -27,18 +22,58 @@ class Showcase extends Component {
     }
   }
 
+  renderColorPickers = () => {
+    const selected = this.props.selected;
+    const elements = [];
+    if(selected) {
+      if(selected.category === 'nose') {
+        // Render color change for skin
+        elements.push((<ColorPicker key={0} type={'base'} target={null} />));
+      } else if(selected.category !== 'eyes'){
+        // Render color change for base
+        elements.push((<ColorPicker key={0} type={'base'} target={null} />));
+      }
+      if(selected.components) {
+        if(selected.category === 'eyes') {
+          // Render color change for its components
+          for(let i = 0; selected.components.length > i; i++) {
+            elements.push((<ColorPicker key={i+1} type={'components'} target={i} />));
+          }
+        }
+      }
+    }
+    return (elements);
+  }
+
   render() {
     const src = `./avatar/buttons/${this.props.type}.png`
     return (
-        <div className="showcase-content">
-        {this.renderIntegrants()}
+      <div>
+        <div className="showcase">
+            <div className="menu-inferior">
+              <div className="menu-inf-btns" >
+                <IntegrantButton layersType={'hair'} integrantType={'hairs'} />
+                <IntegrantButton layersType={'eyebrows'} integrantType={'eyebrows'} />
+                <IntegrantButton layersType={'eyes'} integrantType={'eyes'} />
+                <IntegrantButton layersType={'mouth'} integrantType={'mouths'} />
+                <IntegrantButton layersType={'skin'} integrantType={'noses'} />
+                <IntegrantButton layersType={'acessory'} integrantType={'acessories'} />
+              </div>
+            </div>
+            <div className="showcase-content">
+              {this.renderIntegrants()}
+            </div>
         </div>
+        <div>
+          {this.renderColorPickers()}
+        </div>
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { selectedCategory: state.selectedCategory, integrants: state.integrants, showcaseItems: state.showcaseItems };
+  return { selectedCategory: state.selectedCategory, integrants: state.integrants, showcaseItems: state.showcaseItems, selected: state.showcaseSelected };
 }
 
 function mapDispatchToProps(dispatch) {

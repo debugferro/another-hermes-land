@@ -32,9 +32,11 @@ class ColorPicker extends Component {
         }
       ]
     });
-    picker.on('color:change', function(color) {
-      console.log(color.hexString);
-    })
+    picker.on('color:change', this.changeColor)
+  }
+
+  changeColor = (color) => {
+    this.props.layers[this.props.selectedCategory].changeColor(this.props.type, color.hexString, this.props.target);
   }
 
   handleClick = () => {
@@ -51,7 +53,6 @@ class ColorPicker extends Component {
   }
 
   handleOutsideClick = (event) => {
-    console.log(this.node.contains(event.target))
     if(!this.node.contains(event.target) && this.state.opened) {
       this.handleClick();
     }
