@@ -111,26 +111,30 @@
 
 .studio-container {
   background-color: $hermes-white;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   border-radius: 2em;
   box-shadow: 0px 0px 11px #00000066;
-  grid-template:"menu avatar"
-                "menu showcase"
-                / 9% 91%;
+  // grid-template:"menu avatar"
+  //               "menu showcase"
+  //               / 9% 91%;
   }
 
 .menu-container {
-  background-color: $hermes-filler;
+  background-color: $hermes-green;
   border-top-left-radius: 2em;
   height: 100%;
-  border-bottom-left-radius: 2em;
+  border-top-right-radius: 2em;
   display: grid;
   box-shadow: 6px 2px 12px #00000045;
 }
 
 .menu-inferior {
-  align-self: end;
-  margin: 0 auto;
+  border-top-right-radius: 2em;
+  border-top-left-radius: 2em;
+  height: 5em;
+  background-color: $hermes-green;
+  display: flex;
 }
 
 .avatar-container {
@@ -140,20 +144,19 @@
   margin-bottom: 6%;
 }
 
-.studio-left {
-  grid-area: menu;
-  width: 100%;
+.studio-superior {
+  height: 6em;
 }
 
 .studio-right {
   margin: 0 auto;
 }
 
+
 .studio-assetbtn {
-  background-color: $hermes-green;
-  //width: 4em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  background-color: $hermes-filler;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
   padding: 0.3em;
   height: 4em;
   text-align: center;
@@ -170,7 +173,7 @@
 }
 
 .studio-assetbtn:hover {
-  background-color: $hermes-bubblegreen;
+  background-color: $hermes-gold;
   img {
     position: relative;
     top: 0.5em;
