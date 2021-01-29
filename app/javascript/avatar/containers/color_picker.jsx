@@ -41,10 +41,10 @@ class ColorPicker extends Component {
 
   handleClick = () => {
     if(!this.state.opened) {
-      document.addEventListener("click", this.handleOutsideClick, false);
+      document.addEventListener("click", () => {this.handleOutsideClick(event, this)}, false);
     }
     else {
-      document.addEventListener("click", this.handleOutsideClick, false);
+      document.addEventListener("click", () => {this.handleOutsideClick(event, this)}, false);
     }
 
     this.setState(prevState => ({
@@ -52,9 +52,11 @@ class ColorPicker extends Component {
     }));
   }
 
-  handleOutsideClick = (event) => {
-    if(!this.node.contains(event.target) && this.state.opened) {
-      this.handleClick();
+  handleOutsideClick = (event, that) => {
+    if(that.node) {
+      if(!that.node.contains(event.target) && that.state.opened) {
+        that.handleClick();
+      }
     }
   }
 
