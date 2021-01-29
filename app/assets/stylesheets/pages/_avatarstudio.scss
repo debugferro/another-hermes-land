@@ -88,7 +88,7 @@
 }
 
 .hiddenEl {
-  visibility: hidden;
+  display: none;
 }
 
 .pshow {
@@ -190,4 +190,12 @@
   img {
     width: 100%;
   }
+}
+
+.picker {
+  position: absolute;
+  top: 48%;
+  padding: 1em;
+  background-color: $hermes-green;
+  left: 23%;
 }

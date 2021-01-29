@@ -28,7 +28,6 @@ class App extends Component {
         <div className="studio-right">
           <AvatarCanvas id={this.props.avatarId} />
           <Showcase />
-          <ColorPicker />
         </div>
       </div>
     );

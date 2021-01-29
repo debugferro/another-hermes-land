@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeCategory } from '../actions/index';
 import Integrant from '../components/integrant';
+import ColorPicker from '../containers/color_picker';
 
 class Showcase extends Component {
   // constructor(props) {
@@ -29,10 +30,13 @@ class Showcase extends Component {
   render() {
     const src = `./avatar/buttons/${this.props.type}.png`
     return (
+      <div>
       <div className="showcase">
         <div className="showcase-content">
         {this.renderIntegrants()}
         </div>
+      </div>
+        <ColorPicker />
       </div>
     );
   }
