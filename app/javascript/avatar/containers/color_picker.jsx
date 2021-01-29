@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeCategory, showItems, selectItem } from '../actions/index';
+import { colors } from '../assets/colors';
+import ColorButton from './color_button';
 import iro from '@jaames/iro';
 
 class ColorPicker extends Component {
@@ -36,6 +38,7 @@ class ColorPicker extends Component {
   }
 
   changeColor = (color) => {
+    console.log(color.hexString);
     this.props.layers[this.props.selectedCategory].changeColor(this.props.type, color.hexString, this.props.target);
   }
 
@@ -75,20 +78,39 @@ class ColorPicker extends Component {
     }
   }
 
+  renderColors = () => {
+    const category = this.props.selectedCategory;
+    let colorsToRender;
+    if(this.props.target) {
+      colorsToRender = colors[category][this.props.target];
+    } else {
+      colorsToRender = colors[category];
+    }
+    return colors.skin.map((color) => {
+      return (<ColorButton type={this.props.type} target={this.props.target} color={color} />)
+    })
+  }
+
   render() {
     const pickerClass = this.state.opened ? "" : "hiddenEl "
     return (
       <div className="studio-color" >
-        <div ref={node => this.node = node} >
-          <div className="color-picker" onClick={this.handleClick} >
-            {this.renderImage()}
+        <div className="studio-color-container" >
+          <div className="pos-relative" ref={node => this.node = node} >
+            <div className="color-picker" onClick={this.handleClick} >
+              {this.renderImage()}
+            </div>
+              <div className={pickerClass + "picker"} ref={r => this.colorPicker = r} />
           </div>
-            <div className={pickerClass + "picker"} ref={r => this.colorPicker = r} />
+          <div className="opts-container">
+            {this.renderColors()}
+          </div>
         </div>
       </div>
     );
   }
 }
+
 
 function mapStateToProps(state) {
   return { selectedCategory: state.selectedCategory, integrants: state.integrants, layers: state.avatarLayers };
