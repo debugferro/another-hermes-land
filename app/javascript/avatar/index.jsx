@@ -20,7 +20,6 @@ const container = document.querySelector('.container');
 const initialState = {
   // avatar: null,
   // avatarLayers: null,
-  // integrants: {},
   selectedCategory: 'hair'
   // showcaseItems: null
 }

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeCategory, showItems, selectItem } from '../actions/index';
-import { colors } from '../assets/colors';
 import ColorButton from './color_button';
 import iro from '@jaames/iro';
+
+import colors from '../assets/colors';
 
 class ColorPicker extends Component {
   constructor(props) {
@@ -80,15 +81,16 @@ class ColorPicker extends Component {
 
   renderColors = () => {
     const category = this.props.selectedCategory;
+    const target = this.props.target;
     let colorsToRender;
-    if(this.props.target) {
-      colorsToRender = colors[category][this.props.target];
-    } else {
-      colorsToRender = colors[category];
-    }
-    return colors.skin.map((color) => {
-      return (<ColorButton type={this.props.type} target={this.props.target} color={color} />)
-    })
+    console.log(colors)
+    colorsToRender = target >= 0 ? colors[category][this.props.target] : colors[category]
+    console.log(colorsToRender)
+    // if(colorsToRender){
+    //   return colorsToRender.map((color) => {
+    //     return (<ColorButton type={this.props.type} target={this.props.target} color={color} />)
+    //   })
+    // }
   }
 
   render() {
