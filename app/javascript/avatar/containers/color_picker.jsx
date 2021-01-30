@@ -82,15 +82,16 @@ class ColorPicker extends Component {
   renderColors = () => {
     const category = this.props.selectedCategory;
     const target = this.props.target;
+    const colorsList = colors;
     let colorsToRender;
-    console.log(colors)
-    colorsToRender = target >= 0 ? colors[category][this.props.target] : colors[category]
+    console.log(colorsList)
+    colorsToRender = target === null ? colorsList[category] : colorsList[category][target]
     console.log(colorsToRender)
-    // if(colorsToRender){
-    //   return colorsToRender.map((color) => {
-    //     return (<ColorButton type={this.props.type} target={this.props.target} color={color} />)
-    //   })
-    // }
+    if(colorsToRender){
+      return colorsToRender.map((color) => {
+        return (<ColorButton type={this.props.type} target={this.props.target} color={color} />)
+      })
+    }
   }
 
   render() {
