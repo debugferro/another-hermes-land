@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
+
 import { changeCategory } from '../actions/index';
 import Integrant from '../components/integrant';
 import IntegrantButton from '../containers/integrant_button';
@@ -28,21 +30,47 @@ class Showcase extends Component {
     if(selected) {
       if(selected.category === 'nose') {
         // Render color change for skin
-        elements.push((<ColorPicker key={0} type={'base'} target={null} />));
+        elements.push((
+          <CSSTransition
+            timeout={500}
+            classNames="studio-color"
+            key={1}
+          >
+            <ColorPicker key={0} type={'base'} target={null} />
+          </CSSTransition>
+          ));
       } else if(selected.category !== 'eyes'){
         // Render color change for base
-        elements.push((<ColorPicker key={0} type={'base'} target={null} />));
+        elements.push((
+          <CSSTransition
+            timeout={500}
+            classNames="studio-color"
+            key={1}
+          >
+            <ColorPicker key={0} type={'base'} target={null} />
+          </CSSTransition>
+        ));
       }
       if(selected.components) {
         if(selected.category === 'eyes') {
           // Render color change for its components
           for(let i = 0; selected.components.length > i; i++) {
-            elements.push((<ColorPicker key={i+1} type={'components'} target={i} />));
+            elements.push((
+              <CSSTransition
+                timeout={500}
+                classNames="studio-color"
+                key={i+100}
+              >
+                <ColorPicker key={i+1} type={'components'} target={i} />
+              </CSSTransition>
+            ));
           }
         }
       }
     }
-    return (elements);
+    const all = [<TransitionGroup>, </TransitionGroup>];
+    all.splice(0, 1, elements[0]);
+    return (all);
   }
 
   render() {
