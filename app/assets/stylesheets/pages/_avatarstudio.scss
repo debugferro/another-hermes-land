@@ -214,15 +214,13 @@
 
 .studio-color-enter {
   opacity: 0;
-  height: 0em;
-  transform: scale(0.9);
+  transform: translateX(-100%);
 }
 
 .studio-color-enter-active {
-  transition: 6;
-  transform: translateX(0);
   opacity: 1;
-  transform: translateX(-100%);
+  transition: opacity 300ms, transform 300ms;
+  transform: translateX(0%);
 }
 
 .studio-color-exit {

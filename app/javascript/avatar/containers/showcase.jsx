@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
+const { v4: uuidv4 } = require('uuid');
+
 
 import { changeCategory } from '../actions/index';
 import Integrant from '../components/integrant';
@@ -34,9 +36,10 @@ class Showcase extends Component {
           <CSSTransition
             timeout={500}
             classNames="studio-color"
-            key={1}
+            key={uuidv4()}
+            unmountOnExit
           >
-            <ColorPicker key={0} type={'base'} target={null} />
+            <ColorPicker key={uuidv4()} type={'base'} target={null} />
           </CSSTransition>
           ));
       } else if(selected.category !== 'eyes'){
@@ -45,9 +48,10 @@ class Showcase extends Component {
           <CSSTransition
             timeout={500}
             classNames="studio-color"
-            key={1}
+            key={id}
+            unmountOnExit
           >
-            <ColorPicker key={0} type={'base'} target={null} />
+            <ColorPicker key={uuidv4()} type={'base'} target={null} />
           </CSSTransition>
         ));
       }
@@ -59,18 +63,17 @@ class Showcase extends Component {
               <CSSTransition
                 timeout={500}
                 classNames="studio-color"
-                key={i+100}
+                key={uuidv4()}
+                unmountOnExit
               >
-                <ColorPicker key={i+1} type={'components'} target={i} />
+                <ColorPicker key={uuidv4()} type={'components'} target={i} />
               </CSSTransition>
             ));
           }
         }
       }
     }
-    const all = [<TransitionGroup>, </TransitionGroup>];
-    all.splice(0, 1, elements[0]);
-    return (all);
+    return (elements);
   }
 
   render() {
@@ -93,7 +96,9 @@ class Showcase extends Component {
             </div>
         </div>
         <div>
+          <TransitionGroup>
           {this.renderColorPickers()}
+          </TransitionGroup>
         </div>
       </div>
     );

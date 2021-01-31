@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import iro from '@jaames/iro';
-
 import { changeCategory, showItems, selectItem } from '../actions/index';
 import ColorButton from './color_button';
+const { v4: uuidv4 } = require('uuid');
+import iro from '@jaames/iro';
+
 import colors from '../assets/colors';
 
 class ColorPicker extends Component {
@@ -89,21 +89,25 @@ class ColorPicker extends Component {
     colorsToRender = target === null ? colorsList[category] : colorsList[category][target]
     console.log(colorsToRender)
     if(colorsToRender){
-      return(
-        <TransitionGroup>
-          {colorsToRender.map((color) => {
-            return(
-              <CSSTransition
-                timeout={350}
-                className="color-opt"
-                key={this.props.target + 100}
-              >
-              <ColorButton type={this.props.type} key={this.props.target + 1} target={this.props.target} color={color} />
-              </CSSTransition>
-              );
-          })}
-        </TransitionGroup>
-      );
+      return colorsToRender.map((color) => {
+        return (<ColorButton key={uuidv4()} type={this.props.type} target={this.props.target} color={color} />)
+      })
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const colorsList = colors;
+    const category = nextProps.selectedCategory;
+    const target = nextProps.target;
+    if(nextProps.target) {
+      if(typeof colorsList[category][target] === 'object') {
+        return false;
+      } else if(typeof colorsList[category][target] === 'array') {
+        return true;
+      }
+    } else {
+      if(typeof colorsList[category] === 'array') { return true; }
+      else if(typeof colorsList[category] === 'object') { return false; }
     }
   }
 
