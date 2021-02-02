@@ -48,7 +48,7 @@ class Showcase extends Component {
           <CSSTransition
             timeout={500}
             classNames="studio-color"
-            key={id}
+            key={uuidv4()}
             unmountOnExit
           >
             <ColorPicker key={uuidv4()} type={'base'} target={null} />
