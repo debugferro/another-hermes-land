@@ -22,7 +22,7 @@
   // width: 29em;
   // height: 19em;
   // grid-area: showcase;
-  margin: 3em;
+  margin: 1em 3em;
   border-radius: 2em;
   background-color: $hermes-filler;
   box-shadow: 0px 0px 20px black inset;
@@ -93,6 +93,12 @@
   width: 7em;
   height: 7em;
   background-color: $hermes-white;
+  transition: all 200ms ease;
+}
+
+.avIntegrant:hover {
+  transform: scale(1.2);
+  transition: all 200ms ease;
 }
 
 .hiddenEl {
@@ -125,10 +131,29 @@
   box-shadow: 0px 0px 11px #00000066;
   width: fit-content;
   margin: 0 auto;
+  min-height: 63em;
   // grid-template:"menu avatar"
   //               "menu showcase"
   //               / 9% 91%;
   }
+
+.studio-container-enter {
+  max-height: 69em;
+}
+
+.studio-container-enter-active {
+  max-height: 74em;
+  transition: all 800ms ease-out;
+}
+
+.studio-container-exit {
+  max-height: 74em;
+}
+
+.studio-container-exit-active {
+  max-height: 69em;
+  transition: all 800ms ease-in;
+}
 
 .studio-color-container {
   display: flex;
@@ -160,7 +185,6 @@
 .avatar-container {
   align-self: center;
   margin-top: 5%;
-  margin-bottom: 6%;
 }
 
 .studio-superior {
@@ -181,9 +205,8 @@
   height: 4em;
   text-align: center;
   border-radius: 1em;
-  transition: 0.5s;
+  transition: 300ms ease;
   img {
-    transition: 0.5s;
     width: inherit;
     height: 100%;
     position: relative;
@@ -192,13 +215,19 @@
   }
 }
 
+.studio-activebtn {
+  background-color: $hermes-gold !important;
+}
+
 .studio-assetbtn:hover {
   background-color: $hermes-gold;
-  img {
-    position: relative;
-    top: 0.5em;
-    left: 0.5em;
-  }
+  transform: scale(1.2);
+  transition: 300ms ease;
+  // img {
+  //   position: relative;
+  //   top: 0.5em;
+  //   left: 0.5em;
+  // }
 }
 
 // Color picker
@@ -207,20 +236,20 @@
   box-shadow: 0px 0px 10px #000000a3 inset;
   background-color: $hermes-filler;
   border-radius: 1em;
-  margin: 1em;
+  margin: 1em 3em;
   height: 4em;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 .studio-color-enter {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateY(-80%);
 }
 
 .studio-color-enter-active {
   opacity: 1;
   transition: opacity 300ms, transform 300ms;
-  transform: translateX(0%);
+  transform: translateY(0%);
 }
 
 .studio-color-exit {
@@ -231,7 +260,7 @@
 .studio-color-exit-active {
   opacity: 0;
   transform: scale(0.9);
-  transform: translateX(100%);
+  transform: translateY(80%);
   transition: opacity 300ms, transform 300ms;
 }
 
@@ -253,18 +282,33 @@
     width: 1em;
     box-shadow: 0px 0px 11px #0000008a;
     height: 1em;
-    margin-right: 0.5em;
-    margin-left: 0.4em;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
   }
 }
 
 .picker {
   position: absolute;
-  top: -296%;
+  top: -451%;
   padding: 1em;
   border-radius: 2em;
   background-color: $hermes-green;
-  left: -42%;
+  left: -15%;
+}
+
+.picker:after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 55%;
+  width: 0;
+  height: 0;
+  border: 25px solid transparent;
+  border-top-color: $hermes-green;
+  border-bottom: 0;
+  //border-right: 0;
+  margin-left: -111.5px;
+  margin-bottom: -25px;
 }
 
 .rgbwheel {

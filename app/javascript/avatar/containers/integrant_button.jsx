@@ -5,7 +5,6 @@ import { changeCategory, showItems, selectItem } from '../actions/index';
 
 
 class IntegrantButton extends Component {
-
   handleClick = () => {
     this.props.changeCategory(this.props.layersType);
     this.props.showItems(this.props.integrants, this.props.integrantType);
@@ -27,8 +26,9 @@ class IntegrantButton extends Component {
 
   render() {
     const src = `./avatar/buttons/${this.props.layersType}.png`
+    const activeClass = this.props.layersType === this.props.selectedCategory ? " studio-activebtn" : "";
     return (
-      <div className="studio-assetbtn pointer" onClick={this.handleClick} >
+      <div className={"studio-assetbtn pointer" + activeClass} onClick={this.handleClick} >
         <img src={src} alt={this.props.layersType} className="categoryimg"></img>
       </div>
     );

@@ -16,11 +16,11 @@ class ColorPicker extends Component {
       opened: false
     }
   }
-  handleClick = () => {
-    this.props.changeCategory(this.props.layersType);
-    this.props.showItems(this.props.integrants, this.props.integrantType);
-    this.props.selectItem(this.selectAsset())
-  }
+  // handleClick = () => {
+  //   this.props.changeCategory(this.props.layersType);
+  //   this.props.showItems(this.props.integrants, this.props.integrantType);
+  //   this.props.selectItem(this.selectAsset())
+  // }
 
   componentDidMount() {
     const picker = new iro.ColorPicker(this.colorPicker, {
@@ -95,10 +95,11 @@ class ColorPicker extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     const colorsList = colors;
     const category = nextProps.selectedCategory;
     const target = nextProps.target;
+    if(nextProps === this.props && nextState !== this.state) { return true; }
     if(nextProps.target) {
       if(typeof colorsList[category][target] === 'object') {
         return false;
@@ -117,7 +118,7 @@ class ColorPicker extends Component {
       <div className="studio-color" >
         <div className="studio-color-container" >
           <div className="pos-relative" ref={node => this.node = node} >
-            <div className="color-picker" onClick={this.handleClick} >
+            <div className="color-picker pointer" onClick={this.handleClick} >
               {this.renderImage()}
             </div>
               <div className={pickerClass + "picker"} ref={r => this.colorPicker = r} />

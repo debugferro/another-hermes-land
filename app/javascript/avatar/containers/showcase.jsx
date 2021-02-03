@@ -61,7 +61,7 @@ class Showcase extends Component {
           for(let i = 0; selected.components.length > i; i++) {
             elements.push((
               <CSSTransition
-                timeout={500}
+                timeout={600}
                 classNames="studio-color"
                 key={uuidv4()}
                 unmountOnExit
@@ -74,6 +74,18 @@ class Showcase extends Component {
       }
     }
     return (elements);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if(this.props.selected === null) { return true; }
+    if(nextProps.selected.category !== this.props.selected.category) {
+      return true;
+    }
+    if(nextProps.selected.components) {
+      return this.props.selected.components.length !== nextProps.selected.components.length ? true : false;
+    } else {
+      return false;
+    }
   }
 
   render() {
@@ -106,7 +118,7 @@ class Showcase extends Component {
 }
 
 function mapStateToProps(state) {
-  return { selectedCategory: state.selectedCategory, integrants: state.integrants, showcaseItems: state.showcaseItems, selected: state.showcaseSelected };
+  return { showcaseItems: state.showcaseItems, selected: state.showcaseSelected };
 }
 
 function mapDispatchToProps(dispatch) {

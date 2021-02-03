@@ -16,7 +16,25 @@ const colors = {
   {value: "#945e9d", valueShown: "#945e9d"}, {value: "#40ac7e", valueShown: "#40ac7e"},
   {value: "#76ac40", valueShown: "#76ac40"}, {value: "#a39e22", valueShown: "#a39e22"},
   {value: "#ff0000", valueShown: "#ff0000"}, {value: "#0085ff", valueShown: "#0085ff"},
-  {value: "#1400ff", valueShown: "#1400ff"}]}
+  {value: "#1400ff", valueShown: "#1400ff"}]},
+  hair: [{value: "#000000", valueShown: "#efcb73"}, {value: "#030301", valueShown: "#030301"},
+  {value: "#a43714", valueShown: "#a43714"}, {value: "#b2651f", valueShown: "#b2651f"},
+  {value: "#854a29", valueShown: "#854a29"}, {value: "#da7212", valueShown: "#da7212"},
+  {value: "#cab818", valueShown: "#cab818"}, {value: "#760a0a", valueShown: "#760a0a"},
+  {value: "#0400d4", valueShown: "#57d8ff"}, {value: "#000e59", valueShown: "#f85687"},
+  {value: "#0f0011", valueShown: "#62d83f"}],
+  eyebrows: [{value: "#000000", valueShown: "#efcb73"}, {value: "#030301", valueShown: "#030301"},
+  {value: "#a43714", valueShown: "#a43714"}, {value: "#b2651f", valueShown: "#b2651f"},
+  {value: "#854a29", valueShown: "#854a29"}, {value: "#da7212", valueShown: "#da7212"},
+  {value: "#cab818", valueShown: "#cab818"}, {value: "#760a0a", valueShown: "#760a0a"},
+  {value: "#0400d4", valueShown: "#57d8ff"}, {value: "#000e59", valueShown: "#f85687"},
+  {value: "#0f0011", valueShown: "#62d83f"}],
+  mouth: [{value: "#000000", valueShown: "#efcb73"}, {value: "#030301", valueShown: "#030301"},
+  {value: "#a43714", valueShown: "#a43714"}, {value: "#b2651f", valueShown: "#b2651f"},
+  {value: "#854a29", valueShown: "#854a29"}, {value: "#da7212", valueShown: "#da7212"},
+  {value: "#cab818", valueShown: "#cab818"}, {value: "#760a0a", valueShown: "#760a0a"},
+  {value: "#0400d4", valueShown: "#57d8ff"}, {value: "#000e59", valueShown: "#f85687"},
+  {value: "#0f0011", valueShown: "#62d83f"}]
 }
 
 export default colors;
