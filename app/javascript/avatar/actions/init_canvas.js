@@ -62,6 +62,7 @@ export const initCanvas = (avatar, canvas) => {
         eyebrows: layers.eyebrows,
         hair: layers.hair,
         acessory: layers.acessory,
-        clothe: layers.clothe
+        clothe: layers.clothe,
+        main: mainCanvas
     }
 }

@@ -9,23 +9,36 @@ class Save extends Component {
     super(props)
 
     this.state = {
-      assets: null,
-      colors: null,
-      img: null
+      assets: '',
+      colors: '',
+      img: ''
     }
   }
 
   handleClick = () => {
     // TODO: Implement saving
-
-
+    const layers = this.props.layers;
+    const dataURI = layers.main.element.toDataURL('image/png');
+    let assetData = new Array();
+    let colorData = {};
+    for(let key in layers) {
+      if(key === 'main') { continue; }
+      layers[key].assets.forEach((asset) => { if (asset) { assetData.push(asset.id) } })
+      layers[key].assetColors.forEach((color) => { colorData[`${key}_color`] = [color]; })
+      layers[key].componentColors.forEach((color) => { colorData[`${key}_color`].push(color); })
+    }
+    colorData = JSON.stringify(colorData);
+    this.setState({ assets: assetData, colors: colorData, img: dataURI }, () => {
+      this.form.submit();
+    });
   }
 
   render() {
     return (
       <div className="studio-save-btn" onClick={this.handleClick} >
         <img src="./avatar/buttons/save.png" alt="Save Changes Button" />
-        <form action={`./avatars/${id}`} method="POST" ref={r => this.form = r}>
+        <form action={`./avatars/${this.props.id}`} method="post" ref={r => this.form = r} acceptCharset="UTF-8" noValidate="novalidate">
+          <input type="hidden" name="_method" value="patch" />
           <input type="hidden" name="authenticity_token" value={this.props.token} />
           <input type="hidden" name="avatar[img]" id="avatar_img" value={this.state.img} />
           <input type="hidden" name="avatar[assets]" id="avatar_assets" value={this.state.assets} />
