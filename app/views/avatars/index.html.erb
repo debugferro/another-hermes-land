@@ -1,4 +1,4 @@
-<%= content_tag :div, class: "container", data: { id: @avatar.id } do %>
-<% end %>
+<div class="container" data-id="<%= @avatar.id %>" data-token="<%= @auth %>">
+</div>
 
 <%= javascript_pack_tag "avatar" %>

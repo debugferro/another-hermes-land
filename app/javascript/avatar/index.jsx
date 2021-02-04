@@ -20,7 +20,7 @@ const container = document.querySelector('.container');
 const initialState = {
   // avatar: null,
   // avatarLayers: null,
-  selectedCategory: 'hair'
+  selectedCategory: ''
   // showcaseItems: null
 }
 
@@ -39,7 +39,7 @@ const store = createStore(reducers, initialState, middlewares)
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={store}>
-      <App avatarId={container.dataset.id} />
+      <App avatarId={container.dataset.id} token={container.dataset.token} />
     </Provider>,
     container)
 })

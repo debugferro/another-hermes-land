@@ -5,10 +5,18 @@ import { changeCategory, showItems, selectItem } from '../actions/index';
 
 
 class Save extends Component {
+  handleClick = () => {
+    // TODO: Implement saving
+
+  }
+
   render() {
     return (
-      <div className="studio-save-btn">
+      <div className="studio-save-btn" onClick={this.handleClick} >
         <img src="./avatar/buttons/save.png" alt="Save Changes Button" />
+        <form action={`./avatars/${id}`} method="POST">
+
+        </form>
       </div>
     );
   }

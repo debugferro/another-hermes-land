@@ -5,6 +5,7 @@ class AvatarsController < ApplicationController
   before_action :set_default_assets, only: [:index, :update]
 
   def index
+    @auth = form_authenticity_token
     @avatar = Avatar.where(user: current_user).first
     if @user.avatar
       @base = @user.avatar.assets.where(category: "base").first&.base

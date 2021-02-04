@@ -19,7 +19,7 @@ class App extends Component {
       <div className="studio-superior">
         <div className="menu-container">
           <div className="menu-content">
-            <Save />
+            <Save token={this.props.token} id={this.props.avatarId} />
           </div>
         </div>
         <AvatarCanvas id={this.props.avatarId} />
