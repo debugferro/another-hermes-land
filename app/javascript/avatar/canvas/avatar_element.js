@@ -75,10 +75,10 @@ export default class AvatarElement {
         if (asset.components) {
           asset.components.forEach((component) => {
             this.componentUrls.push(component)
-          })
+          });
         }
       }
-    })
+    });
   }
 
   resolveColors() {
@@ -88,15 +88,21 @@ export default class AvatarElement {
     //   const c = this.colors.shift();
     //   this.assetColors.push(c);
     // }
-    while (this.assetColors.length < this.assetsUrls.length) {
-      if (this.colors.length != 0) {
+    // if(this.assets[0].category === "mouth") {
+
+    // }
+    if (this.skin && this.assets[0].skintonalized) {
+      this.assetColors.push(this.skin.assetColors[0]);
+    }
+    while (this.assetColors.length <= this.assetsUrls.length) {
+      if (this.colors.length !== 0) {
         this.assetColors.push(this.colors.shift());
       } else {
         this.assetColors.push('#000000');
       }
     }
     while (this.componentColors.length < this.componentUrls.length) {
-      if (this.colors.length != 0) {
+      if (this.colors.length !== 0) {
         this.componentColors.push(this.colors.shift());
       } else {
         this.componentColors.push('#000000');

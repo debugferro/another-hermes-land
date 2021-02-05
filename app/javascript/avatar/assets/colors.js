@@ -34,6 +34,12 @@ const colors = {
   {value: "#854a29", valueShown: "#854a29"}, {value: "#da7212", valueShown: "#da7212"},
   {value: "#cab818", valueShown: "#cab818"}, {value: "#760a0a", valueShown: "#760a0a"},
   {value: "#0400d4", valueShown: "#57d8ff"}, {value: "#000e59", valueShown: "#f85687"},
+  {value: "#0f0011", valueShown: "#62d83f"}],
+  acessory: [{value: "#000000", valueShown: "#efcb73"}, {value: "#030301", valueShown: "#030301"},
+  {value: "#a43714", valueShown: "#a43714"}, {value: "#b2651f", valueShown: "#b2651f"},
+  {value: "#854a29", valueShown: "#854a29"}, {value: "#da7212", valueShown: "#da7212"},
+  {value: "#cab818", valueShown: "#cab818"}, {value: "#760a0a", valueShown: "#760a0a"},
+  {value: "#0400d4", valueShown: "#57d8ff"}, {value: "#000e59", valueShown: "#f85687"},
   {value: "#0f0011", valueShown: "#62d83f"}]
 }
 

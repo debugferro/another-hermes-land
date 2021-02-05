@@ -11,20 +11,17 @@ import ColorPicker from "./color_picker";
 const { v4: uuidv4 } = require('uuid');
 
 class Showcase extends Component {
-  shouldComponentUpdate(nextProps) {
-    const { selected } = this.props;
-    if (selected === null) { return true; }
-    if (selected && selected.skintonalized !== nextProps.selected.skintonalized) {
-      return true;
-    }
-    if (nextProps.selected.category !== selected.category) {
-      return true;
-    }
-    if (nextProps.selected.components) {
-      return selected.components.length !== nextProps.selected.components.length;
-    }
-    return false;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   const { selected } = this.props;
+  //   if (selected === null) { return true; }
+  //   if (nextProps.selected.category !== selected.category) {
+  //     return true;
+  //   }
+  //   if (nextProps.selected.components) {
+  //     return selected.components.length !== nextProps.selected.components.length;
+  //   }
+  //   return true;
+  // }
 
   renderColorPickers = () => {
     const { selected } = this.props;

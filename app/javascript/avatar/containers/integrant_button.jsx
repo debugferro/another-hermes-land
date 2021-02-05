@@ -3,22 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeCategory, showItems, selectItem } from '../actions/index';
 
-
 class IntegrantButton extends Component {
-  handleClick = () => {
-    const {
-      changeCategory, showItems, selectItem,
-      integrants, layersType, integrantType
-    } = this.props;
-    changeCategory(layersType);
-    showItems(integrants, integrantType);
-    selectItem(this.selectAsset());
-  }
-
   selectAsset = () => {
     const { layers, layersType, integrants, integrantType } = this.props;
     let selected;
-    console.log(layers)
     layers[layersType].assets.forEach((asset) => {
       integrants[integrantType].forEach((integrant) => {
         if (integrant && asset) {
@@ -27,6 +15,16 @@ class IntegrantButton extends Component {
       });
     });
     return selected;
+  }
+
+  handleClick = () => {
+    const {
+      changeCategory, showItems, selectItem,
+      integrants, layersType, integrantType
+    } = this.props;
+    changeCategory(layersType);
+    showItems(integrants, integrantType);
+    selectItem(this.selectAsset());
   }
 
   render() {
