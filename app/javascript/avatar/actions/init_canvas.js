@@ -1,4 +1,6 @@
-import AvatarElement from './avatar_element';
+import Main from '../canvas/main_canvas';
+import AvatarElement from '../canvas/avatar_element';
+export const INITIALIZE_CANVAS_LAYERS = "INITIALIZE_CANVAS_LAYERS";
 
 function createLayer(mainCanvas) {
   let layer = document.createElement('canvas');
@@ -11,16 +13,7 @@ function createLayer(mainCanvas) {
   }
 }
 
-export function hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
-  }
-
-export function initializeLayers(avatar, mainCanvas) {
+function initializeLayers(avatar, mainCanvas) {
   const skinCanvas = createLayer(mainCanvas);
   const mouthCanvas = createLayer(mainCanvas);
   const eyesCanvas = createLayer(mainCanvas);
@@ -46,4 +39,30 @@ export function initializeLayers(avatar, mainCanvas) {
       acessory: acessoryEl,
       clothe: clotheEl
   }
+}
+
+export const initCanvas = (avatar, canvas) => {
+    const context = canvas.getContext("2d");
+    canvas.width = canvas.height = 144;
+    const mainCanvas = new Main(canvas, context)
+    const layers = initializeLayers(avatar, mainCanvas)
+    mainCanvas.avElements.push(layers.skin, layers.mouth, layers.eyes, layers.eyebrows, layers.hair, layers.acessory, layers.clothe)
+
+    layers.skin.init();
+    layers.mouth.init();
+    layers.eyes.init();
+    layers.eyebrows.init();
+    layers.hair.init();
+    layers.acessory.init();
+    layers.clothe.init();
+    return {
+        skin: layers.skin,
+        mouth: layers.mouth,
+        eyes: layers.eyes,
+        eyebrows: layers.eyebrows,
+        hair: layers.hair,
+        acessory: layers.acessory,
+        clothe: layers.clothe,
+        main: mainCanvas
+    }
 }

@@ -1,0 +1,197 @@
+
+  <%= content_tag :div, class: "avdata", data: { id: @avatar.id } do %>
+  <% end %>
+<div class="general-container">
+<div class="avatar-edit-container">
+  <div class="card-edit-left">
+    <div class="profile-filler width-99"></div>
+    <div class="card-content">
+      <div class="change-button">
+          <div class="color-left">
+            <div class="Btn-skincolor btn-color">
+              <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %><input hidden type="color" id="skin-color" name="skin-color"></span>
+            </div>
+          </div>
+        <div class="option">
+          Face
+          <div class="Btn-base arrow-left-filler pointer first-card-arrow-pos-left solo-left">
+            <span class="pointer">></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="change-button">
+        <div class="color-left">
+          <div class="Btn-eyecolor btn-color">
+            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %><input hidden type="color" id="eyes-color" name="eyes-color"></span>
+          </div>
+          <div class="Btn-makeupcolor btn-color">
+            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %><input hidden type="color" id="eyes-makeup-color" name="eyes-makeup-color"></span>
+          </div>
+        </div>
+        <div class="option">
+          <div class="Btn-eyesback arrow-right-filler pointer first-card-arrow-pos-right">
+            <span class="pointer"><</span>
+          </div>
+          Eyes
+          <div class="Btn-eyes arrow-left-filler pointer first-card-arrow-pos-left">
+            <span class="pointer">></span>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="change-button">
+        <div class="color-left">
+          <div class="Btn-skincolor btn-color-desactivated">
+            <span class="pointer"></span>
+          </div>
+        </div>
+        <div class="option">
+          <div class="Btn-mouthback arrow-right-filler pointer first-card-arrow-pos-right">
+            <span class="pointer"><</span>
+          </div>
+          Mouth
+          <div class="Btn-mouth arrow-left-filler pointer first-card-arrow-pos-left">
+            <span class="pointer">></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="change-button">
+        <div class="color-left">
+          <div class="Btn-skincolor btn-color-desactivated">
+            <span class="pointer"></span>
+          </div>
+        </div>
+        <div class="option">
+          <div class="Btn-noseback arrow-right-filler arrow-effect pointer first-card-arrow-pos-right">
+            <span class="pointer"><</span>
+          </div>
+          Nose
+          <div class="Btn-nose arrow-left-filler pointer first-card-arrow-pos-left">
+            <span class="pointer">></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card-edit-middle">
+    <div class="card-middle-content">
+<!--       <span class="Btn-male absolute"><%= image_tag "male.png" %></span>
+      <span class="Btn-female absolute"><%= image_tag "fem.png" %></span> -->
+      <div class="canvas-img-box">
+        <canvas id="avatarCanvas"></canvas>
+        <div class="profile-name topos-12">
+          <span>
+            <%= @user.username %>
+          </span>
+        </div>
+        <div class="Btn-female gender-female-btn pointer">
+          <span>
+            Girl
+          </span>
+        </div>
+        <div class="Btn-male gender-male-btn pointer">
+          <span>
+            Boy
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-edit-right">
+    <div class="profile-filler width-99"></div>
+    <div class="card-content">
+
+      <div class="change-button">
+        <div class="color-right">
+          <div class="Btn-eyebrowcolor btn-color kill-margin-left">
+            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %><input hidden type="color" id="eyebrows-color" name="eyebrows-color"></span>
+          </div>
+        </div>
+        <div class="option justify-end">
+          <div class="Btn-eyebrowsback arrow-right-filler pointer second-card-arrow-post-right">
+            <span class="pointer"><</span>
+          </div>
+          Eyebrows
+          <div class="Btn-eyebrows arrow-left-filler pointer second-card-arrow-pos-left">
+            <span class="pointer">></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="change-button">
+        <div class="color-right">
+          <div class="Btn-haircolor btn-color kill-margin-left">
+            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %><input hidden type="color" id="hair-color" name="hair-color"></span>
+          </div>
+        </div>
+        <div class="option justify-end">
+          <div class="Btn-hairback arrow-right-filler pointer second-card-arrow-post-right">
+            <span class="pointer"><</span>
+          </div>
+          Hair
+          <div class="Btn-hair arrow-left-filler pointer second-card-arrow-pos-left">
+            <span class="pointer">></span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="change-button">
+        <div class="color-right">
+          <div class="Btn-acessorycolor btn-color kill-margin-left">
+            <span class="pointer"><%= image_tag "rgb.svg", class: "shadow-rgb" %></span>
+          </div>
+        </div>
+        <div class="option justify-end">
+          <div class="Btn-acessoryback arrow-right-filler pointer second-card-arrow-post-right">
+            <span class="pointer"><</span>
+          </div>
+          Acessories
+          <div class="Btn-acessory arrow-left-filler pointer second-card-arrow-pos-left">
+            <span class="pointer">></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="change-button">
+        <div class="color-right">
+          <div class="Btn-acessorycolor btn-color kill-margin-left btn-color-desactivated">
+          </div>
+        </div>
+        <div class="option justify-end">
+          <div class="Btn-cloth arrow-right-filler pointer second-card-arrow-post-right solo">
+            <span class="pointer"><</span>
+          </div>
+          Clothes
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    </div>
+    <div class="Btn-save btn-chatwith pointer floating-btn">
+      <%= link_to image_tag('newchat.png'), feed_index_path %>
+      <%= link_to "To HermesLand!!", feed_index_path %>
+    </div>
+    </div>
+  </div>
+
+  <%= simple_form_for @avatar, method: 'patch', html: { class: "sendAvatar" } do |f| %>
+    <%= f.hidden_field :img, value: "" %>
+    <%= f.hidden_field :assets, value: "" %>
+    <%= f.hidden_field :colors, value: "" %>
+    <%= f.submit "Start", class: 'hidden-content' %>
+  <% end %>
+
+  <%= simple_form_for @avatar, method: 'patch', html: { class: "changeGender"} do |f| %>
+    <%= f.hidden_field :gender, value: "" %>
+    <%= f.submit "Start", class: 'hidden-content' %>
+  <% end %>

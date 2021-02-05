@@ -5,6 +5,7 @@ class AvatarsController < ApplicationController
   before_action :set_default_assets, only: [:index, :update]
 
   def index
+    @auth = form_authenticity_token
     @avatar = Avatar.where(user: current_user).first
     if @user.avatar
       @base = @user.avatar.assets.where(category: "base").first&.base
@@ -35,16 +36,16 @@ class AvatarsController < ApplicationController
 
   def update
     if params[:avatar][:gender]
-      case params[:avatar][:gender]
-      when "male"
-        @avatar.gender = "m"
+      case params[:avatar][:gender].to_i
+      when -1
+        @avatar.gender = -1
         @avatar.assets.destroy_all
 
         @male_defaults.each do |default|
           @avatar.assets << default
         end
-      when "female"
-        @avatar.gender = "f"
+      when 1
+        @avatar.gender = 1
         @avatar.assets.destroy_all
 
         @female_defaults.each do |default|
@@ -98,7 +99,7 @@ class AvatarsController < ApplicationController
     @male_defaults  << Asset.where(base: 'm_:white;_eyes_12.png').first
     @male_defaults  << Asset.where(base: 'm_:blond;_eyebrows_4.png').first
     @male_defaults  << Asset.where(base: 'm_:white;_nose_4.png').first
-    @male_defaults  << Asset.where(base: 'n_:white;_mouth_4.png').first
+    @male_defaults  << Asset.where(base: 'n_mouth_4.png').first
     @male_defaults  << Asset.where(base: 'm_:blond;_hair_12.png').first
   end
 
