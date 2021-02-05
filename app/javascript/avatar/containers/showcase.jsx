@@ -91,7 +91,7 @@ class Showcase extends Component {
   render() {
     const src = `./avatar/buttons/${this.props.type}.png`
     return (
-      <div>
+      <>
         <div className="showcase">
             <div className="menu-inferior">
               <div className="menu-inf-btns" >
@@ -107,12 +107,10 @@ class Showcase extends Component {
               {this.renderIntegrants()}
             </div>
         </div>
-        <div>
           <TransitionGroup>
           {this.renderColorPickers()}
           </TransitionGroup>
-        </div>
-      </div>
+        </>
     );
   }
 }

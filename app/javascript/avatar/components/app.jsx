@@ -6,20 +6,18 @@ import AvatarCanvas from '../containers/avatar_canvas';
 import Showcase from '../containers/showcase';
 import ColorPicker from '../containers/color_picker';
 import Save from '../containers/save';
+import GenderChange from '../containers/gender_change';
 
 class App extends Component {
   render(){
-    console.log("updating app.jsx")
     return(
-      <CSSTransition
-        className="studio-container"
-        timeout={800}
-      >
       <div className="studio-container">
       <div className="studio-superior">
         <div className="menu-container">
           <div className="menu-content">
             <Save token={this.props.token} id={this.props.avatarId} />
+            <GenderChange token={this.props.token} id={this.props.avatarId} gender={1} />
+            <GenderChange token={this.props.token} id={this.props.avatarId} gender={-1} />
           </div>
         </div>
         <AvatarCanvas id={this.props.avatarId} />
@@ -28,7 +26,6 @@ class App extends Component {
           <Showcase />
         </div>
       </div>
-      </CSSTransition>
     );
   }
 }

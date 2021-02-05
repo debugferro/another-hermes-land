@@ -322,11 +322,11 @@
 }
 
 .menu-content {
-  display: inline-block;
+  display: flex;
   align-self: center;
 }
 
-.studio-save-btn {
+.studio-top-btn {
   background-color: $hermes-filler;
   padding: 0.5em;
   border-radius: 1em;
@@ -338,8 +338,9 @@
   }
 }
 
-.studio-save-btn:hover {
+.studio-top-btn:hover {
   background-color: $hermes-gold;
   transform: scale(1.2);
   transition: 300ms ease;
 }
+

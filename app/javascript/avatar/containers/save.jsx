@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeCategory, showItems, selectItem } from '../actions/index';
 
-
 class Save extends Component {
   constructor(props) {
     super(props)
@@ -19,14 +18,20 @@ class Save extends Component {
     // TODO: Implement saving
     const layers = this.props.layers;
     const dataURI = layers.main.element.toDataURL('image/png');
-    let assetData = new Array();
+    const assetData = [];
     let colorData = {};
-    for(let key in layers) {
-      if(key === 'main') { continue; }
-      layers[key].assets.forEach((asset) => { if (asset) { assetData.push(asset.id) } })
-      layers[key].assetColors.forEach((color) => { colorData[`${key}_color`] = [color]; })
-      layers[key].componentColors.forEach((color) => { colorData[`${key}_color`].push(color); })
-    }
+    Object.keys(layers).forEach((key) => {
+      if (key === 'main') { return; }
+      layers[key].assets.forEach((asset) => { if (asset) { assetData.push(asset.id); } });
+      colorData[`${key}_color`] = layers[key].assetColors;
+      layers[key].componentColors.forEach((color) => { colorData[`${key}_color`].push(color); });
+    });
+    // for (let key in layers) {
+    //   if(key === 'main') { continue; }
+    //   layers[key].assets.forEach(function (asset) { if (asset) { assetData.push(asset.id); } });
+    //   colorData[`${key}_color`] = layers[key].assetColors;
+    //   layers[key].componentColors.forEach(function (color) { colorData[`${key}_color`].push(color); });
+    // }
     colorData = JSON.stringify(colorData);
     this.setState({ assets: assetData, colors: colorData, img: dataURI }, () => {
       this.form.submit();
@@ -35,7 +40,7 @@ class Save extends Component {
 
   render() {
     return (
-      <div className="studio-save-btn" onClick={this.handleClick} >
+      <div className="studio-top-btn pointer" onClick={this.handleClick} >
         <img src="./avatar/buttons/save.png" alt="Save Changes Button" />
         <form action={`./avatars/${this.props.id}`} method="post" ref={r => this.form = r} acceptCharset="UTF-8" noValidate="novalidate">
           <input type="hidden" name="_method" value="patch" />
