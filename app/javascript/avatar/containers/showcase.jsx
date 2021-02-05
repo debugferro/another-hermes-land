@@ -14,6 +14,9 @@ class Showcase extends Component {
   shouldComponentUpdate(nextProps) {
     const { selected } = this.props;
     if (selected === null) { return true; }
+    if (selected && selected.skintonalized !== nextProps.selected.skintonalized) {
+      return true;
+    }
     if (nextProps.selected.category !== selected.category) {
       return true;
     }
@@ -26,7 +29,7 @@ class Showcase extends Component {
   renderColorPickers = () => {
     const { selected } = this.props;
     const elements = [];
-    if (selected) {
+    if (selected && !selected.skintonalized) {
       if (selected.category === 'nose') {
         // Render color change for skin
         elements.push((
@@ -55,7 +58,7 @@ class Showcase extends Component {
       if (selected.components) {
         if (selected.category === 'eyes') {
           // Render color change for its components
-          for (let i = 0; selected.components.length > i; i++) {
+          for (let i = 0; selected.components.length > i; i += 1) {
             elements.push((
               <CSSTransition
                 timeout={600}
@@ -72,7 +75,6 @@ class Showcase extends Component {
     }
     return (elements);
   }
-
 
   renderIntegrants = () => {
     const { showcaseItems } = this.props;

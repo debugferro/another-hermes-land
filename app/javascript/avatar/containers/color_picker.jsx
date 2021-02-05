@@ -30,7 +30,7 @@ class ColorPicker extends Component {
         }
       ]
     });
-    picker.on('color:change', this.changeColor)
+    picker.on('color:change', this.changeColor);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -95,19 +95,19 @@ class ColorPicker extends Component {
 
     if (colorsToRender) {
       return colorsToRender.map((color) => {
-        return (<ColorButton key={uuidv4()} type={type} target={target} color={color} />)
+        return (<ColorButton key={uuidv4()} type={type} target={target} color={color} />);
       });
     }
   }
 
-
   render() {
-    const pickerClass = this.state.opened ? "" : "hiddenEl ";
+    const { opened } = this.state;
+    const pickerClass = opened ? "" : "hiddenEl ";
     return (
-      <div className="studio-color" >
-        <div className="studio-color-container" >
-          <div className="pos-relative" ref={node => this.node = node} >
-            <div className="color-picker pointer" onClick={this.handleClick} >
+      <div className="studio-color">
+        <div className="studio-color-container">
+          <div className="pos-relative" ref={node => this.node = node}>
+            <div className="color-picker pointer" onClick={this.handleClick}>
               {this.renderImage()}
             </div>
               <div className={`${pickerClass}picker`} ref={r => this.colorPicker = r} />
@@ -120,7 +120,6 @@ class ColorPicker extends Component {
     );
   }
 }
-
 
 function mapStateToProps(state) {
   return { selectedCategory: state.selectedCategory, layers: state.avatarLayers };
