@@ -17,8 +17,8 @@ export default class Main {
     this.okElements = 0;
     const that = this;
     this.avElements.forEach((element) => {
-      if (element.ready) { that.okElements++ };
-    })
+      if (element.ready) { that.okElements += 1; }
+    });
   }
 
   render() {

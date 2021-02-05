@@ -14,9 +14,8 @@ export function showcaseSelectedReducer(state = null, action) {
     case SELECT_ITEM:
       if (action.payload) {
         return action.payload;
-      } else {
-        return state;
       }
+      return state;
     default:
       return state;
   }

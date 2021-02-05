@@ -15,6 +15,7 @@
      "arrow-body-style": 0,
      "space-before-function-paren": 0
      },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true

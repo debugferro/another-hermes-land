@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { changeCategory, showItems, selectItem } from '../actions/index';
-
 
 class ColorButton extends Component {
-
   handleClick = () => {
-    this.props.layers[this.props.selectedCategory].changeColor(this.props.type, this.props.color.value, this.props.target);
+    const
+      {
+        layers, selectedCategory,
+        type, color, target
+      } = this.props;
+    layers[selectedCategory].changeColor(type, color.value, target);
   }
 
   render() {
@@ -18,12 +19,7 @@ class ColorButton extends Component {
 }
 
 function mapStateToProps(state) {
-  return { selectedCategory: state.selectedCategory, integrants: state.integrants, layers: state.avatarLayers };
+  return { selectedCategory: state.selectedCategory, layers: state.avatarLayers };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ changeCategory, showItems, selectItem }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ColorButton);
-
+export default connect(mapStateToProps)(ColorButton);

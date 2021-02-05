@@ -1,11 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-
-import ReduxThunk from 'redux-thunk';
 import thunk from 'redux-thunk';
 
 import App from './components/app';
@@ -18,11 +14,8 @@ import { showcaseReducer, showcaseSelectedReducer } from './reducers/showcase_re
 const container = document.querySelector('.container');
 
 const initialState = {
-  // avatar: null,
-  // avatarLayers: null,
   selectedCategory: ''
-  // showcaseItems: null
-}
+};
 
 const reducers = combineReducers({
   avatar: avatarReducer,
@@ -41,5 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
     <Provider store={store}>
       <App avatarId={container.dataset.id} token={container.dataset.token} />
     </Provider>,
-    container)
-})
+    container);
+});

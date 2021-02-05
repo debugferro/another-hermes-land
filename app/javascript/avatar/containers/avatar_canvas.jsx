@@ -11,20 +11,21 @@ class AvatarCanvas extends Component {
   }
 
   componentDidMount() {
-    this.props.initializeCanvas(this.props.id, this.canvas, this.props.selectedCategory);
+    const { initializeCanvas, id, selectedCategory } = this.props;
+    initializeCanvas(id, this.canvas, selectedCategory);
   }
 
   render() {
     return (
       <div className="avatar-container">
-        <canvas id="avatarCanvas" ref={this.canvas}></canvas>
+        <canvas id="avatarCanvas" ref={this.canvas} />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { avatar: state.avatar, selectedCategory: state.selectedCategory };
+  return { selectedCategory: state.selectedCategory };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -32,4 +33,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AvatarCanvas);
-

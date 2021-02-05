@@ -1,36 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
-const { v4: uuidv4 } = require('uuid');
-
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { changeCategory } from '../actions/index';
-import Integrant from '../components/integrant';
-import IntegrantButton from '../containers/integrant_button';
-import ColorPicker from '../containers/color_picker';
+import Integrant from './integrant';
+import IntegrantButton from "./integrant_button";
+import ColorPicker from "./color_picker";
+
+const { v4: uuidv4 } = require('uuid');
 
 class Showcase extends Component {
-  renderIntegrants = () => {
-    console.log(this.props.selected)
-    if (this.props.showcaseItems.length > 0) {
-      return this.props.showcaseItems.map((integrant) => {
-        return <Integrant key={integrant.id} base={integrant.base} components={integrant.components} integrant={integrant} />
-      })
-    } else {
-      return(
-        <div className="showcase-unload">
-          <p>Select a category...</p>
-        </div>
-      );
+  shouldComponentUpdate(nextProps) {
+    const { selected } = this.props;
+    if (selected === null) { return true; }
+    if (nextProps.selected.category !== selected.category) {
+      return true;
     }
+    if (nextProps.selected.components) {
+      return selected.components.length !== nextProps.selected.components.length;
+    }
+    return false;
   }
 
   renderColorPickers = () => {
-    const selected = this.props.selected;
+    const { selected } = this.props;
     const elements = [];
-    if(selected) {
-      if(selected.category === 'nose') {
+    if (selected) {
+      if (selected.category === 'nose') {
         // Render color change for skin
         elements.push((
           <CSSTransition
@@ -39,10 +36,10 @@ class Showcase extends Component {
             key={uuidv4()}
             unmountOnExit
           >
-            <ColorPicker key={uuidv4()} type={'base'} target={null} />
+            <ColorPicker key={uuidv4()} type="base" target={null} />
           </CSSTransition>
-          ));
-      } else if(selected.category !== 'eyes'){
+        ));
+      } else if (selected.category !== 'eyes') {
         // Render color change for base
         elements.push((
           <CSSTransition
@@ -51,14 +48,14 @@ class Showcase extends Component {
             key={uuidv4()}
             unmountOnExit
           >
-            <ColorPicker key={uuidv4()} type={'base'} target={null} />
+            <ColorPicker key={uuidv4()} type="base" target={null} />
           </CSSTransition>
         ));
       }
-      if(selected.components) {
-        if(selected.category === 'eyes') {
+      if (selected.components) {
+        if (selected.category === 'eyes') {
           // Render color change for its components
-          for(let i = 0; selected.components.length > i; i++) {
+          for (let i = 0; selected.components.length > i; i++) {
             elements.push((
               <CSSTransition
                 timeout={600}
@@ -66,7 +63,7 @@ class Showcase extends Component {
                 key={uuidv4()}
                 unmountOnExit
               >
-                <ColorPicker key={uuidv4()} type={'components'} target={i} />
+                <ColorPicker key={uuidv4()} type="components" target={i} />
               </CSSTransition>
             ));
           }
@@ -76,41 +73,50 @@ class Showcase extends Component {
     return (elements);
   }
 
-  shouldComponentUpdate(nextProps) {
-    if(this.props.selected === null) { return true; }
-    if(nextProps.selected.category !== this.props.selected.category) {
-      return true;
+
+  renderIntegrants = () => {
+    const { showcaseItems } = this.props;
+    if (showcaseItems.length > 0) {
+      return showcaseItems.map((integrant) => {
+        return (
+          <Integrant
+            key={integrant.id}
+            base={integrant.base}
+            components={integrant.components}
+            integrant={integrant}
+          />
+        );
+      });
     }
-    if(nextProps.selected.components) {
-      return this.props.selected.components.length !== nextProps.selected.components.length ? true : false;
-    } else {
-      return false;
-    }
+    return (
+      <div className="showcase-unload">
+        <p>Select a category...</p>
+      </div>
+    );
   }
 
   render() {
-    const src = `./avatar/buttons/${this.props.type}.png`
     return (
       <>
         <div className="showcase">
-            <div className="menu-inferior">
-              <div className="menu-inf-btns" >
-                <IntegrantButton layersType={'hair'} integrantType={'hairs'} />
-                <IntegrantButton layersType={'eyebrows'} integrantType={'eyebrows'} />
-                <IntegrantButton layersType={'eyes'} integrantType={'eyes'} />
-                <IntegrantButton layersType={'mouth'} integrantType={'mouths'} />
-                <IntegrantButton layersType={'skin'} integrantType={'noses'} />
-                <IntegrantButton layersType={'acessory'} integrantType={'acessories'} />
-              </div>
+          <div className="menu-inferior">
+            <div className="menu-inf-btns">
+              <IntegrantButton layersType="hair" integrantType="hairs" />
+              <IntegrantButton layersType="eyebrows" integrantType="eyebrows" />
+              <IntegrantButton layersType="eyes" integrantType="eyes" />
+              <IntegrantButton layersType="mouth" integrantType="mouths" />
+              <IntegrantButton layersType="skin" integrantType="noses" />
+              <IntegrantButton layersType="acessory" integrantType="acessories" />
             </div>
-            <div className="showcase-content">
-              {this.renderIntegrants()}
-            </div>
+          </div>
+          <div className="showcase-content">
+            {this.renderIntegrants()}
+          </div>
         </div>
-          <TransitionGroup>
+        <TransitionGroup>
           {this.renderColorPickers()}
-          </TransitionGroup>
-        </>
+        </TransitionGroup>
+      </>
     );
   }
 }
@@ -124,4 +130,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Showcase);
-

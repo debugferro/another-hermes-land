@@ -29,7 +29,7 @@ export default class AvatarElement {
     // Init is kind of the controller of this class.
     this.resolveUrls();
     this.resolveColors();
-    if  (this.assetsUrls.length === 0) {
+    if (this.assetsUrls.length === 0) {
       this.ready = true;
       this.main.layerIsReady();
     }
@@ -96,7 +96,7 @@ export default class AvatarElement {
       }
     }
     while (this.componentColors.length < this.componentUrls.length) {
-      if (this.colors.length != 0){
+      if (this.colors.length != 0) {
         this.componentColors.push(this.colors.shift());
       } else {
         this.componentColors.push('#000000');
@@ -106,11 +106,11 @@ export default class AvatarElement {
 
   loadImages(urlList, imgList) {
     // It will create an IMG for the target asset and will call this.load onload.
-    for (let i = 0; i < urlList.length; i++) {
-      let img = new Image();
+    for (let i = 0; i < urlList.length; i += 1) {
+      const img = new Image();
       imgList.push(img);
       img.onload = this.load.bind(this);
-      img.src = `/avatar/${urlList[i]}`
+      img.src = `/avatar/${urlList[i]}`;
     }
   }
 
@@ -124,20 +124,21 @@ export default class AvatarElement {
   }
 
   drawToColor() {
-    // It will draw each image on a separete canvas to be fullfilled with color, and all those in the
+    // It will draw each image on a separete canvas to be
+    // fullfilled with color,and all those in the
     // asset canvas, and finally it will call the main canvas to state that
     // it is ready to be drawn for the final result.
-    for(let i = 0; i < this.assetImgs.length; i++) {
-      let layer = this.drawComponent(this.assetImgs[i]);
-        const assetColor = hexToRgb(this.assetColors[0]);
-        this.changeTargetColor(layer, assetColor.r, assetColor.g, assetColor.b)
+    for (let i = 0; i < this.assetImgs.length; i += 1) {
+      const layer = this.drawComponent(this.assetImgs[i]);
+      const assetColor = hexToRgb(this.assetColors[0]);
+      this.changeTargetColor(layer, assetColor.r, assetColor.g, assetColor.b);
       this.canvas.ctx.drawImage(layer, 0, 0);
     }
 
-    for(let t = 0; t < this.componentImgs.length; t++) {
-      let layer = this.drawComponent(this.componentImgs[t]);
-        const compColor = hexToRgb(this.componentColors[t]);
-        this.changeTargetColor(layer, compColor.r, compColor.g, compColor.b);
+    for (let t = 0; t < this.componentImgs.length; t += 1) {
+      const layer = this.drawComponent(this.componentImgs[t]);
+      const compColor = hexToRgb(this.componentColors[t]);
+      this.changeTargetColor(layer, compColor.r, compColor.g, compColor.b);
       this.canvas.ctx.drawImage(layer, 0, 0);
     }
     this.ready = true;
@@ -149,11 +150,11 @@ export default class AvatarElement {
     // new value inputted by the user.
     const ctx = target.getContext("2d");
     const imageData = ctx.getImageData(0, 0, this.canvas.layer.width, this.canvas.layer.height);
-    const data = imageData.data
+    const { data } = imageData;
     for (let i = 0; i < data.length; i += 4) {
-      let newR = !r ? 0 : r - data[i]/1.5;
-      let newG = !g ? 0 : g - data[i + 1]/1.5;
-      let newB = !b ? 0 : b - data[i + 2]/1.5;
+      const newR = !r ? 0 : r - data[i] / 1.5;
+      const newG = !g ? 0 : g - data[i + 1] / 1.5;
+      const newB = !b ? 0 : b - data[i + 2] / 1.5;
       data[i]     += newR;
       data[i + 1] += newG;
       data[i + 2] += newB;
@@ -163,7 +164,7 @@ export default class AvatarElement {
 
   drawComponent(img) {
     // It will draw an IMG in a canvas
-    let layer = document.createElement('canvas');
+    const layer = document.createElement('canvas');
     const ctx = layer.getContext("2d");
     ctx.width = this.canvas.layer.width
     ctx.height = this.canvas.layer.height
