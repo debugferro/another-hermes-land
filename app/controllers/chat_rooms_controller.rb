@@ -6,8 +6,8 @@ class ChatRoomsController < ApplicationController
 
   def index
     # Where it is going to display all chatrooms for current user
-    @new_chat = ChatRoom.new
-    authorize @new_chat
+    @chat_room = ChatRoom.new
+    authorize @chat_room
   end
 
   def show
@@ -20,27 +20,15 @@ class ChatRoomsController < ApplicationController
   end
 
   def create
-    @found_users = []
-    @user_params = params[:chat_room][:user_ids]
-    @user_params.each do |user_param|
-      if number?(user_param)
-        @found_users << User.find(user_param).id
-      else
-        @found_users << User.where(username: user_param).first.id
-      end
+    puts params[:chat_room]
+    @chat_room_form = ChatRoomForm.new(user_ids: params[:chat_room][:user_ids].push(@user.id))
+    if @chat_room_form.valid?
+      @chat_room = @chat_room_form.submit
+      redirect_to @chat_room
+      return
     end
-    @found_users << current_user.id
-    user_ids = @found_users.map(&:to_i)
-    @chatrooms = ChatRoom.joins(:participants).group('chat_rooms.id').having('ARRAY[?::bigint] = ARRAY_AGG(participants.user_id ORDER BY participants.user_id ASC)', user_ids.sort)
-    if @chatrooms.any?
-      redirect_to @chatrooms.first
-    else
-      @chat = ChatRoom.create
-      user_ids.each do |user_id|
-        Participant.create!(user_id: user_id, chat_room_id: @chat.id)
-      end
-      redirect_to @chat
-    end
+    @chat_room = @chat_room_form.chat_room
+    render :index
   end
 
   def destroy

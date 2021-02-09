@@ -9,7 +9,7 @@
       <h1>CHAT</h1>
     </div>
     <!-- <div class="chat-start"> -->
-      <%= simple_form_for @new_chat, url: chat_rooms_path, method: 'post' do |f| %>
+      <%= simple_form_for @chat_room, url: chat_rooms_path, method: 'post' do |f| %>
         <div class="p-1">
           <%= f.association :users, label: false, collection: User.where.not(id: current_user.id), value_method: :id, label_method: :username, input_html: { class: 'select2max form-large' }  %>
         </div>

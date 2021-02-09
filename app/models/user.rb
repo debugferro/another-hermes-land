@@ -68,4 +68,19 @@ class User < ApplicationRecord
   def create_avatar
     Avatar.create!(user_id: self.id)
   end
+
+  def self.find_resolve_all(users)
+    found_users = []
+    users.each do |user|
+      if Integer(user, exception: false)
+        user_record = User.find(user.to_i).id rescue nil
+      else
+        user_record = User.where(username: user).first&.id
+      end
+      return false unless user_record.is_a? Integer
+
+      found_users << user_record
+    end
+    found_users
+  end
 end
