@@ -7,31 +7,6 @@ class AvatarsController < ApplicationController
   def index
     @auth = form_authenticity_token
     @avatar = Avatar.where(user: current_user).first
-    if @user.avatar
-      @base = @user.avatar.assets.where(category: "base").first&.base
-      @eye = @user.avatar.assets.where(category: "eyes").first&.base
-      @hair = @user.avatar.assets.where(category: "hair").first&.base
-      @mouth = @user.avatar.assets.where(category: "mouth").first&.base
-      @eyebrow = @user.avatar.assets.where(category: "eyebrows").first&.base
-      @nose = @user.avatar.assets.where(category: "nose").first&.base
-      @acessory = @user.avatar.assets.where(category: "acessory").first&.base
-      @cloth = @user.avatar.assets.where(category: "cloth").first&.base
-      @gender = @user.avatar.gender
-    end
-
-    @bases = write_paths(Asset.where(category: "base"))
-    @base_colors = write_paths(Asset.where(category: "base"))
-    @eyes = write_paths(Asset.where(category: "eyes"))
-    @eye_colors = write_paths(Asset.where(category: "eyes"))
-    @hairs = write_paths(Asset.where(category: "hair"))
-    @colorized_hairs = write_paths(Asset.where(category: "hair"))
-    @mouths = write_paths(Asset.where(category: "mouth"))
-    @eyebrows = write_paths(Asset.where(category: "eyebrows"))
-    @eyebrow_colors = write_paths(Asset.where(category: "eyebrows"))
-    @noses = write_paths(Asset.where(category: "nose"))
-    @acessories = write_paths(Asset.where(category: "acessory"))
-    @acessory_colors = write_paths(Asset.where(category: "acessory"))
-    @clothes = write_paths(Asset.where(category: "cloth"))
   end
 
   def update

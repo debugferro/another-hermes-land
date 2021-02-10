@@ -14,4 +14,14 @@ class Avatar < ApplicationRecord
     self.assets  << Asset.where(base: 'f_:white;_nose_1.png').first
     self.assets  << Asset.where(base: 'f_:blond;_hair_1.png').first
   end
+
+  def self.find_avatar_appearance(id)
+    result = {}
+    avatar = find(id)
+    assets = avatar.assets
+    Asset::CATEGORIES.each do |category|
+      result[category.to_sym] = assets.where(category: category).first
+    end
+    result
+  end
 end
