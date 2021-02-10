@@ -5,38 +5,11 @@ class UsersController < ApplicationController
 
   def index
     @results = []
-    if params[:query].present?
-      @results << User.global_search(@text).to_a if @text
-      if @interests
-        @interests.each do |interest|
-          @results << User.interest_search(interest).to_a
-        end
-      end
-      if @languages
-        @languages.each do |language|
-          @results << User.language_search(language).to_a
-        end
-      end
-      if @countries
-        @countries.each do |country|
-          @results << User.global_search(country).to_a
-        end
-      end
-      @results = @results.flatten.uniq
-    end
+    return unless params[:query].present?
 
-    # DIFFERENT WAY OF DOING
+    search_for_all
 
-    # if params[:query].present?
-    #   @results = []
-    #   @results << User.global_search(@text).to_a if @text
-    #   if @interests
-    #     @interests.each do |interest|
-    #       @results << User.interest_search(interest).to_a
-    #     end
-    #   end
-    # end
-    # @results = @results.flatten.uniq
+    @results = @results.flatten.uniq
   end
 
   def show
@@ -46,20 +19,25 @@ class UsersController < ApplicationController
   end
 
   def update
-    # require 'open-uri'
-    # if params[:user][:avatar]
-    #   photo = Cloudinary::Uploader.upload(params[:user][:avatar])
-    #   photo = open(photo['url'])
-    #   @user.photo.attach(io: photo, filename: 'teste')
-    # end
-    # @user.save
-    # redirect_to :root
+
   end
 
   private
 
   def set_user
     @user = current_user
+  end
+
+  def search_for_all
+    @interests.each do |interest|
+      @results << User.interest_search(interest).to_a
+    end
+    @languages.each do |language|
+      @results << User.language_search(language).to_a
+    end
+    @countries.each do |country|
+      @results << User.global_search(country).to_a
+    end
   end
 
   def verify_presence_and_set
@@ -70,9 +48,8 @@ class UsersController < ApplicationController
   end
 
   def fix_inputs
-    params[:query][:interests].reject!(&:empty?) if @interests
-    params[:query][:countries].reject!(&:empty?) if @countries
-    params[:query][:languages].reject!(&:empty?) if @languages
+    params[:query][:interests].reject!(&:empty?)
+    params[:query][:countries].reject!(&:empty?)
+    params[:query][:languages].reject!(&:empty?)
   end
-
 end
