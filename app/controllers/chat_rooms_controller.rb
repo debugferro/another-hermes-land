@@ -1,7 +1,7 @@
 class ChatRoomsController < ApplicationController
+  before_action :set_user
   before_action :set_present_chats, only: [:index]
   before_action :fix_params, only: [:create]
-  before_action :set_user
 
   def index
     @chat_room = ChatRoom.new

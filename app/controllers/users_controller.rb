@@ -45,11 +45,6 @@ class UsersController < ApplicationController
     @my_languages = MyLanguage.where(user_id: @user)
   end
 
-  def profile
-    @my_interests = MyInterest.where(user_id: current_user)
-    @my_languages = MyLanguage.where(user_id: current_user)
-  end
-
   def update
     # require 'open-uri'
     # if params[:user][:avatar]
@@ -68,9 +63,9 @@ class UsersController < ApplicationController
   end
 
   def verify_presence_and_set
-    @interests = params[:query][:interests] if params[:query][:interests].present?
-    @countries = params[:query][:countries] if params[:query][:countries].present?
-    @languages = params[:query][:languages] if params[:query][:languages].present?
+    @interests = params[:query][:interests]
+    @countries = params[:query][:countries]
+    @languages = params[:query][:languages]
     @text = params[:query][:text] if params[:query][:text].present?
   end
 
