@@ -29,7 +29,7 @@
           <div class="card-profiles">
             <div class="card-filler"></div>
 
-            <div class="card-category card-feed-position align-center outflow-avatar" style="background-color: #337357; background-image: url(<%= cl_image_path user.photo.key if user.photo.attached? %>)">
+            <div class="card-category card-feed-position align-center outflow-avatar" style="background-color: #337357; background-image: url(<%= cl_image_path user.avatar.photo.key if user.avatar.photo.attached? %>)">
               <%= link_to "#{user.username}", user_path(user), class: "btn-profile" %>
             </div>
             <div class="card-profile-content">

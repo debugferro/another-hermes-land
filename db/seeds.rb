@@ -10,8 +10,8 @@ Message.destroy_all
 ChatRoom.destroy_all
 User.destroy_all
 
-Asset.create!(category: "base", base: "f_:white;_face_1.png", gender: 1)
-Asset.create!(category: "base", base: "m_:white;_face_1.png", gender: -1)
+Asset.create!(category: "base", base: "f_:white;_face_1.png", gender: 1, default: true)
+Asset.create!(category: "base", base: "m_:white;_face_1.png", gender: -1, default: true)
 # Asset.create!(category: "base", base: "m_:white;_face_2.png")
 # Asset.create!(category: "base", base: "f_:white;_face_2.png")
 # Asset.create!(category: "base", base: "f_:black;_face_1.png")
@@ -69,9 +69,9 @@ Asset.create!(category: "eyebrows", base: "n_:black;_eyebrows_2.png")
 Asset.create!(category: "eyebrows", base: "m_:blond;_eyebrows_3.png", gender: -1)
 Asset.create!(category: "eyebrows", base: "m_:black;_eyebrows_3.png", gender: -1)
 
-Asset.create!(category: "eyebrows", base: "m_:blond;_eyebrows_4.png", gender: -1)
+Asset.create!(category: "eyebrows", base: "m_:blond;_eyebrows_4.png", gender: -1, default: true)
 
-Asset.create!(category: "eyebrows", base: "f_:blond;_eyebrows_5.png", gender: 1)
+Asset.create!(category: "eyebrows", base: "f_:blond;_eyebrows_5.png", gender: 1, default: true)
 
 Asset.create!(category: "eyebrows", base: "f_:blond;_eyebrows_6.png", gender: 1)
 Asset.create!(category: "eyebrows", base: "f_:cocoa;_eyebrows_6.png", gender: 1)
@@ -80,7 +80,7 @@ Asset.create!(category: "eyebrows", base: "f_:red;_eyebrows_6.png")
 
 # EYES            <gender>_:<skin color>;_<category>_<id>.png
 
-Asset.create!(category: "eyes", base: "f_eyes_b_1.png", components: ['f_eyes_c_1.png'], gender: 1)
+Asset.create!(category: "eyes", base: "f_eyes_b_1.png", components: ['f_eyes_c_1.png'], gender: 1, default: true)
 
 Asset.create!(category: "eyes", base: "f_eyes_b_2.png", components: ['f_eyes_c1_2.png', 'f_eyes_c2_2.png'], gender: 1)
 
@@ -103,7 +103,7 @@ Asset.create!(category: "eyes", base: "f_eyes_b_10.png", components: ['f_eyes_c1
 
 Asset.create!(category: "eyes", base: "f_eyes_b_11.png", components: ['f_eyes_c1_11.png'], gender: 1)
 
-Asset.create!(category: "eyes", base: "m_:white;_eyes_12.png", gender: -1)
+Asset.create!(category: "eyes", base: "m_:white;_eyes_12.png", gender: -1, default: true)
 
 Asset.create!(category: "eyes", base: "f_eyes_b_13.png", components: ['f_eyes_c1_13.png'], gender: 1)
 
@@ -111,7 +111,7 @@ Asset.create!(category: "eyes", base: "n_eyes_b_14.png", components: ['n_eyes_c1
 
 # HAIR            <gender>_:<hair_color>;_<category>_<id>.png
 
-Asset.create!(category: "hair", base: "f_:blond;_hair_1.png", gender: 1)
+Asset.create!(category: "hair", base: "f_:blond;_hair_1.png", gender: 1, default: true)
 
 Asset.create!(category: "hair", base: "f_:blond;_hair_2.png", gender: 1)
 Asset.create!(category: "hair", base: "f_:cocoa;_hair_2.png", gender: 1)
@@ -155,7 +155,7 @@ Asset.create!(category: "hair", base: "n_:cocoa;_hair_10.png")
 
 Asset.create!(category: "hair", base: "m_:blond;_hair_11.png", gender: -1)
 
-Asset.create!(category: "hair", base: "m_:blond;_hair_12.png", gender: -1)
+Asset.create!(category: "hair", base: "m_:blond;_hair_12.png", gender: -1, default: true)
 Asset.create!(category: "hair", base: "m_:cocoa;_hair_12.png", gender: -1)
 Asset.create!(category: "hair", base: "m_:white;_hair_12.png", gender: -1)
 Asset.create!(category: "hair", base: "m_:black;_hair_12.png", gender: -1)
@@ -170,11 +170,11 @@ Asset.create!(category: "hair", base: "m_:red;_hair_14.png", gender: -1)
 
 # MOUTHS            <gender>_:<skin color>;_<category>_<id>.png
 
-Asset.create!(category: "mouth", base: "f_mouth_1.png", gender: 1)
+Asset.create!(category: "mouth", base: "f_mouth_1.png", gender: 1, default: true)
 
 Asset.create!(category: "mouth", base: "f_mouth_2.png", skintonalized: true, gender: 1)
 
-Asset.create!(category: "mouth", base: "n_mouth_4.png", skintonalized: true)
+Asset.create!(category: "mouth", base: "m_mouth_4.png", skintonalized: true, gender: -1, default: true)
 
 Asset.create!(category: "mouth", base: "n_:neutral;_mouth_5.png")
 
@@ -184,13 +184,13 @@ Asset.create!(category: "mouth", base: "n_mouth_b_7.png", components: ['n_mouth_
 
 # NOSES            <gender>_:<skin color>;_<category>_<id>.png
 
-Asset.create!(category: "nose", base: "f_:white;_nose_1.png", gender: 1)
+Asset.create!(category: "nose", base: "f_:white;_nose_1.png", gender: 1, default: true)
 
 Asset.create!(category: "nose", base: "f_:white;_nose_2.png", gender: 1)
 
 Asset.create!(category: "nose", base: "f_:white;_nose_3.png", gender: 1)
 
-Asset.create!(category: "nose", base: "m_:white;_nose_4.png")
+Asset.create!(category: "nose", base: "m_:white;_nose_4.png", gender: -1, default: true)
 
 Asset.create!(category: "nose", base: "n_:white;_nose_5.png")
 
