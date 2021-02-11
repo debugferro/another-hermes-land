@@ -12,6 +12,7 @@ class MyLanguagesForm
   end
 
   def create
+    # Reject empty variables in the array, find language, and associate to user
     @languages.reject!(&:empty?).each do |language|
       @language = Language.find_by(name: language)
       create_my_language

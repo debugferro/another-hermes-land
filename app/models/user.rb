@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # TODO: HASMANY RELATIONS TO THE EXTRA FEATURES
   before_save :fix_case_inputs
   after_create :create_avatar
 
@@ -12,11 +9,10 @@ class User < ApplicationRecord
   has_many :my_interests
   has_many :notifications
   has_many :messages
-  has_one_attached :photo
+  # has_one_attached :photo     DEPRECATED! Now the photo belongs to Avatar Model
   has_many :posts
   has_many :comments
   has_one :avatar
-  # has_many :assets, through: :avatar
   has_many :participants
   has_many :interests, through: :my_interests
   has_many :languages, through: :my_languages

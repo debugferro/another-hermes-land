@@ -12,7 +12,7 @@
           <div class="profile-img-container">
             <div class="canvas-img-box">
               <!-- greek circle -->
-              <%= cl_image_tag @user.photo.key, class: "background-image" if @user.photo.attached? %>
+              <%= cl_image_tag @user.avatar.photo.key, class: "background-image" if @user.avatar.photo.attached? %>
               <div class="profile-name topos-8">
                 <span>
                   <%= @user.username %>

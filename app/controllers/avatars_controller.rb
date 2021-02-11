@@ -1,8 +1,7 @@
 class AvatarsController < ApplicationController
   require 'open-uri'
-  before_action :set_user, only: [:index, :update]
-  before_action :set_avatar, only: [:index, :update]
-  # before_action :set_default_assets, only: [:index, :update]
+  before_action :set_user, only: %i[index update]
+  before_action :set_avatar, only: %i[index update]
 
   def index
     @auth = form_authenticity_token
@@ -16,20 +15,11 @@ class AvatarsController < ApplicationController
     end
     return unless avatar_params[:img]
 
-      photo = Cloudinary::Uploader.upload(avatar_params[:img])
-      binding.pry
-      photo = open(photo['url'])
-      @user.photo.attach(io: photo, filename: 'teste')
-      @avatar.assets.destroy_all
-      @assets = params[:avatar][:assets].split(',')
-      @assets.each do |asset|
-        @avatar.assets << Asset.find(asset.to_i)
-      end
-      colors = JSON.parse(params[:avatar][:colors]).symbolize_keys
-      colors.each { |key, value| @avatar[key] = value }
-      @user.save
-      @avatar.save
+    if change_avatar
       redirect_to :root
+    else # If change_avatar returns false, it will not save changes and will return a message error
+      redirect_to :root, notice: "I'm sorry! Something went wrong."
+    end
   end
 
   private
@@ -46,25 +36,11 @@ class AvatarsController < ApplicationController
     @avatar = Avatar.where(user_id: current_user).first
   end
 
-  # def set_default_assets
-  #   @female_defaults = []
-  #   @female_defaults << Asset.where(base: 'f_:white;_face_1.png').first
-  #   @female_defaults  << Asset.where(base: 'f_eyes_b_1.png').first
-  #   @female_defaults  << Asset.where(base: 'f_:blond;_eyebrows_5.png').first
-  #   @female_defaults  << Asset.where(base: 'f_mouth_1.png').first
-  #   @female_defaults  << Asset.where(base: 'f_:white;_nose_1.png').first
-  #   @female_defaults  << Asset.where(base: 'f_:blond;_hair_1.png').first
+  def change_avatar
+    return false unless @avatar.change_assets(avatar_params[:assets])
 
-  #   @male_defaults = []
-  #   @male_defaults << Asset.where(base: 'm_:white;_face_1.png').first
-  #   @male_defaults  << Asset.where(base: 'm_:white;_eyes_12.png').first
-  #   @male_defaults  << Asset.where(base: 'm_:blond;_eyebrows_4.png').first
-  #   @male_defaults  << Asset.where(base: 'm_:white;_nose_4.png').first
-  #   @male_defaults  << Asset.where(base: 'n_mouth_4.png').first
-  #   @male_defaults  << Asset.where(base: 'm_:blond;_hair_12.png').first
-  # end
-
-  def write_paths(assets)
-    assets.map { |asset| asset.base }
+    # It will not change colors and upload avatar picture if asset saving fails
+    @avatar.change_colors(avatar_params[:colors])
+    @avatar.upload_photo(avatar_params[:img])
   end
 end
