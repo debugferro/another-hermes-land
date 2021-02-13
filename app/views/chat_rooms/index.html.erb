@@ -21,12 +21,12 @@
         <div class="chats-container">
           <div class="participants-img">
         <% participants = chat.participants.map do |participant| %>
-            <% if participant.user.photo.attached? && participant.user != current_user %>
+            <% if participant.user.avatar.photo.attached? && participant.user != current_user %>
               <div class="data-bubble" data-toggle="tooltip" data-placement="top" title="<%= participant.user.username %>">
                 <a href="<%= user_path(participant.user.id) %>">
                 <div class="participant-img-container" style="width: 6em !important;">
                   <div class="participant-img-box">
-                    <%= cl_image_tag participant.user.photo.key %>
+                    <%= cl_image_tag participant.user.avatar.photo.key %>
                   </div>
                 </div>
                 </a>

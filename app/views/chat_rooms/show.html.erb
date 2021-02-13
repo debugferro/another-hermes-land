@@ -7,7 +7,7 @@
       <% @participants.each do |participant| %>
         <div class="data-bubble avatar-bubble" data-toggle="tooltip" data-placement="top" title="<%= participant.username %>">
           <a href="<%= user_path(participant) %>">
-            <img src="<%= cl_image_path participant.photo.key if participant.photo.attached? %>" alt="user avatar image" class="background-image">
+            <img src="<%= cl_image_path participant.avatar.photo.key if participant.avatar.photo.attached? %>" alt="user avatar image" class="background-image">
           </a>
         </div>
       <% end %>

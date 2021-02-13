@@ -6,7 +6,7 @@ class ChatRoomPolicy < ApplicationPolicy
   end
 
   def index?
-    user.photo.attached?
+    user.avatar.photo.attached?
   end
 
 

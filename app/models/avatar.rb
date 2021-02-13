@@ -3,8 +3,6 @@ class Avatar < ApplicationRecord
   has_one_attached :photo
   has_and_belongs_to_many :assets
 
-  after_create_commit :find_set_default_assets!
-
   validates_presence_of :skin_color, :eyebrows_color, :eyes_color, :hair_color,
                         :mouth_color, :acessory_color, :clothe_color
   validates :assets, presence: true, allow_nil: false

@@ -62,7 +62,7 @@ class User < ApplicationRecord
   end
 
   def create_avatar
-    Avatar.create!(user_id: self.id)
+    Avatar.create!(user_id: self.id, assets: Asset.find_defaults[:female])
   end
 
   def self.find_resolve_all(users)
