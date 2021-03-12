@@ -32,6 +32,7 @@ class UsersController < ApplicationController
       @results << User.interest_search(interest).to_a
     end
     @languages.each do |language|
+      language = Language.find(language).name if numerical?(language)
       @results << User.language_search(language).to_a
     end
     @countries.each do |country|
@@ -50,5 +51,9 @@ class UsersController < ApplicationController
     params[:query][:interests].reject!(&:empty?)
     params[:query][:countries].reject!(&:empty?)
     params[:query][:languages].reject!(&:empty?)
+  end
+
+  def numerical?(string)
+    true if Float(string) rescue false
   end
 end
