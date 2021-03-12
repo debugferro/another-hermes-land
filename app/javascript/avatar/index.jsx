@@ -27,7 +27,7 @@ const reducers = combineReducers({
 });
 
 const middlewares = applyMiddleware(thunk);
-const store = createStore(reducers, initialState, middlewares)
+const store = createStore(reducers, initialState, middlewares);
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
