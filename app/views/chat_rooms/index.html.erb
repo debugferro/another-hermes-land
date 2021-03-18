@@ -2,68 +2,67 @@
   <div class="card-chat card-responsive">
     <div class="profile-filler"></div>
     <div class="profile-path pos-relative">
-        <span><%= link_to "Home", root_path %></span><span id="path-arrow">></span> <span>Chats</span>
+      <span><%= link_to "Home", root_path %></span><span id="path-arrow">></span> <span>Chats</span>
     </div>
     <div class="chatroom-content">
-    <div class="pt-3">
-      <h1>CHAT</h1>
-    </div>
-    <!-- <div class="chat-start"> -->
+      <div class="pt-3">
+        <h1>CHAT</h1>
+      </div>
+      <!-- <div class="chat-start"> -->
       <%= simple_form_for @chat_room, url: chat_rooms_path, method: 'post' do |f| %>
-        <div class="p-1">
-          <%= f.association :users, label: false, collection: User.where.not(id: current_user.id), value_method: :id, label_method: :username, input_html: { class: 'select2max form-large' }  %>
-        </div>
-        <%= f.submit "Start" %>
+      <div class="p-1">
+        <%= f.association :users, label: false, collection: User.where.not(id: current_user.id).joins(avatar: :photo_attachment), value_method: :id, label_method: :username, input_html: { class: 'select2max form-large' }  %>
+      </div>
+      <%= f.submit "Start" %>
       <% end %>
-  <!-- </div> -->
-    <div class="list-chat">
-      <% @present_chats.each do |chat| %>
+      <!-- </div> -->
+      <div class="list-chat">
+        <% @present_chats.each do |chat| %>
         <div class="chats-container">
           <div class="participants-img">
-        <% participants = chat.participants.map do |participant| %>
+            <% participants = chat.participants.map do |participant| %>
             <% if participant.user.avatar.photo.attached? && participant.user != current_user %>
-              <div class="data-bubble" data-toggle="tooltip" data-placement="top" title="<%= participant.user.username %>">
-                <a href="<%= user_path(participant.user.id) %>">
+            <div class="data-bubble" data-toggle="tooltip" data-placement="top" title="<%= participant.user.username %>">
+              <a href="<%= user_path(participant.user.id) %>">
                 <div class="participant-img-container" style="width: 6em !important;">
                   <div class="participant-img-box">
                     <%= cl_image_tag participant.user.avatar.photo.key %>
                   </div>
                 </div>
-                </a>
-              </div>
+              </a>
+            </div>
             <% end %>
-          <% participant.user.username if participant.user.username != @user.username %>
-        <% end %>
-        </div>
-        <div class="participant-info">
-          <div class="participants">
-            <% participants = participants.compact %>
-            <%= link_to participants.to_sentence, chat_room_path(chat), class: "chat-room-names" %>
+            <% participant.user.username if participant.user.username != @user.username %>
+            <% end %>
           </div>
+          <div class="participant-info">
+            <div class="participants">
+              <% participants = participants.compact %>
+              <%= link_to participants.to_sentence, chat_room_path(chat), class: "chat-room-names" %>
+            </div>
             <% if chat.messages.present? %>
-              <div class="speech-bubble-index last-message grid">
+            <div class="speech-bubble-index last-message grid">
               <span>
-              <strong><%= chat.messages&.last&.user&.username %>:</strong>
-              <%= chat.messages.last&.content %>
+                <strong><%= chat.messages&.last&.user&.username %>:</strong>
+                <%= chat.messages.last&.content %>
               </span>
               <small><%= chat.messages.last.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-              </div>
+            </div>
             <% else %>
-              <div class="speech-bubble-index last-message nowrap">
-                <span class="nowrap">OH, NO!!! No one said anything yet :(</span>
-                <%= image_tag "sad.svg", class: "error" %>
-              </div>
+            <div class="speech-bubble-index last-message nowrap">
+              <span class="nowrap">OH, NO!!! No one said anything yet :(</span>
+              <%= image_tag "sad.svg", class: "error" %>
+            </div>
             <% end %>
-        </div>
-        <div class="start-chat">
-          <div class="btn-chatwith pointer">
-            <%= link_to image_tag('newchat.png'), chat_room_path(chat) %>
-            <%= link_to "Open Chat", chat_room_path(chat) %>
+          </div>
+          <div class="start-chat">
+            <div class="btn-chatwith pointer">
+              <%= link_to image_tag('newchat.png'), chat_room_path(chat) %>
+              <%= link_to "Open Chat", chat_room_path(chat) %>
+            </div>
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
-</div>
-

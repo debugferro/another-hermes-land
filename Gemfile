@@ -37,6 +37,8 @@ gem 'faker'
 # PGsearch for search engine
 gem 'pg_search', '~> 2.3.0'
 
+gem "select2-rails"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

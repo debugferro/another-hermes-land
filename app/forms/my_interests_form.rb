@@ -36,7 +36,7 @@ class MyInterestsForm
       @my_interests.push(interest)
     else
       @failed = true
-      @errors.push(@similar_interest)
+      @errors.push(@similar_interest.errors.full_messages)
     end
   end
 end

@@ -1,29 +1,35 @@
-    <div class="container">
-      <div class="card-signup text-center">
-        <div class="row justify-content-center p-3">
-          <h1 id="find-title">Add your interests</h1>
-        </div>
-        <div class="">
-          <%= simple_form_for MyInterest.new, method: 'post' do |f| %>
-          <div class="tag-wrapper">
-            <% @my_interests.each do |my_interest| %>
-              <div class="tag highlight">
-                <span>
-                  <%= my_interest.interest.name %>
-                </span>
-                <%= link_to 'X', my_interest_path(my_interest), method: :delete, class: "white-link" %>
-              </div>
-            <% end %>
+<div class="container">
+  <div class="container">
+    <div class="card-signup text-center">
+      <div class="row justify-content-center p-3">
+        <h1 id="find-title">Add your interests</h1>
+      </div>
+      <% if @errors %>
+      <p>Error: <%= @errors.to_sentence %></p>
+      <% end %>
+      <div class="">
+        <div class="tag-wrapper">
+          <% @my_interests.each do |my_interest| %>
+          <div class="tag highlight">
+            <span>
+              <%= my_interest.interest.name %>
+            </span>
+            <%= link_to 'X', my_interest_path(my_interest), method: :delete, class: "white-link" %>
           </div>
+          <% end %>
         </div>
-        <div class="row justify-content-center" style="display: contents;">
-          <%= f.association :interest, value_method: :name, label_method: :name, input_html: { class: 'select2' }  %>
+      </div>
+      <div class="row justify-content-center" style="display: contents;">
+        <%= simple_form_for current_user, url: my_interests_path, method: 'post' do |f| %>
+          <%= f.association :interests, value_method: :name, label_method: :name, input_html: { class: 'select2' }  %>
           <div class="row justify-content-center pt-4">
-            <%= f.submit "Save this", class: 'btn-chatwith white-txt highlight' %>
+            <%= f.submit "Save My Interests", class: 'btn-chatwith white-txt highlight' %>
           </div>
-    <% end %>
+        <% end %>
+      </div>
+      <div class="row justify-content-center pt-4">
+        <%= link_to "Exit", feed_index_path, class: 'btn-chatwith white-txt highlight' %>
+      </div>
     </div>
   </div>
 </div>
-
-
