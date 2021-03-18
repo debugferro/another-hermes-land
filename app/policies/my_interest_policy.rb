@@ -8,4 +8,12 @@ class MyInterestPolicy < ApplicationPolicy
   def destroy?
     user == record.user
   end
+
+  def manage?
+    user.present?
+  end
+
+  def create?
+    user == record.user
+  end
 end

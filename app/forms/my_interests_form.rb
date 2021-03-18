@@ -1,14 +1,15 @@
 class MyInterestsForm
   include ActiveModel::Model
 
-  attr_accessor :user, :interests, :failures, :my_interests
+  attr_accessor :user, :interests, :failures, :my_interests, :failed
 
   def initialize(params = {})
     super(params)
     @user = params[:user]
     @interests = params[:interests]
     @my_interests = []
-    @failures = []
+    @errors = []
+    @failed = false
   end
 
   def create
@@ -18,7 +19,11 @@ class MyInterestsForm
       @similar_interest ||= Interest.create(name: param)
       create_my_interest
     end
-    return @failures.none?
+    return @errors.none?
+  end
+
+  def failed?
+    @failed
   end
 
   private
@@ -27,9 +32,11 @@ class MyInterestsForm
     if @similar_interest.persisted?
       interest = MyInterest.new(interest: @similar_interest, user: @user)
       interest.save
+      @failed = true unless interest.persisted?
       @my_interests.push(interest)
     else
-      @failures.push(@similar_interest)
+      @failed = true
+      @errors.push(@similar_interest.errors.full_messages)
     end
   end
 end

@@ -6,69 +6,66 @@
     <%= link_to "Hermes Land", "/", class: "logo" %>
   </div>
 
-<!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
-
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Home", "/", class: "nav-link" if current_user.avatar.photo.attached? %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Messages", chat_rooms_path, class: "nav-link" if current_user.avatar.photo.attached? %>
-        </li>
-      </ul>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <% if current_user.avatar.photo.attached? %>
-            <%= cl_image_tag current_user.avatar.photo.key, class: "avatar dropdown-toggle background-image", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% else %>
-            <%= image_tag "robotavatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% end %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Customize avatar", avatars_path, method: 'get', class: "dropdown-item" %>
-            <%= link_to "Edit Profile", profile_index_path, class: "dropdown-item"%>
-            <%= link_to "My Account", edit_user_registration_path, class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
+      <li class="nav-item">
+        <%= link_to "Home", "/", class: "nav-link" if current_user.avatar.photo.attached? %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Messages", chat_rooms_path, class: "nav-link" if current_user.avatar.photo.attached? %>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <% if current_user.avatar.photo.attached? %>
+        <%= cl_image_tag current_user.avatar.photo.key, class: "avatar dropdown-toggle background-image", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% else %>
+        <%= image_tag "robotavatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "Customize avatar", avatars_path, method: 'get', class: "dropdown-item" %>
+          <%= link_to "My Interests", my_interests_manage_path, class: "dropdown-item"%>
+          <%= link_to "My Languages", my_languages_manage_path, class: "dropdown-item"%>
+          <%= link_to "My Account", edit_user_registration_path, class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "btn btn-flat-login" %>
-        </li>
+      <li class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "btn btn-flat-login" %>
+      </li>
       <% end %>
     </ul>
   </div>
 </div>
 <% if user_signed_in? %>
-  <div class="menu">
-    <div class="menu-content">
-      <ul class="menu-items">
-        <li class="nav-item">
-          <%= link_to "Home", "/", class: "nav-link" if current_user.avatar.photo.attached? %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Messages", chat_rooms_path, class: "nav-link" if current_user.avatar.photo.attached? %>
-        </li>
-      </ul>
-      <ul class="menu-items">
-        <li class="nav-item dropdown">
-          <% if current_user.avatar.photo.attached? %>
-            <%= cl_image_tag current_user.avatar.photo.key, class: "avatar dropdown-toggle background-image", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% else %>
-            %= image_tag "robotavatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% end %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Customize avatar", avatars_path, method: 'get', class: "dropdown-item" %>
-            <%= link_to "Edit Profile", profile_index_path, class: "dropdown-item" %>
-            <%= link_to "My Account", edit_user_registration_path, class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
-      </ul>
-    </div>
+<div class="menu">
+  <div class="menu-content">
+    <ul class="menu-items">
+      <li class="nav-item">
+        <%= link_to "Home", "/", class: "nav-link" if current_user.avatar.photo.attached? %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Messages", chat_rooms_path, class: "nav-link" if current_user.avatar.photo.attached? %>
+      </li>
+    </ul>
+    <ul class="menu-items">
+      <li class="nav-item dropdown">
+        <% if current_user.avatar.photo.attached? %>
+        <%= cl_image_tag current_user.avatar.photo.key, class: "avatar dropdown-toggle background-image", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% else %>
+        %= image_tag "robotavatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "Customize avatar", avatars_path, method: 'get', class: "dropdown-item" %>
+          <%= link_to "My Interests", my_interests_manage_path, class: "dropdown-item"%>
+          <%= link_to "My Languages", my_languages_manage_path, class: "dropdown-item"%>
+          <%= link_to "My Account", edit_user_registration_path, class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </li>
+    </ul>
   </div>
+</div>
 <% end %>
