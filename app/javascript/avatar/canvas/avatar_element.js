@@ -9,9 +9,9 @@ function hexToRgb(hex) {
 
 export default class AvatarElement {
   constructor(canvas, assets, mainCanvas, colors, skin = null) {
-    this.canvas = canvas
-    this.assets = assets
-    this.main = mainCanvas
+    this.canvas = canvas;
+    this.assets = assets;
+    this.main = mainCanvas;
     this.assetsUrls = [];
     this.componentUrls = [];
     this.assetColors = [];
@@ -161,7 +161,7 @@ export default class AvatarElement {
       const newR = !r ? 0 : r - data[i] / 1.5;
       const newG = !g ? 0 : g - data[i + 1] / 1.5;
       const newB = !b ? 0 : b - data[i + 2] / 1.5;
-      data[i]     += newR;
+      data[i] += newR;
       data[i + 1] += newG;
       data[i + 2] += newB;
     }

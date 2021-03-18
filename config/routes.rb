@@ -10,8 +10,9 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
   resources :avatars, only: [:index, :edit, :update]
-  resources :my_interests, only: [:destroy]
-  resources :my_languages, only: [:destroy]
+  get '/my_interests/manage', to: 'my_interests#manage'
+  resources :my_interests, only: [:create, :destroy]
+  resources :my_languages, only: [:create, :destroy]
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

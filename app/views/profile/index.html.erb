@@ -22,13 +22,18 @@
         <div class="row justify-content-center" style="display: contents;">
           <%= f.association :languages, value_method: :name, label_method: :name, input_html: { class: 'select2 form-large' }  %>
         </div>
+          <div class="row justify-content-center pt-4">
+            <%= f.submit "Save this", class: 'btn-chatwith white-txt highlight' %>
+          </div>
       </div>
+    <% end %>
     <div class="container">
       <div class="card-signup text-center">
         <div class="row justify-content-center p-3">
           <h1 id="find-title">Add your interests</h1>
         </div>
         <div class="">
+          <%= simple_form_for current_user, url: profile_index_path, method: 'post' do |f| %>
           <div class="tag-wrapper">
             <% @my_interests.each do |my_interest| %>
               <div class="tag highlight">
@@ -43,7 +48,7 @@
         <div class="row justify-content-center" style="display: contents;">
           <%= f.association :interests, value_method: :name, label_method: :name, input_html: { class: 'select2' }  %>
           <div class="row justify-content-center pt-4">
-            <%= f.submit "Save", class: 'btn-chatwith white-txt highlight' %>
+            <%= f.submit "Save this", class: 'btn-chatwith white-txt highlight' %>
           </div>
     <% end %>
     </div>
